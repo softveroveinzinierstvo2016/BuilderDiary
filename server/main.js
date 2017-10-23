@@ -8,7 +8,7 @@ import { Users } from '../imports/api/users';
 /*
   set specific database:
     open cmd in root project folder
-    type without "",<>: "MOGNO_URL=mongodb://<username>:<password>@dsNNNNNN.mlab.com:<port>/database"
+    type without "",<>: "set MOGNO_URL=mongodb://<username>:<password>@dsNNNNNN.mlab.com:<port>/database"
     then run server as allways
 */
 
