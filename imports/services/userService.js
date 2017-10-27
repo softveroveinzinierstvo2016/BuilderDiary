@@ -1,5 +1,5 @@
-import  { User } from '../../models/user';
-import { Users } from '../api/users';
+import  {Employee } from '../../models/Employee';
+import { Employees } from '../api/employees';
 
 import { Meteor } from 'meteor/meteor';
 
@@ -8,31 +8,31 @@ var loggedUser;
 export class UserService {
     
     constructor() { 
-      Meteor.subscribe('users');
+      Meteor.subscribe('employees');
      }
     /**
-     * log user
-     * @param {string} logName 
+     * log employee
+     * @param {string} login 
      * @param {string} password 
      */
-    loggUser(logName, password) {
-        if(!logName || !password)
+    loggUser(login, password) {
+        if(!login || !password)
             return false;
-        let users = Array;
-        users = Users.find({}).map((user) => {
-            let back = new User();
-            back.logname = user.logname;
-            back.password = user.password;
+        let employees = Array;
+        employees = Employees.find({}).map((employee) => {
+            let back = new Employee();
+            back.login = employee.login;
+            back.password = employee.password;
             return back;
         });
-        for(let i = 0; i < users.length; i++) {
-            console.log(users[i].logname);
-            if(users[i].logname === logName && 
-              users[i].password === password
+        for(let i = 0; i < employees.length; i++) {
+            console.log(employees[i].login);
+            if(employees[i].login === login && 
+              employees[i].password === password
             ) {
-                loggedUser = new User();
-                loggedUser.logname = users[i].logname;
-                loggedUser.password = users[i].password;
+                loggedUser = new Employee();
+                loggedUser.login = employees[i].login;
+                loggedUser.password = employees[i].password;
                 return true;
             }
         }
@@ -41,15 +41,15 @@ export class UserService {
         return false;
     }
     /**
-     * get if user is logged
+     * get if employee is logged
      */
     isLogged() {
         return loggedUser != null;
     }
     /**
-     * get name of the logged user
+     * get name of the logged employee
      */
     getLoggedUserName() {
-        return loggedUser.logname || "<no user logged>";
+        return loggedUser.login || "<no employee logged>";
     }
 }

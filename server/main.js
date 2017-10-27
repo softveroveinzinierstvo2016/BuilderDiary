@@ -1,10 +1,16 @@
 import { Meteor } from 'meteor/meteor';
 
 // define collections on server
-import '../imports/api/users';
+import '../imports/api/employees';
+import '../imports/api/attendances';
+import '../imports/api/projects';
+import '../imports/api/wages';
+import '../imports/api/tasks';
+import '../imports/api/workTimeReductions';
+import '../imports/api/works';
 
 // for initial data manipulation
-import { Users } from '../imports/api/users';
+import { Employees } from '../imports/api/employees';
 /*
   set specific database:
     open cmd in root project folder
@@ -17,10 +23,10 @@ Meteor.startup(() => {
   
   // uncomment next call if user collection is empty 
   //    - put into comment before next run
-  // Users.insert({logname: 'boss', password: 'pssw'});
+  //Employees.insert({login: 'boss', password: 'pssw'});
   
   // get users from databse and display for debug controll
-  let res = Users.find({}).fetch();
+  let res = Employees.find({}).fetch();
   console.log(res);
   // display database address
   console.log(process.env.MONGO_URL);

@@ -1,9 +1,9 @@
 export class Employee{
 
     id;
-    Name;
-    Surname;
-    Login;
+    name;
+    surname;
+    login;
     password;
     role;
     sumAssistant;
