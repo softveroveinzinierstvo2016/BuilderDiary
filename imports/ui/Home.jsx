@@ -1,21 +1,80 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+
+import { render } from 'react-dom';
+
+// for navigation
+import App from './App';
+import EarningOverview from './EarningOverview'; 
+import WorkHistory from './WorkHistory';
+import ProjectView from './ProjectView';
 
 // for data manipulation
 import { UserService } from '../services/userService';
-let userService = new UserService();
+import { ProjectService } from '../services/projectService';
 
+let userService = new UserService();
+let projectService = new ProjectService();
 export default class Home extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {name: userService.getLoggedUserName()};
+        this.handleLoggOut = this.handleLoggOut.bind(this);
+        this.handleEarningOverview = this.handleEarningOverview.bind(this);
+        this.handleWorkHistory = this.handleWorkHistory.bind(this);
+    }
+    handleProject(project) {
+       projectService.chooseProject(project);
+       render(<ProjectView/>, document.getElementById('app'));
+    }
+    renderProjects() {
+        return projectService.getProjects().map((project) => (
+            <button key={project.id} onClick={this.handleProject.bind(this,project)}>{project.nameOfProject}</button>
+        ));
+    }
+    handleLoggOut() {
+        userService.loggOut();
+        render(<App/>,document.getElementById('app'));
+    }
+    handleEarningOverview() {
+        render(<EarningOverview/>, document.getElementById('app'));
+    }
+    handleWorkHistory() {
+        render(<WorkHistory/>,document.getElementById('app'));
+    }
+    NavBoss() {
+        //TODO: implement other functionalities for boss
+        return (
+        <div>
+            <button onClick={this.handleLoggOut} >Odhlásiť</button> <br/>
+            <button>Ukončené projekty</button> <br/>
+            <button>Dnešné záznamy</button> <br/>
+            <button>Zamestnanci</button> <br/>
+            <button>Pridať projekt</button> <br/>
+        </div>
+        );
+    }
+    NavEmpl() {
+        return (
+        <div>
+            <button onClick={this.handleLoggOut}>Odhlásiť</button> <br/>
+            <button onClick={this.handleEarningOverview}>Prehľad zárobku</button> <br/>
+            <button onClick={this.handleWorkHistory}>História prác</button> <br/>
+        </div>
+        );
     }
     render() {
+        if(!userService.isLogged())
+            render(<App/>,document.getElementById('app'));
+        var nav;
+        const isBoss = userService.isLoggedBoss();
+        if(isBoss)
+            nav = this.NavBoss();
+        else
+            nav = this.NavEmpl();
         return (
             <div className="container">
-               Home <br></br>
-               <label>{this.state.name}</label>
-           </div> 
+               {nav}
+                {this.renderProjects()}
+            </div> 
         );
     }
 }

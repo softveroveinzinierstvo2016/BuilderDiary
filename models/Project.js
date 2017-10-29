@@ -1,5 +1,4 @@
 export class Project{
-
     id;
     nameOfProject;
     sponsor;

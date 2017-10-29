@@ -18,6 +18,7 @@ export default class App extends Component {
         this.nameChange = this.nameChange.bind(this);
         this.psswChange = this.psswChange.bind(this);
         this.stepIn  = this.stepIn.bind(this);
+
     }
 
     stepIn() {

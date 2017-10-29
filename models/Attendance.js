@@ -4,7 +4,7 @@ export class Attendance{
     idEmployee;
     idProject;
     day;
-    arrivalTime
+    arrivalTime;
     departureTime;
     approved;
 
