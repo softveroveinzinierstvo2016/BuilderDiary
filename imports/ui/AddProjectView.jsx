@@ -12,36 +12,43 @@ import { UserService } from '../services/userService';
 
 let projectService = new ProjectService();
 let userService = new UserService();
-export default class ProjectView extends Component {
+export default class AddProjectView extends Component {
     constructor(props) {
         super(props);
         this.handleGoHome=this.handleGoHome.bind(this);
         this.state = {name:'', sponsor:'', adress:'', time:'', majster:'', budget:''};
 
+        this.nameChange = this.nameChange.bind(this);
+        this.sponsorChange = this.sponsorChange.bind(this);
+        this.adressChange = this.adressChange.bind(this);
+        this.timeChange = this.timeChange.bind(this);
+        this.majsterChange = this.majsterChange.bind(this);
+        this.badgetChange = this.badgetChange.bind(this);
+        this.add = this.add.bind(this);
        
     }
-      handleGoHome() {
+     handleGoHome() {
         render(<Home/>,document.getElementById('app'));
     }
 
-  nameChange(event) {
+    nameChange(event) {
        // this.setState({name: event.target.value});
         this.setState({name: event.target.value});
     }
 
-      sponsorChange(event) {
+    sponsorChange(event) {
         this.setState({sponsor: event.target.value});
     }
-      adressChange(event) {
-        this.setState({adress: event.target.value});
+    adressChange(event) {
+       this.setState({adress: event.target.value});
     }
-      timeChange(event) {
+    timeChange(event) {
         this.setState({time: event.target.value});
     }
-      majsterChange(event) {
+    majsterChange(event) {
         this.setState({majster: event.target.value});
     }
-      badgetChange(event) {
+    badgetChange(event) {
         this.setState({badget: event.target.value});
     }
   add(){
