@@ -18,7 +18,7 @@ import { Project } from '../models/Project';
 /*
   set specific database:
     open cmd in root project folder
-    type without "",<>: "set MOGNO_URL=mongodb://<username>:<password>@dsNNNNNN.mlab.com:<port>/database"
+    type without "",<>: "set MONGO_URL=mongodb://<username>:<password>@dsNNNNNN.mlab.com:<port>/database"
     then run server as allways
 */
 
