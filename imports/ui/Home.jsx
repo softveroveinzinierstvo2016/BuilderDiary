@@ -7,6 +7,7 @@ import App from './App';
 import EarningOverview from './EarningOverview'; 
 import WorkHistory from './WorkHistory';
 import ProjectView from './ProjectView';
+import AddProjectView from './AddProjectView';
 
 // for data manipulation
 import { UserService } from '../services/userService';
@@ -20,7 +21,8 @@ export default class Home extends Component {
         this.handleLoggOut = this.handleLoggOut.bind(this);
         this.handleEarningOverview = this.handleEarningOverview.bind(this);
         this.handleWorkHistory = this.handleWorkHistory.bind(this);
-    }
+        this.handleNewProject=this.handleNewProject.bind(this);
+        }
     handleProject(project) {
        projectService.chooseProject(project);
        render(<ProjectView/>, document.getElementById('app'));
@@ -40,6 +42,9 @@ export default class Home extends Component {
     handleWorkHistory() {
         render(<WorkHistory/>,document.getElementById('app'));
     }
+    handleNewProject() {
+        render(<AddProjectView/>,document.getElementById('app'));
+    }
     NavBoss() {
         //TODO: implement other functionalities for boss
         return (
@@ -48,7 +53,7 @@ export default class Home extends Component {
             <button>Ukončené projekty</button> <br/>
             <button>Dnešné záznamy</button> <br/>
             <button>Zamestnanci</button> <br/>
-            <button>Pridať projekt</button> <br/>
+            <button onClick={this.handleNewProject}>Pridať projekt</button> <br/>
         </div>
         );
     }

@@ -4,6 +4,7 @@ import { Projects } from '../api/projects';
 import { Meteor } from 'meteor/meteor';
 
 var sellectedProject;
+var rememberProject;
 
 export class ProjectService {
     
@@ -39,5 +40,18 @@ export class ProjectService {
       */
      getChoosedProject() {
          return sellectedProject;
+     }
+     rememberThisProject(name,sponzor,adress,time,majster,badget){
+         let newProject=new Project();
+         newProject.nameOfProject=name;
+         newProject.adress=adress;
+         newProject.budget=badget;
+         newProject.endTime=time;
+         //Todo:hladanie id majstra podla mena
+         newProject.idMaster=null;
+         newProject.expenditure=0;
+         newProject.sponsor=sponzor;
+         rememberProject=newProject;
+         Meteor.call('project.insert',rememberProject);
      }
 }
