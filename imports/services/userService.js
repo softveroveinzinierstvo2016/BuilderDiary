@@ -19,7 +19,8 @@ export class UserService {
     /**
      * log employee
      * @param {string} login 
-     * @param {string} password 
+     * @param {string} password
+     * @return {boolean}
      */
     loggUser(login, password) {
         //TODO: move this to server and return user id or null - Meteor.call('function_name');
@@ -38,7 +39,6 @@ export class UserService {
             return back;
         });
         for(let i = 0; i < employees.length; i++) {
-            console.log(employees[i].login);
             if(employees[i].login === login && 
               employees[i].password === password
             ) {
@@ -53,30 +53,40 @@ export class UserService {
                 return true;
             }
         }
-        console.log('not such combination');
         loggedUser = null;
         return false;
     }
     /**
      * get if employee is logged
+     * @return {boolean}
      */
     isLogged() {
         return loggedUser != null;
     }
     /**
      * get name of the logged employee
+     * @return {string}
      */
     getLoggedUserName() {
         return loggedUser.name + " " + loggedUser.surname || "<no employee logged>";
     }
     /**
+     * get id of logged employee
+     * @return {string}
+     */
+    getLoggedId() {
+        return loggedUser.id;
+    }
+    /**
      * returns true iff logged user is a boss
+     * @return {boolean}
      */
     isLoggedBoss() {
         return loggedUser.role === 1;
     }
     /**
      * returns true iff logged user is an employee
+     * @return {boolean}
      */
     isLoggedEmployee() {
         return loggedUser.role === 0 || 
@@ -84,6 +94,7 @@ export class UserService {
     }
     /**
      * returns true iff logged user is an assistant
+     * @return {boolean}
      */
     isLoggedAssistant() {
         return loggedUser.role === 2;

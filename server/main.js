@@ -13,6 +13,7 @@ import '../imports/api/works';
 import { Employees } from '../imports/api/employees';
 import { Projects } from '../imports/api/projects';
 import { Tasks } from '../imports/api/tasks'; 
+import { Attendances } from '../imports/api/attendances';
 
 import { Project } from '../models/Project';
 /*
@@ -28,7 +29,7 @@ Meteor.startup(() => {
   // uncomment next call if user collection is empty 
   // BEFORE RUN TYPE: meteor reset - to clear database
   //    - put into comment before next run
-  /*
+ /*
   Employees.insert({
       name: 'Jan', 
       surname: 'Vesely',
@@ -51,7 +52,7 @@ Meteor.startup(() => {
     login: 'jozo', 
     password: 'pssw',
     role: 2,
-    sumAssistant: 0
+    sumAssistant: 13
   });
 
   Projects.insert({
@@ -105,11 +106,12 @@ Meteor.startup(() => {
     sum:  400,
     expenditure: 0
   });
-*/
+  */
 //  console.log(projRes);
   // get users from databse and display for debug controll
   let res = Employees.find({}).fetch();
   console.log(res);
+  console.log(Attendances.find({}).fetch());
   // display database address
   console.log(process.env.MONGO_URL);
 });

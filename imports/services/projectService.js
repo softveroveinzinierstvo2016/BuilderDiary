@@ -30,13 +30,14 @@ export class ProjectService {
      }
      /**
       * set project as choosed for detail view
-      * @param {Project} project 
+      * @param {Project} project project to be set for detail view
       */
      chooseProject(project) {
          sellectedProject = project
      }
      /**
       * get choosed project
+      * @return {Project}
       */
      getChoosedProject() {
          return sellectedProject;

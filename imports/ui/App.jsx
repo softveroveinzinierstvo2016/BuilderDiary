@@ -27,7 +27,7 @@ export default class App extends Component {
             render(<Home/>,document.getElementById('app'));
     }
     nameChange(event) {
-        this.setState({name: event.target.value});
+      this.setState({name: event.target.value});
     }
     psswChange(event) {
         this.setState({password: event.target.value});

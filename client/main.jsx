@@ -12,7 +12,9 @@ import App  from '../imports/ui/App.jsx';
   check your firewall on computer
     - allow port 3000
 */
+
 var theURL = 'localhost:3000';
+//var theURL = '192.168.1.13:3000';
 
 if(Meteor.isClient) {
   // display client connection to the server in console 
