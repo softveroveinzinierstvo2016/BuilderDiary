@@ -55,10 +55,8 @@ export class TaskService {
             return back;
           });
      }
-      getTaskById() {
-         //TODO: get tasks using project id - from param
-         //TODO: get tasks using user id - IMPORTANT FOR ASSISTANT
-         return Tasks.find({idProject:'5'}).map((task) => {
+      getTaskByNameOfProjekt() {
+         return Tasks.find({'idProject':projektName}).map((task) => {
             let back = new Task();
             back.idProject  = task.idProject;
             back.nameOfTask = task.nameOfTask;
@@ -85,20 +83,14 @@ export class TaskService {
      getChoosedTask() {
          return sellectedTask;
      }
-     getProjectName(){
+     setProjectName(){
          projektName=projectService.getrememberProject();
+         projektName=projektName.nameOfProject;
      }
-     getProjectId(){
-         getProjectName();
-         console.log("Ahoj");
-        return Projects.find({nameOfProject:projektName}).map((project) => {
-           idProjektu = project._id;
-          });
-         
-     }
+    
      rememberThisTask(name,duration,payment, unit, sumBoss,sum){
            let back=new Task();
-            back.idProject  = 5;
+            back.idProject  = projektName;
             back.nameOfTask =name;
             back.duration = duration;
             back.payment = payment;
@@ -108,11 +100,6 @@ export class TaskService {
             back.expenditure = null;
          Meteor.call('task.insert',back);
      }
-    getProjectId(){
-        return Projects.find({nameOfProject:projektName}).map((project) => {
-           idProjektu = project._id;
-          });
-         
-     }
+    
      
 }

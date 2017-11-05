@@ -16,7 +16,7 @@ if(Meteor.isServer) {
       idProject:task.idProject,
     nameOfTask:task.nameOfTask,
     duration:task.duration,
-    payment:task.unit,
+    payment:task.payment,
     unit:task.unit,
     payment_boss:task.payment_boss,
     sum:task.sum,

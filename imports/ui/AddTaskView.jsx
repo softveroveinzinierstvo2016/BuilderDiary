@@ -5,7 +5,7 @@ import { render } from 'react-dom';
 // for navigation
 import Home from './Home';
 import App from './App';
-import AddTaskView from './AddProjectView';
+import AddTaskView from './AddTaskView';
 
 import { ProjectService } from '../services/projectService';
 import { TaskService } from '../services/taskService';
@@ -33,8 +33,10 @@ export default class AddProjectView extends Component {
         render(<Home/>,document.getElementById('app'));
     }
  renderTaskById() {
-        return taskService.getTaskById().map((task) => (
-            <label>{task.nameOfTask}</label>
+        return taskService.getTaskByNameOfProjekt().map((task) => (
+            <div>
+            <label>{task.nameOfTask} </label> <label>{task.payment} </label>  <label>{task.payment_boss} </label><br/>
+            </div>
         ));
     }
     nameChange(event) {
@@ -60,14 +62,15 @@ export default class AddProjectView extends Component {
    
   add(){
       
-      taskService.rememberThisTask(this.state.name,this.state.duration,this.state.payment,this.state.unit,this.state.sumBoss,this.state.sum)
-      
-       this.setState({name: ''});
+      taskService.rememberThisTask(this.state.name,this.state.duration,this.state.payment,this.state.unit,this.state.sumBoss,this.state.sum);
+      this.setState({name: ''});
        this.setState({duration: ''});
-       this.setState({payment: ''});
-       this.setState({unit: ''});
-       this.setState({sumBoss: ''});
-       this.setState({sum: ''});
+       this.setState({payment:''});
+        this.setState({unit: ''});
+        this.setState({sumBoss: ''});
+        this.setState({sum: ''});
+         render(<AddTaskView/>,document.getElementById('app'));
+      
       
  }
     BossView(){

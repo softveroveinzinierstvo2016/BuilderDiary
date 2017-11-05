@@ -56,7 +56,7 @@ export default class AddProjectView extends Component {
     }
   add(){
    projectService.rememberThisProject(this.state.name,this.state.sponsor,this.state.adress,this.state.time,this.state.majster,this.state.badget);
-  taskService.getProjectId();
+  taskService.setProjectName();
    render(<AddTaskView/>, document.getElementById('app')); 
  }
     BossView(){
