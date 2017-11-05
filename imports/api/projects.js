@@ -9,9 +9,18 @@ if(Meteor.isServer) {
         return Projects.find();
     });
     Meteor.methods({
-       'project.insert'(project){
+     'project.insert'(project){
          //check(project,Projects);
         console.log(project);
+    Projects.insert({
+       nameOfProject:project.nameOfProject,
+       sponsor: project.sponsor,
+       adress: project.adress,
+       endTime: project.endTime,
+       idMaster:project.idMaster,
+       budget: project.budget,
+       expenditure: project.expenditure
+    });
 
        }
 

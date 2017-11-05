@@ -55,4 +55,9 @@ export class ProjectService {
          rememberProject=newProject;
          Meteor.call('project.insert',rememberProject);
      }
+     getrememberProject(){
+         return rememberProject;
+     }
+
+  
 }

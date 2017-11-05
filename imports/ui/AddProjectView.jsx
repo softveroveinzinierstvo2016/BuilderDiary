@@ -5,13 +5,16 @@ import { render } from 'react-dom';
 // for navigation
 import Home from './Home';
 import App from './App';
-//import AddTaskView from './AddTaskView';
+import AddTaskView from './AddTaskView';
+
 
 import { ProjectService } from '../services/projectService';
 import { UserService } from '../services/userService';
+import { TaskService } from '../services/taskService';
 
 let projectService = new ProjectService();
 let userService = new UserService();
+let taskService = new TaskService();
 export default class AddProjectView extends Component {
     constructor(props) {
         super(props);
@@ -53,7 +56,8 @@ export default class AddProjectView extends Component {
     }
   add(){
    projectService.rememberThisProject(this.state.name,this.state.sponsor,this.state.adress,this.state.time,this.state.majster,this.state.badget);
-   // render(<AddTaskView/>, document.getElementById('app')); 
+  taskService.getProjectId();
+   render(<AddTaskView/>, document.getElementById('app')); 
  }
     BossView(){
         // Todo: opravit majster na input combobox
@@ -66,7 +70,7 @@ export default class AddProjectView extends Component {
            Predpokladaný čas ukončenia:<input type="text" value={this.state.time} onChange={this.timeChange}/><br/>
            Majster:<input type="text"value={this.state.majster} onChange={this.majsterChange}/><br/>
            Rozpočet:<input type="text" value={this.state.badget} onChange={this.badgetChange}/><br/>
-           <button onClick={this.add} >Pridat ulohy</button>
+           <button onClick={this.add} >Pridat ulohu</button>
           </div>
         );
 

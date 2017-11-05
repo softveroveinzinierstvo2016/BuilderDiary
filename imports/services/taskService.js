@@ -1,9 +1,16 @@
 import { Task } from '../../models/Task';
 import { Tasks } from '../api/tasks';
+import { Project } from '../../models/Project';
+import { Projects } from '../api/projects';
 
 import { Meteor } from 'meteor/meteor';
 
+import { ProjectService } from './projectService';
+
 var sellectedTask;
+var idProjektu;
+var projektName;
+let projectService = new ProjectService();
 
 export class TaskService {
     
@@ -48,6 +55,23 @@ export class TaskService {
             return back;
           });
      }
+      getTaskById() {
+         //TODO: get tasks using project id - from param
+         //TODO: get tasks using user id - IMPORTANT FOR ASSISTANT
+         return Tasks.find({idProject:'5'}).map((task) => {
+            let back = new Task();
+            back.idProject  = task.idProject;
+            back.nameOfTask = task.nameOfTask;
+            back.duration = task.duration;
+            back.payment = task.payment;
+            back.unit = task.unit;
+            back.payment_boss = task.payment_boss;
+            back.sum = task.sum;
+            back.expenditure = task.expenditure;
+            back.id = task._id;
+            return back;
+          });
+     }
      /**
       * set task as choosed for detail view
       * @param {Task} task 
@@ -61,4 +85,34 @@ export class TaskService {
      getChoosedTask() {
          return sellectedTask;
      }
+     getProjectName(){
+         projektName=projectService.getrememberProject();
+     }
+     getProjectId(){
+         getProjectName();
+         console.log("Ahoj");
+        return Projects.find({nameOfProject:projektName}).map((project) => {
+           idProjektu = project._id;
+          });
+         
+     }
+     rememberThisTask(name,duration,payment, unit, sumBoss,sum){
+           let back=new Task();
+            back.idProject  = 5;
+            back.nameOfTask =name;
+            back.duration = duration;
+            back.payment = payment;
+            back.unit = unit;
+            back.payment_boss = sumBoss;
+            back.sum = sum;
+            back.expenditure = null;
+         Meteor.call('task.insert',back);
+     }
+    getProjectId(){
+        return Projects.find({nameOfProject:projektName}).map((project) => {
+           idProjektu = project._id;
+          });
+         
+     }
+     
 }
