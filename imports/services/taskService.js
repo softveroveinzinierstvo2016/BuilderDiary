@@ -35,13 +35,19 @@ export class TaskService {
             return back;
           });
      }
+      setProjectId(){
+         idProjektu=projectService.getProjectId();
+        // projektName=projektName.nameOfProject;
+        console.log(idProjektu);
+     }
+    
      /**
       * return tasks in project
       * @param {string} projectId
       */
-      getTasksOfProject(projectId) {
+      getTaskOfProjectById(projectId) {
          //TODO: get tasks using user id - IMPORTANT FOR ASSISTANT
-         return Tasks.find({idProject: projectId}).map((task) => {
+         return Tasks.find({'idProject': projectId}).map((task) => {
             let back = new Task();
             back.idProject  = task.idProject;
             back.nameOfTask = task.nameOfTask;
@@ -52,12 +58,30 @@ export class TaskService {
             back.sum = task.sum;
             back.expenditure = task.expenditure;
             back.id = task._id;
+            console.log(task.nameOfTask);
+            return back;
+          });
+     }
+      getTaskOfActualProjectById() {
+         //TODO: get tasks using user id - IMPORTANT FOR ASSISTANT
+         return Tasks.find({'idProject': idProjektu}).map((task) => {
+            let back = new Task();
+            back.idProject  = task.idProject;
+            back.nameOfTask = task.nameOfTask;
+            back.duration = task.duration;
+            back.payment = task.payment;
+            back.unit = task.unit;
+            back.payment_boss = task.payment_boss;
+            back.sum = task.sum;
+            back.expenditure = task.expenditure;
+            back.id = task._id;
+            console.log(task.nameOfTask);
             return back;
           });
      }
       getTaskByNameOfProjekt() {
-         return Tasks.find({'idProject':projektName}).map((task) => {
-            let back = new Task();
+        // return Tasks.find({'idProject':projektName}).map((task) => {
+            /*let back = new Task();
             back.idProject  = task.idProject;
             back.nameOfTask = task.nameOfTask;
             back.duration = task.duration;
@@ -67,8 +91,9 @@ export class TaskService {
             back.sum = task.sum;
             back.expenditure = task.expenditure;
             back.id = task._id;
-            return back;
-          });
+            return back;*/
+          //});
+         
      }
      /**
       * set task as choosed for detail view
@@ -83,21 +108,17 @@ export class TaskService {
      getChoosedTask() {
          return sellectedTask;
      }
-     setProjectName(){
-         projektName=projectService.getrememberProject();
-         projektName=projektName.nameOfProject;
-     }
     
      rememberThisTask(name,duration,payment, unit, sumBoss,sum){
            let back=new Task();
-            back.idProject  = projektName;
+            back.idProject  = idProjektu;
             back.nameOfTask =name;
             back.duration = duration;
             back.payment = payment;
             back.unit = unit;
             back.payment_boss = sumBoss;
             back.sum = sum;
-            back.expenditure = null;
+            back.expenditure = 0;
          Meteor.call('task.insert',back);
      }
     /**
