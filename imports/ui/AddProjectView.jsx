@@ -56,7 +56,7 @@ export default class AddProjectView extends Component {
     }
   add(){
    projectService.rememberThisProject(this.state.name,this.state.sponsor,this.state.adress,this.state.time,this.state.majster,this.state.badget);
-  taskService.setProjectName();
+   taskService.setProjectId();
    render(<AddTaskView/>, document.getElementById('app')); 
  }
     BossView(){
@@ -67,7 +67,7 @@ export default class AddProjectView extends Component {
            Názov projektu:<input type="text" value={this.state.name} onChange={this.nameChange}/><br/>
            Zadavateľ:<input type="text" value={this.state.sponsor} onChange={this.sponsorChange}/><br/>
            Adresa:<input type="text" value={this.state.adress} onChange={this.adressChange}/><br/>
-           Predpokladaný čas ukončenia:<input type="text" value={this.state.time} onChange={this.timeChange}/><br/>
+           Čas ukončenia:<input type="text" value={this.state.time} onChange={this.timeChange}/><br/>
            Majster:<input type="text"value={this.state.majster} onChange={this.majsterChange}/><br/>
            Rozpočet:<input type="text" value={this.state.badget} onChange={this.badgetChange}/><br/>
            <button onClick={this.add} >Pridat ulohu</button>

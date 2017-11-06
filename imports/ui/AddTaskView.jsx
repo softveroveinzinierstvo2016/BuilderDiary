@@ -33,7 +33,7 @@ export default class AddProjectView extends Component {
         render(<Home/>,document.getElementById('app'));
     }
  renderTaskById() {
-        return taskService.getTaskByNameOfProjekt().map((task) => (
+        return taskService.getTaskOfActualProjectById().map((task) => (
             <div>
             <label>{task.nameOfTask} </label> <label>{task.payment} </label>  <label>{task.payment_boss} </label><br/>
             </div>
@@ -61,7 +61,7 @@ export default class AddProjectView extends Component {
     }
    
   add(){
-      
+      taskService.setProjectId();
       taskService.rememberThisTask(this.state.name,this.state.duration,this.state.payment,this.state.unit,this.state.sumBoss,this.state.sum);
       this.setState({name: ''});
        this.setState({duration: ''});
