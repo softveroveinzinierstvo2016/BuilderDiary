@@ -78,4 +78,16 @@ export class AttendanceService {
         let answer = Attendances.findOne({idEmployee: userId, idProject: projectId, day: today});
         return answer;
     }
+     /**
+     * return true iff editing is locked
+     * @param {string} userId 
+     * @param {string} projectId
+     * @return {boolean}
+     */
+    isLocked(userId, projectId) {
+        let attendanceToday = this.getToday(userId, projectId);
+        if(attendanceToday == null)
+            return false;
+        return attendanceToday.approved;
+    }
 }

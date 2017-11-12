@@ -27,6 +27,7 @@ export default class EarningOverview extends Component {
             <div className="container">
                 <button onClick={this.handleGoHome} >Domov</button> <br/>
                 Prehlad zarobku
+                
             </div> 
         );
     }

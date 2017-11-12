@@ -26,7 +26,7 @@ export default class WorkHistory extends Component {
         return (
             <div className="container">
                 <button onClick={this.handleGoHome} >Domov</button> <br/>
-                Historia prac
+                
             </div> 
         );
     }

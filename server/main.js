@@ -7,7 +7,8 @@ import '../imports/api/projects';
 import '../imports/api/wages';
 import '../imports/api/tasks';
 import '../imports/api/workTimeReductions';
-import '../imports/api/works';
+import '../imports/api/works'
+import '../imports/api/expenditures';
 
 // for initial data manipulation
 import { Employees } from '../imports/api/employees';

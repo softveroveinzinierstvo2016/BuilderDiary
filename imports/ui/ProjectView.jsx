@@ -6,6 +6,7 @@ import { render } from 'react-dom';
 import Home from './Home';
 import App from './App';
 import TaskView from './TaskView';
+import AddExpenditure from './AddExpenditure';
 
 // for data manipulation
 import { UserService } from '../services/userService';
@@ -26,6 +27,7 @@ export default class ProjectView extends Component {
     constructor(props) {
         super(props);
         this.handleGoHome = this.handleGoHome.bind(this);
+        this.handleAddExpenditure = this.handleAddExpenditure.bind(this);
         this.project = projectService.getChoosedProject();
 
         this.SetAttendace = this.SetAttendace.bind(this);
@@ -39,6 +41,9 @@ export default class ProjectView extends Component {
             departureTimeConf: attendanceService.getDepartureTime(userService.getLoggedId(),this.project.id),
             info: ''
         };
+    }
+    handleAddExpenditure(){
+        render(<AddExpenditure/>,document.getElementById('app'));
     }
     handleGoHome() {
         render(<Home/>,document.getElementById('app'));
@@ -88,11 +93,10 @@ export default class ProjectView extends Component {
     }
     EmplView() {
         //TODO: add special functionality for master
-        //TODO: implement button for Vydaje
         return (
             <div>
                 <label>{this.project.nameOfProject}</label> <br/>
-                <button>Vydaje</button> <br/>
+                <button onClick={this.handleAddExpenditure}>Vydaje</button> <br/>
                     Prichod: <input type="text" value={this.state.arrivalTime} onChange={this.arrivalTimeChange}/>
                     Odchod: <input type="text" value={this.state.departureTime} onChange={this.departureTimeChange}/> 
                 <br/>
