@@ -35,7 +35,7 @@ export default class AddProjectView extends Component {
  renderTaskById() {
         return taskService.getTaskOfActualProjectById().map((task) => (
             <div>
-            <label>{task.nameOfTask} </label> <label>{task.payment} </label>  <label>{task.payment_boss} </label><br/>
+            <label key={task.id}>{task.nameOfTask} </label> <label key={task.id}>{task.payment} </label>  <label key={task.id}>{task.payment_boss} </label><br/>
             </div>
         ));
     }

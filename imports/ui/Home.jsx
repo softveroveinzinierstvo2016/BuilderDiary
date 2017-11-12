@@ -28,9 +28,11 @@ export default class Home extends Component {
        render(<ProjectView/>, document.getElementById('app'));
     }
     renderProjects() {
+        
         return projectService.getProjects().map((project) => (
             <div>
-                <button key={project.id} onClick={this.handleProject.bind(this,project)}>{project.nameOfProject}</button><br/>
+    <button key={project.id} onClick={this.handleProject.bind(this,project)}>{project.nameOfProject}</button><br/>
+
             </div>
         ));
     }
@@ -51,11 +53,12 @@ export default class Home extends Component {
         //TODO: implement other functionalities for boss
         return (
         <div>
-            <button onClick={this.handleLoggOut} >Odhlásiť</button> <br/>
-            <button>Ukončené projekty</button> <br/>
-            <button>Dnešné záznamy</button> <br/>
-            <button>Zamestnanci</button> <br/>
-            <button onClick={this.handleNewProject}>Pridať projekt</button> <br/>
+            <button onClick={this.handleLoggOut} >Odhlásiť</button><br/>
+            <button>Ukončené projekty</button><br/>
+            <button>Dnešné záznamy</button><br/>
+            <button>Zamestnanci</button><br/>
+            <button onClick={this.handleNewProject}>Pridať projekt</button> 
+
         </div>
         );
     }
