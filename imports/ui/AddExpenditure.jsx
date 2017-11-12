@@ -44,7 +44,7 @@ export default class AddExpenditure extends Component {
     }
     handleAddExpenditure(){
         if(expenditureService.todayIsLocked()){
-            this.setState("Dnes sa uz nedaju pridavat zaznamy");
+            this.setState({info: "Dnes sa uz nedaju pridavat zaznamy"});
             return;
         }
         if(this.state.reason == null || this.state.reason.trim() === "" || !sumPattern.test(this.state.sum))
