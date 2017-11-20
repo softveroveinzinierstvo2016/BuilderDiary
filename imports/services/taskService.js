@@ -100,6 +100,12 @@ export class TaskService {
             back.expenditure = null;
          Meteor.call('task.insert',back);
      }
-    
-     
+    /**
+     * 
+     * @param {string} taskIdList
+     * @return {Task[]}
+     */
+    getTasksByIds(taskIdList){
+        return Tasks.find({_id: {$in: taskIdList}});
+    }
 }

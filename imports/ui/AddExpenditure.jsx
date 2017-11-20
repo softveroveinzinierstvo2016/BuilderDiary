@@ -5,7 +5,7 @@ import { render } from 'react-dom';
 // for navigation
 import Home from './Home';
 import App from './App';
-import ProjectView from './ProjectView'
+import ProjectView from './ProjectView';
 
 // for data manipulation
 import { UserService } from '../services/userService';
@@ -49,7 +49,6 @@ export default class AddExpenditure extends Component {
         }
         if(this.state.reason == null || this.state.reason.trim() === "" || !sumPattern.test(this.state.sum))
             return;
-        if(sumPattern)
         if(!expenditureService.addExpenditure(this.state.sum,this.state.reason)){
             this.setState({info: "Najprv si zapis dochadzku"});
             return;

@@ -113,5 +113,13 @@ export class WorkService {
                          });
         return result;    
     }
+    /**
+     * get all works from attendanceIds
+     * @param {string[]} attendanceIds
+     * @return {Work[]}
+     */
+    getWorksWithAttendanceIds(attendanceIds){
+        return Works.find({idAttendance: {$in: attendanceIds}});
+    }    
 
 }

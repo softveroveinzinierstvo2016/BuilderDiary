@@ -90,4 +90,16 @@ export class AttendanceService {
             return false;
         return attendanceToday.approved;
     }
+    /**
+     * 
+     * @param {string} userId
+     * @param {Date} startDay 
+     * @param {Date} endDay 
+     * @return {Attendance[]}
+     */
+    getIdRecordsBetween(userId, startDay, endDay){
+        startDay.setHours(0,0,0,0);
+        endDay.setHours(0,0,0,0);
+        return Attendances.find({idEmployee: userId, day:{$gte: startDay, $lte: endDay}});
+    }
 }
