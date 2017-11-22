@@ -60,7 +60,7 @@ export default class ProjectView extends Component {
      }
     renderTaskList() {
         //TODO: render missing value from GUI
-        return taskService.getTasksOfProject(this.project.id).map((task) => (
+        return taskService.getTaskOfProjectById(this.project.id).map((task) => (
             <div key={task.id}>
             <button onClick={this.handleTask.bind(this,task)}> {task.nameOfTask} {task.payment}e/{task.unit} </button> <br/>
             </div>

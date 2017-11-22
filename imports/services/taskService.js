@@ -38,7 +38,6 @@ export class TaskService {
       setProjectId(){
          idProjektu=projectService.getProjectId();
         // projektName=projektName.nameOfProject;
-        console.log(idProjektu);
      }
     
      /**
@@ -58,7 +57,6 @@ export class TaskService {
             back.sum = task.sum;
             back.expenditure = task.expenditure;
             back.id = task._id;
-            console.log(task.nameOfTask);
             return back;
           });
      }
@@ -75,7 +73,6 @@ export class TaskService {
             back.sum = task.sum;
             back.expenditure = task.expenditure;
             back.id = task._id;
-            console.log(task.nameOfTask);
             return back;
           });
      }

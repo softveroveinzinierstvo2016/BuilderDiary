@@ -38,7 +38,7 @@ export default class WorkHistory extends Component {
                 <br/>
                 {record.projectName}
                 <br/>
-                {record.taskName}: {record.work.worked}{record.unit}{" "}{record.work.payed}e
+                {record.taskName}: {record.work.worked}{record.unit}{" "}{record.work.payment}e
             </div>
         ));
     }
