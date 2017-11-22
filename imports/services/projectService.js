@@ -43,6 +43,23 @@ export class ProjectService {
      getChoosedProject() {
          return sellectedProject;
      }
+     /**
+      * get choosed project id
+      * return null if no project selected
+      * @return {string}
+      */
+     getChoosedProjectId() {
+         return sellectedProject.id || sellectedProject._id || null;
+     }
+     /**
+      * 
+      * @param {string} name 
+      * @param {string} sponzor 
+      * @param {string} adress 
+      * @param {string} time 
+      * @param {string} majster 
+      * @param {number} badget 
+      */
      rememberThisProject(name,sponzor,adress,time,majster,badget){
          let newProject=new Project();
          newProject.nameOfProject=name;

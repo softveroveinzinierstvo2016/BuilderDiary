@@ -31,7 +31,9 @@ export default class Home extends Component {
         
         return projectService.getProjects().map((project) => (
             <div>
-            <button key={project.id} onClick={this.handleProject.bind(this,project)}>{project.nameOfProject}</button><br/>
+
+                <button key={project.id} onClick={this.handleProject.bind(this,project)}>{project.nameOfProject}</button><br/>
+
             </div>
         ));
     }
