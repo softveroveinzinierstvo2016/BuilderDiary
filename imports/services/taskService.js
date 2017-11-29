@@ -39,7 +39,12 @@ export class TaskService {
          idProjektu=projectService.getProjectId();
         // projektName=projektName.nameOfProject;
      }
-    
+     getProjectId(){
+         return idProjektu;
+     }
+    getStateOfTask(expenditure,payment){
+        return expenditure*payment;
+    }
      /**
       * return tasks in project
       * @param {string} projectId

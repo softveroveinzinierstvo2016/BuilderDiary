@@ -4,7 +4,6 @@ import { Projects } from '../api/projects';
 import { Meteor } from 'meteor/meteor';
 
 var sellectedProject;
-var rememberProject;
 var projectId;
 
 export class ProjectService {
@@ -70,17 +69,17 @@ export class ProjectService {
          newProject.idMaster=null;
          newProject.expenditure=0;
          newProject.sponsor=sponzor;
-         rememberProject=newProject;
-         Meteor.call('project.insert',rememberProject,function(error,result){
-             rememberProject.id=result;
+         sellectedProject=newProject;
+         Meteor.call('project.insert',sellectedProject,function(error,result){
+             sellectedProject.id=result;
              console.log(result);
          });
      }
      getrememberProject(){
-         return rememberProject;
+         return sellectedProject;
      }
    getProjectId(){
-       return rememberProject.id;
+       return sellectedProject.id;
    }
   
 }

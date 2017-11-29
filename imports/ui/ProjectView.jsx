@@ -7,6 +7,7 @@ import Home from './Home';
 import App from './App';
 import TaskView from './TaskView';
 import AddExpenditure from './AddExpenditure';
+import ListTaskView from './ListTaskView';
 
 // for data manipulation
 import { UserService } from '../services/userService';
@@ -51,12 +52,27 @@ export default class ProjectView extends Component {
     BossView() {
         //TODO: create view for boss
         return (
-            this.project.nameOfProject
+            <div> 
+           <label> {this.project.nameOfProject}</label><br/>
+             <p>
+            <label> Zadávateľ: {this.project.sponsor}</label><br/>
+            <label> Adresa: {this.project.adress}</label><br/>
+            <label> Majster: {this.project.idMajster}</label><br/>
+            <label> Dátum ukončenia: {this.project.endTime}</label><br/>
+            <label> Celkový rozpočet: {this.project.budget}</label><br/>
+            <label> Minuté: {this.project.expenditure}</label><br/>
+           </p>
+           <button onClick={this.handleTasks.bind(this)} />Zobraziť úlohy<br/>
+            </div>
         );
     }
     handleTask(task) {
         taskService.chooseTask(task);
         render(<TaskView/>, document.getElementById('app'));
+     }
+       handleTasks(idProject) {
+        projectService.chooseProject(this.project);
+        render(<ListTaskView/>, document.getElementById('app'));
      }
     renderTaskList() {
         //TODO: render missing value from GUI
