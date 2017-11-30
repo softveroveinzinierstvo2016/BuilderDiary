@@ -18,14 +18,13 @@ export default class AddProjectView extends Component {
     constructor(props) {
         super(props);
         this.handleGoHome=this.handleGoHome.bind(this);
-        this.state = {name:'', duration:'', payment:'', unit:'', sumBoss:'',sum:''};
+        this.state = {name:'', duration:'', payment:'', unit:'', sumBoss:''};
 
         this.nameChange = this.nameChange.bind(this);
         this.durationChange = this.durationChange.bind(this);
         this.paymentChange = this.paymentChange.bind(this);
         this.unitChange = this.unitChange.bind(this);
         this.sumBossChange = this.sumBossChange.bind(this);
-        this.sumChange = this.sumChange.bind(this);
         this.add = this.add.bind(this);
        
     }
@@ -35,7 +34,7 @@ export default class AddProjectView extends Component {
  renderTaskById() {
         return taskService.getTaskOfActualProjectById().map((task) => (
             <div>
-            <label key={task.id}>{task.nameOfTask} </label> <label key={task.id}>{task.payment} </label>  <label key={task.id}>{task.payment_boss} </label><br/>
+            <label key={task.id}>{task.nameOfTask} </label> <label key={task.id}>{task.duration} </label> <label key={task.id}>{task.unit} </label><label key={task.id}>{task.payment} </label>  <label key={task.id}>{task.payment_boss} </label><br/>
             </div>
         ));
     }
@@ -56,20 +55,17 @@ export default class AddProjectView extends Component {
     sumBossChange(event) {
         this.setState({sumBoss: event.target.value});
     }
-     sumChange(event) {
-        this.setState({sum: event.target.value});
-    }
+
    
   add(){
       taskService.setProjectId();
-      taskService.rememberThisTask(this.state.name,this.state.duration,this.state.payment,this.state.unit,this.state.sumBoss,this.state.sum);
+      taskService.rememberThisTask(this.state.name,this.state.duration,this.state.payment,this.state.unit,this.state.sumBoss);
       this.setState({name: ''});
        this.setState({duration: ''});
        this.setState({payment:''});
         this.setState({unit: ''});
         this.setState({sumBoss: ''});
-        this.setState({sum: ''});
-         render(<AddTaskView/>,document.getElementById('app'));
+
       
       
  }
@@ -83,7 +79,6 @@ export default class AddProjectView extends Component {
            Plat:<input type="text" value={this.state.payment} onChange={this.paymentChange}/><br/>
            Jednotka:<input type="text" value={this.state.unit} onChange={this.unitChange}/><br/>
            Plat pre šéfa:<input type="text"value={this.state.sumBoss} onChange={this.sumBossChange}/><br/>
-           Suma:<input type="text" value={this.state.sum} onChange={this.sumChange}/><br/>
            <button onClick={this.add} >Pridat ulohy</button>
           </div>
 
@@ -101,7 +96,7 @@ export default class AddProjectView extends Component {
             <div className="container">
                 <button onClick={this.handleGoHome} >Domov</button> <br/>
                 {view}
-                {this.renderTaskById()}
+                 {this.renderTaskById()}
             </div> 
         );
     }

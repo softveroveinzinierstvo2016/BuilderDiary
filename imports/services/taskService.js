@@ -37,14 +37,21 @@ export class TaskService {
      }
       setProjectId(){
          idProjektu=projectService.getProjectId();
-        // projektName=projektName.nameOfProject;
      }
+
      getProjectId(){
          return idProjektu;
      }
-    getStateOfTask(expenditure,payment){
-        return expenditure*payment;
-    }
+
+      stateOfTask(expenditure,payment){
+          if((expenditure!=null)&&(payment!=null)){
+              var stav=expenditure*payment;
+            }else{
+             var stav=0;
+            }
+
+          return stav;
+      }
      /**
       * return tasks in project
       * @param {string} projectId
@@ -81,22 +88,7 @@ export class TaskService {
             return back;
           });
      }
-      getTaskByNameOfProjekt() {
-        // return Tasks.find({'idProject':projektName}).map((task) => {
-            /*let back = new Task();
-            back.idProject  = task.idProject;
-            back.nameOfTask = task.nameOfTask;
-            back.duration = task.duration;
-            back.payment = task.payment;
-            back.unit = task.unit;
-            back.payment_boss = task.payment_boss;
-            back.sum = task.sum;
-            back.expenditure = task.expenditure;
-            back.id = task._id;
-            return back;*/
-          //});
-         
-     }
+
      /**
       * set task as choosed for detail view
       * @param {Task} task 
@@ -111,7 +103,7 @@ export class TaskService {
          return sellectedTask;
      }
     
-     rememberThisTask(name,duration,payment, unit, sumBoss,sum){
+     rememberThisTask(name,duration,payment, unit, sumBoss){
            let back=new Task();
             back.idProject  = idProjektu;
             back.nameOfTask =name;
@@ -119,7 +111,7 @@ export class TaskService {
             back.payment = payment;
             back.unit = unit;
             back.payment_boss = sumBoss;
-            back.sum = sum;
+            back.sum = payment*duration;
             back.expenditure = 0;
          Meteor.call('task.insert',back);
      }

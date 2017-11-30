@@ -62,7 +62,7 @@ export default class ProjectView extends Component {
             <label> Celkový rozpočet: {this.project.budget}</label><br/>
             <label> Minuté: {this.project.expenditure}</label><br/>
            </p>
-           <button onClick={this.handleTasks.bind(this)} />Zobraziť úlohy<br/>
+           <button onClick={this.handleTasks.bind(this)}>Zobraziť úlohy</button><br/>
             </div>
         );
     }
