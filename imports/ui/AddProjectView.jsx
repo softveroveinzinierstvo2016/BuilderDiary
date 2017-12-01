@@ -63,13 +63,16 @@ export default class AddProjectView extends Component {
         // Todo: opravit majster na input combobox
         return(
           <div>
-           <label>Pridanie projektu</label><br/>
-           Názov projektu:<input type="text" value={this.state.name} onChange={this.nameChange}/><br/>
-           Zadavateľ:<input type="text" value={this.state.sponsor} onChange={this.sponsorChange}/><br/>
-           Adresa:<input type="text" value={this.state.adress} onChange={this.adressChange}/><br/>
-           Čas ukončenia:<input type="text" value={this.state.time} onChange={this.timeChange}/><br/>
-           Majster:<input type="text"value={this.state.majster} onChange={this.majsterChange}/><br/>
-           Rozpočet:<input type="text" value={this.state.badget} onChange={this.badgetChange}/><br/>
+           <h1>Pridanie projektu</h1>
+           <div className="leftRight">
+                <label className="left">Názov projektu:</label><input className="right" type="text" value={this.state.name} onChange={this.nameChange}/><br/>
+                <label className="left">Zadavateľ:</label><input className="right" type="text" value={this.state.sponsor} onChange={this.sponsorChange}/><br/>
+                <label className="left"> Adresa:</label><input className="right" type="text" value={this.state.adress} onChange={this.adressChange}/><br/>
+                <label className="left">Čas ukončenia:</label><input className="right" type="text" value={this.state.time} onChange={this.timeChange}/><br/>
+                <label className="left"> Majster:</label><input className="right" type="text"value={this.state.majster} onChange={this.majsterChange}/><br/>
+                <label className="left">Rozpočet:</label><input className="right" type="text" value={this.state.badget} onChange={this.badgetChange}/><br/>
+           </div>
+           <br/>
            <button onClick={this.add} >Pridat ulohu</button>
           </div>
         );
@@ -84,7 +87,7 @@ export default class AddProjectView extends Component {
             view = this.BossView();
         return (
             <div className="container">
-                <button onClick={this.handleGoHome} >Domov</button> <br/>
+                <button className="nav1" onClick={this.handleGoHome} >Domov</button> <br/>
                 {view}
             </div> 
         );

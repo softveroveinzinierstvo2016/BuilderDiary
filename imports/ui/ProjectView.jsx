@@ -78,7 +78,7 @@ export default class ProjectView extends Component {
         //TODO: render missing value from GUI
         return taskService.getTaskOfProjectById(this.project.id).map((task) => (
             <div key={task.id}>
-            <button onClick={this.handleTask.bind(this,task)}> {task.nameOfTask} {task.payment}e/{task.unit} </button> <br/>
+            <button  className="list" onClick={this.handleTask.bind(this,task)}> {task.nameOfTask} {task.payment}e/{task.unit} </button> <br/>
             </div>
         ));
     }
@@ -110,13 +110,12 @@ export default class ProjectView extends Component {
     EmplView() {
         //TODO: add special functionality for master
         return (
-            <div>
-                <label>{this.project.nameOfProject}</label> <br/>
-                <button onClick={this.handleAddExpenditure}>Vydaje</button> <br/>
-                    Prichod: <input type="text" value={this.state.arrivalTime} onChange={this.arrivalTimeChange}/>
-                    Odchod: <input type="text" value={this.state.departureTime} onChange={this.departureTimeChange}/> 
-                <br/>
-                {this.state.info}
+            <div className="leftRight">
+                <h1>{this.project.nameOfProject}</h1>
+                <button onClick={this.handleAddExpenditure}>Vydaje</button> <br/> <br/>
+                   <label className="left"> Prichod:</label><input className="right" type="text" value={this.state.arrivalTime} onChange={this.arrivalTimeChange}/> <br/>
+                   <label className="left"> Odchod: </label><input className="right" type="text" value={this.state.departureTime} onChange={this.departureTimeChange}/><br/>
+                <div className="error"> {this.state.info} </div>
                 <br/>
                 <button onClick={this.SetAttendace}>Zaznamenat</button>
                 <br/>
@@ -137,7 +136,7 @@ export default class ProjectView extends Component {
             view = this.EmplView();
         return (
             <div className="container">
-                <button onClick={this.handleGoHome} >Domov</button> <br/>
+                <button className="nav1" onClick={this.handleGoHome} >Domov</button> <br/>
                 {view}
             </div> 
         );

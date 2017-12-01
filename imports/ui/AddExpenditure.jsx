@@ -59,20 +59,25 @@ export default class AddExpenditure extends Component {
     renderToday(){
         return expenditureService.getTodayOnProjectForEmployee().map((element)=>(
                     <div key={element._id}>
-                    <label>{element.reason}</label> <label>{element.sum}e</label> <br/>
+                        <label className="left">{element.reason}</label> <label className="right">{element.sum}e</label> <br/>
                     </div>
                 ));
     }
     view(){
         return (
             <div>
-                {this.projectName} - Vydaje <br/>
-                <label>Suma</label> <input type="text" value={this.state.sum} onChange={this.sumOnChange}/> <br/>
-                <label>Dovod</label> <input type="text" value={this.state.reason} onChange={this.reasonOnChange}/> <br/>
+                <h1>{this.projectName} - Vydaje</h1>
+                <div className="leftRight">
+                    <label className="left">Suma</label> <input className="right" type="text" value={this.state.sum} onChange={this.sumOnChange}/> <br/>
+                    <label className="left">Dovod</label> <input className="right" type="text" value={this.state.reason} onChange={this.reasonOnChange}/><br/>
+                </div>
+                <br/>
                 <button onClick={this.handleAddExpenditure}>Zaznamenat</button> <br/>
-                {this.state.info}<br/>
-                <label>Dnesne vydaje</label> <br/>
-                {this.renderToday()}
+                <div className="error">{this.state.info}</div>
+                <h1>Dnesne vydaje</h1>
+                <div className="leftRight">
+                    {this.renderToday()}
+                </div>
             </div>
         );
     }
@@ -85,7 +90,7 @@ export default class AddExpenditure extends Component {
             view = this.view();
         return (
             <div className="container">
-                <button onClick={this.handleGoBack} >Projekt</button> <br/>
+                <button className="nav1" onClick={this.handleGoBack} >Projekt</button> <br/>
                 {view}
             </div>
         )

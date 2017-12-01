@@ -34,11 +34,17 @@ export default class WorkHistory extends Component {
     renderWorkHistory(){
         return workHistoryService.getWorkHistoy().map((record)=>(
             <div key={record.work._id}>
-                {record.day.getDate()}.{record.day.getMonth()}.{record.day.getFullYear()}
-                <br/>
-                {record.projectName}
-                <br/>
-                {record.taskName}: {record.work.worked}{record.unit}{" "}{record.work.payment}e
+                <div className="dayField">
+                    {record.day.getDate()}.{record.day.getMonth()}.{record.day.getFullYear()}
+                    <br/>
+                    <div className="projectField">
+                        {record.projectName}
+                        <br/>
+                        <div className="taskField">
+                            {record.taskName}: {record.work.worked}{record.unit}{" "}{record.work.payment}e
+                        </div>
+                    </div>
+                </div>
             </div>
         ));
     }
@@ -48,11 +54,11 @@ export default class WorkHistory extends Component {
             render(<App/>,document.getElementById('app'));
         return (
             <div className="container">
-                <button onClick={this.handleGoHome} >Domov</button> <br/>
-                <div>
-                    <button onClick={this.handlePreviousePeriod}>{String.fromCharCode(60)}{String.fromCharCode(60)}</button>
+                <button className="nav1" onClick={this.handleGoHome} >Domov</button> <br/>
+                <div className="choosePeriod">
+                    <button className="left" onClick={this.handlePreviousePeriod}>{String.fromCharCode(60)}{String.fromCharCode(60)}</button>
                     {this.state.period}
-                    <button onClick={this.handleNextPeriod}>{String.fromCharCode(62)}{String.fromCharCode(62)}</button>
+                    <button className="right" onClick={this.handleNextPeriod}>{String.fromCharCode(62)}{String.fromCharCode(62)}</button>
                 </div>
                 <br/>
                 <div>

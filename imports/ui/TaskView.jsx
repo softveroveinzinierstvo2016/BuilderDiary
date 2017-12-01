@@ -58,7 +58,7 @@ export default class TaskView extends Component {
         var viewWorked = <label>{this.state.workedToday}</label>;
         var confirmButton;
         if(!workService.isLocked(userService.getLoggedId(),this.task.idProject)){
-            viewWorked = <input type="text" value={this.state.workedToday} onChange={this.workedTodayOnChange}/>;
+            viewWorked = <input className="right2input" type="text" value={this.state.workedToday} onChange={this.workedTodayOnChange}/>;
             confirmButton = (
                 <div>
                     <button onClick={this.handleLoggWork}> Potvrdiť zmenu </button> <br/>
@@ -67,13 +67,13 @@ export default class TaskView extends Component {
             );
         }
         return(
-            <div>
-                <label>{this.state.taskName}</label><br/>
-                <label>Odrobil som: </label> {viewWorked} <label>{this.state.unit}</label> <br/>
-                <label>Dnešný zárobok: </label> <label >{this.state.paymentToday} e</label> <br/>
+            <div className="leftRight">
+                <h1>{this.state.taskName}</h1>
+                <label className="left">Odrobil som: </label> <label className="right">{viewWorked} {this.state.unit}</label> <br/>
+                <label className="left">Dnešný zárobok: </label> <label className="right" >{this.state.paymentToday} e</label> <br/>
                 {confirmButton}
-                <label>Celkovo odrobené: </label> <label>{this.state.worked} {this.state.unit}</label> <br/>
-                <label>Zárobok: </label> <label>{this.state.payment} e</label>
+                <label className="left">Celkovo odrobené: </label> <label className="right">{this.state.worked} {this.state.unit}</label> <br/>
+                <label className="left">Zárobok: </label> <label className="right">{this.state.payment} e</label>
             </div>
         );
     }
@@ -88,7 +88,7 @@ export default class TaskView extends Component {
             view = this.EmplView();
         return (
             <div className="container">
-                <button onClick={this.handleGoBack} >Projekt</button> <br/>
+                <button className="nav1" onClick={this.handleGoBack} >Projekt</button> <br/>
                 {view}
             </div> 
         );

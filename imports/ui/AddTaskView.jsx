@@ -73,12 +73,14 @@ export default class AddProjectView extends Component {
         // Todo: opravit jednotka na input combobox
         return(
           <div>
-           <label>Pridanie Úlohy</label><br/>
-           Názov úlohy:<input type="text" value={this.state.name} onChange={this.nameChange}/><br/>
-           Trvanie úlohy:<input type="text" value={this.state.duration} onChange={this.durationChange}/><br/>
-           Plat:<input type="text" value={this.state.payment} onChange={this.paymentChange}/><br/>
-           Jednotka:<input type="text" value={this.state.unit} onChange={this.unitChange}/><br/>
-           Plat pre šéfa:<input type="text"value={this.state.sumBoss} onChange={this.sumBossChange}/><br/>
+           <h1>Pridanie Úlohy</h1>
+           <div className="leftRight">
+                <label className="left">Názov úlohy:</label><input className="right" type="text" value={this.state.name} onChange={this.nameChange}/><br/>
+                <label className="left">Trvanie úlohy:</label><input className="right" type="text" value={this.state.duration} onChange={this.durationChange}/><br/>
+                <label className="left">Plat:</label><input className="right" type="text" value={this.state.payment} onChange={this.paymentChange}/><br/>
+                <label className="left">Jednotka:</label><input className="right" type="text" value={this.state.unit} onChange={this.unitChange}/><br/>
+                <label className="left">Plat pre šéfa:</label><input className="right" type="text"value={this.state.sumBoss} onChange={this.sumBossChange}/><br/>
+           </div>
            <button onClick={this.add} >Pridat ulohy</button>
           </div>
 
@@ -94,7 +96,7 @@ export default class AddProjectView extends Component {
             view = this.BossView();
         return (
             <div className="container">
-                <button onClick={this.handleGoHome} >Domov</button> <br/>
+                <button className="nav1" onClick={this.handleGoHome} >Domov</button> <br/>
                 {view}
                  {this.renderTaskById()}
             </div> 

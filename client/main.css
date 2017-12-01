@@ -1,1 +1,113 @@
 /* CSS declarations go here */
+body{
+    background-color: white;
+    text-align: center;
+    position: relative;
+}
+button{
+    background-color: darkblue;
+    color: white;
+    margin-top: 0.5px;
+    margin-bottom: 0.5px;
+    width: 100%;
+}
+input{
+    color: blue;
+    width: 100%;
+    text-align: center;
+}
+.choosePeriod{
+    text-align: center;
+    background-color: white;
+}
+.choosePeriod .left{
+    left: 0px;
+    width: 30%;
+}
+.choosePeriod .right{
+    right: 0px;
+    width: 30%;
+}
+.dayField{
+    background-color: aquamarine;
+    border: 1px;
+    border-style: inset;
+}
+.projectField{
+    background-color: blue;
+    color: white;
+}
+.taskField{
+    background-color: darkblue;
+    color: white;
+}
+.list{
+    background-color: aqua;
+    color:  black;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.leftRight{
+    background: white;
+    color: black;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    left: 0px;
+}
+.leftRight .left{
+    width: 50%;
+    left: 0px;
+    position: absolute;
+    text-align: left;
+}
+.leftRight .right{
+    width: 50%;
+    position: absolute;
+    text-align: left;
+}
+.leftRight input{
+    text-align: left;
+}
+.leftRight .right .right2input{
+    width: 60%;
+}
+.error{
+    position:  relative;
+    text-align: center;
+    color: red;
+}
+.container{
+    position:  absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+.loggin{
+  padding-top: 20%;
+  padding-left: 10%;
+  padding-right: 10%;
+  width: 80%;
+  position: absolute;
+}
+.nav1{
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.nav2{
+    width: 50%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+h1{
+    color: blue;
+    font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif;
+    font-size: large;
+    font-style: normal;
+    font-size-adjust: none;
+    padding: 0px;
+    margin: 0px;
+    font-weight: unset;
+}

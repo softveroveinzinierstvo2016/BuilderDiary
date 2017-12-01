@@ -46,7 +46,7 @@ export default class ListTaskView extends Component {
         return taskService.getTaskOfProjectById(this.project.id).map((task) => (
             <div key={task.id}>
             <label>{task.nameOfTask}</label><br/>
-            Stav: {this.renderStateTask(task.expediture,task.payment)} /{task.duration} {task.unit}<br/>
+            Stav: {this.renderStateTask(task.expenditure,task.payment)} /{task.duration} {task.unit}<br/>
             Vyplatiť:0e<br/>
             Minuté:{task.expediture}<br/>
             Zákazník:0 e<br/>
@@ -59,7 +59,7 @@ export default class ListTaskView extends Component {
         //TODO: implement other functionalities for boss
         return (
         <div>
-            <label>Zoznam úloh pre projekt</label><br/>
+            <h1>Zoznam úloh pre projekt</h1><br/>
            <button onClick={this.addTask}>Pridať úlohu</button><br/>
            {this.renderTaskList()}
         </div>
@@ -79,7 +79,7 @@ export default class ListTaskView extends Component {
             nav = this.NavBoss();
         return (
             <div className="container">
-            <button onClick={this.handleGoHome} >Späť</button> <br/>
+            <button className="nav1" onClick={this.handleGoHome} >Späť</button> <br/>
                {nav}
             </div> 
         );
