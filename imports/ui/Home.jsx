@@ -28,11 +28,8 @@ export default class Home extends Component {
        render(<ProjectView/>, document.getElementById('app'));
     }
     renderProjects() {
-        
         return projectService.getProjects().map((project) => (
-            <div>
-                <button className="list" key={project.id} onClick={this.handleProject.bind(this,project)}>{project.nameOfProject}</button><br/>
-            </div>
+            <button key={project.id} onClick={this.handleProject.bind(this,project)}>{project.nameOfProject}</button>
         ));
     }
     handleLoggOut() {
@@ -52,21 +49,20 @@ export default class Home extends Component {
         //TODO: implement other functionalities for boss
         return (
         <div>
-            <button className="nav1" onClick={this.handleLoggOut} >Odhlásiť</button><br/>
-            <button className="nav2" >Ukončené projekty</button>
-            <button className="nav2" >Dnešné záznamy</button><br/>
-            <button className="nav2">Zamestnanci</button>
-            <button className="nav2" onClick={this.handleNewProject}>Pridať projekt</button> 
-
+            <button onClick={this.handleLoggOut} >Odhlásiť</button> <br/>
+            <button>Ukončené projekty</button> <br/>
+            <button>Dnešné záznamy</button> <br/>
+            <button>Zamestnanci</button> <br/>
+            <button onClick={this.handleNewProject}>Pridať projekt</button> <br/>
         </div>
         );
     }
     NavEmpl() {
         return (
         <div>
-            <button className="nav1" onClick={this.handleLoggOut}>Odhlásiť</button> <br/>
-            <button className="nav1" onClick={this.handleEarningOverview}>Prehľad zárobku</button> <br/>
-            <button className="nav1" onClick={this.handleWorkHistory}>História prác</button> <br/>
+            <button onClick={this.handleLoggOut}>Odhlásiť</button> <br/>
+            <button onClick={this.handleEarningOverview}>Prehľad zárobku</button> <br/>
+            <button onClick={this.handleWorkHistory}>História prác</button> <br/>
         </div>
         );
     }

@@ -30,7 +30,7 @@ Meteor.startup(() => {
   // uncomment next call if user collection is empty 
   // BEFORE RUN TYPE: meteor reset - to clear database
   //    - put into comment before next run
- /*
+  /*
   Employees.insert({
       name: 'Jan', 
       surname: 'Vesely',
@@ -107,7 +107,7 @@ Meteor.startup(() => {
     sum:  400,
     expenditure: 0
   });
-  */
+*/
 //  console.log(projRes);
   // get users from databse and display for debug controll
   let res = Employees.find({}).fetch();
