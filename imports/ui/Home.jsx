@@ -29,7 +29,10 @@ export default class Home extends Component {
     }
     renderProjects() {
         return projectService.getProjects().map((project) => (
-            <button key={project.id} onClick={this.handleProject.bind(this,project)}>{project.nameOfProject}</button>
+            <div>
+                <button key={project.id} onClick={this.handleProject.bind(this,project)}>{project.nameOfProject}</button>
+                <button className="list" key={project.id} onClick={this.handleProject.bind(this,project)}>{project.nameOfProject}</button><br/>
+            </div>
         ));
     }
     handleLoggOut() {
@@ -49,20 +52,20 @@ export default class Home extends Component {
         //TODO: implement other functionalities for boss
         return (
         <div>
-            <button onClick={this.handleLoggOut} >Odhlásiť</button> <br/>
-            <button>Ukončené projekty</button> <br/>
-            <button>Dnešné záznamy</button> <br/>
-            <button>Zamestnanci</button> <br/>
-            <button onClick={this.handleNewProject}>Pridať projekt</button> <br/>
+            <button className="nav1" onClick={this.handleLoggOut} >Odhlásiť</button> <br/>
+            <button className="nav2">Ukončené projekty</button> <br/>
+            <button className="nav2">Dnešné záznamy</button> <br/>
+            <button className="nav2">Zamestnanci</button> <br/>
+            <button className="nav2" onClick={this.handleNewProject}>Pridať projekt</button> <br/>
         </div>
         );
     }
     NavEmpl() {
         return (
         <div>
-            <button onClick={this.handleLoggOut}>Odhlásiť</button> <br/>
-            <button onClick={this.handleEarningOverview}>Prehľad zárobku</button> <br/>
-            <button onClick={this.handleWorkHistory}>História prác</button> <br/>
+            <button className="nav1" onClick={this.handleLoggOut}>Odhlásiť</button> <br/>
+            <button className="nav1" onClick={this.handleEarningOverview}>Prehľad zárobku</button> <br/>
+            <button className="nav1" onClick={this.handleWorkHistory}>História prác</button> <br/>
         </div>
         );
     }
