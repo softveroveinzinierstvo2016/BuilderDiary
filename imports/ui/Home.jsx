@@ -30,7 +30,6 @@ export default class Home extends Component {
     renderProjects() {
         return projectService.getProjects().map((project) => (
             <div>
-                <button key={project.id} onClick={this.handleProject.bind(this,project)}>{project.nameOfProject}</button>
                 <button className="list" key={project.id} onClick={this.handleProject.bind(this,project)}>{project.nameOfProject}</button><br/>
             </div>
         ));
@@ -53,9 +52,9 @@ export default class Home extends Component {
         return (
         <div>
             <button className="nav1" onClick={this.handleLoggOut} >Odhlásiť</button> <br/>
-            <button className="nav2">Ukončené projekty</button> <br/>
+            <button className="nav2">Ukončené projekty</button> 
             <button className="nav2">Dnešné záznamy</button> <br/>
-            <button className="nav2">Zamestnanci</button> <br/>
+            <button className="nav2">Zamestnanci</button> 
             <button className="nav2" onClick={this.handleNewProject}>Pridať projekt</button> <br/>
         </div>
         );
