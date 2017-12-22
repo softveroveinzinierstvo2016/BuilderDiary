@@ -34,6 +34,16 @@ export class ExpenditureService {
         return Expenditures.find({employeeID: employeeId,projectID: projectId, attendanceID: attendaceId});
      }
      /**
+      * 
+      * @param {string} employeeId 
+      * @param {string[]} projectIds 
+      * @param {string[]} attendanceIds 
+      * @returns {Expenditure[]}
+      */
+     getExpenditures(employeeId, projectIds, attendanceIds){
+        return Expenditures.find({employeeID: employeeId,projectID: {$in: projectIds}, attendanceID: {$in: attendanceIds}});
+     }
+     /**
       * return project name connected to this expenditure list
       * @return {string}
       */

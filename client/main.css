@@ -61,6 +61,32 @@ input{
     position: absolute;
     text-align: left;
 }
+.leftRight .rightBl{
+    width: 50%;
+    position: absolute;
+    text-align: left;
+    color: blue;
+}
+.leftRight .leftBl{
+    width: 50%;
+    left: 0px;
+    position: absolute;
+    text-align: left;
+    color: blue;
+}
+.leftRight .leftYe{
+    width: 50%;
+    left: 0px;
+    position: absolute;
+    text-align: left;
+    color: orange;
+}
+.leftRight .rightYe{
+    width: 50%;
+    position: absolute;
+    text-align: left;
+    color: orange;
+}
 .leftRight .right{
     width: 50%;
     position: absolute;

@@ -3,6 +3,9 @@ export class Expenditure {
     employeeID;
     projectID;
     attendaceID;
+    /**
+     * @type {number}
+     */
     sum;
     reason;
 }

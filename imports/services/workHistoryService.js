@@ -24,6 +24,7 @@ export class WorkHistoryService{
         endDay.setDate(dayOfMonth + 6);
     }
     /**
+     * get records of works for logged user in choosed period
      *@return {WorkHistoryRecord[]}
      */
     getWorkHistoy(){
