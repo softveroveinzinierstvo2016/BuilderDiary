@@ -66,7 +66,7 @@ export class ProjectService {
          newProject.budget=badget;
          newProject.endTime=time;
          //Todo:hladanie id majstra podla mena
-         newProject.idMaster=null;
+         newProject.idMaster=majster;
          newProject.expenditure=0;
          newProject.sponsor=sponzor;
          sellectedProject=newProject;

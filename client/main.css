@@ -65,6 +65,7 @@ input{
     width: 50%;
     position: absolute;
     text-align: left;
+    left: 50%;
     color: blue;
 }
 .leftRight .leftBl{
@@ -85,11 +86,13 @@ input{
     width: 50%;
     position: absolute;
     text-align: left;
+    left: 50%;
     color: orange;
 }
 .leftRight .right{
     width: 50%;
     position: absolute;
+    left: 50%;
     text-align: left;
 }
 .leftRight input{
@@ -136,4 +139,49 @@ h1{
     padding: 0px;
     margin: 0px;
     font-weight: unset;
+}
+.dropdown{
+    width: 100%;
+    position: inherit;
+    left: 0px;
+}
+.dropdown .dropdown-choosed{
+     width: auto;
+     left: 0px;
+     border-left: 1px;
+     border-top:  0px;
+     border-bottom: 0px;
+     border-right: 0px;
+     border-style: double;
+     position: absolute;
+}
+.dropdown .dropdown-button{
+    width: auto;
+    right: 0px;
+    position: absolute;
+}
+.dropdown .dropdown-items{
+    border: 1px;
+    border-color: black;
+    background-color: white;
+    border-style: double;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+    text-align: left;
+    padding: 0px;
+    margin: 0px;
+    overflow-y: scroll;
+    height: 100%;
+}
+.dropdown .dropdown-items .dropdown-item {
+    padding:0px;
+    margin: 0px;
+    top: 0px;
+    left: 0%;
+    width: 100%;
+    position: inherit;
+    background-color:  white;
+    color: black;
+    text-align: left;
 }
