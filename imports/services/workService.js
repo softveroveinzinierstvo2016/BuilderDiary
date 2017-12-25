@@ -120,6 +120,15 @@ export class WorkService {
      */
     getWorksWithAttendanceIds(attendanceIds){
         return Works.find({idAttendance: {$in: attendanceIds}});
-    }    
+    }
+    /**
+     * get all works from attendanceIds
+     * @param {string[]} attendanceIds
+     * @param {string} projectId
+     * @return {Work[]}
+     */
+    getWorksWithAttendanceIdsOnProject(attendanceIds,projectId){
+        return Works.find({idAttendance: {$in: attendanceIds}, idProject: projectId});
+    }
 
 }

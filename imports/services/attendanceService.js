@@ -78,6 +78,17 @@ export class AttendanceService {
         let answer = Attendances.findOne({idEmployee: userId, idProject: projectId, day: today});
         return answer;
     }
+    /**
+     * get attaendance from today 
+     * @param {string} projectId
+     * @return {Attendance[]}
+     */
+    getTodayOnProject(projectId){
+        let today = new Date();
+        today.setHours(0,0,0,0);
+        let answer = Attendances.find({idProject: projectId, day: today});
+        return answer;
+    }
      /**
      * return true iff editing is locked
      * @param {string} userId 
@@ -101,5 +112,16 @@ export class AttendanceService {
         startDay.setHours(0,0,0,0);
         endDay.setHours(0,0,0,0);
         return Attendances.find({idEmployee: userId, day:{$gte: startDay, $lte: endDay}});
+    }
+    /**
+     * @param {string} projectId
+     * @param {Date} startDay 
+     * @param {Date} endDay 
+     * @return {Attendance[]}
+     */
+    getAllIdRecordsOnProjectBetween(projectId,startDay, endDay){
+        startDay.setHours(0,0,0,0);
+        endDay.setHours(0,0,0,0);
+        return Attendances.find({idProject: projectId ,day:{$gte: startDay, $lte: endDay}});
     }
 }

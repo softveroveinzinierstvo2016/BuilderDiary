@@ -56,8 +56,8 @@ export default class WorkHistory extends Component {
             <div className="container">
                 <button className="nav1" onClick={this.handleGoHome} >Domov</button> <br/>
                 <div className="choosePeriod">
+                    {this.state.period}<br/>
                     <button className="left" onClick={this.handlePreviousePeriod}>{String.fromCharCode(60)}{String.fromCharCode(60)}</button>
-                    {this.state.period}
                     <button className="right" onClick={this.handleNextPeriod}>{String.fromCharCode(62)}{String.fromCharCode(62)}</button>
                 </div>
                 <br/>

@@ -8,6 +8,8 @@ import App from './App';
 import TaskView from './TaskView';
 import AddExpenditure from './AddExpenditure';
 import ListTaskView from './ListTaskView';
+import WorkHistoryOnProject from './WorkHistoryOnProject';
+import WorkTodayOnProject from  './WorkTodayOnProject';
 
 // for data manipulation
 import { UserService } from '../services/userService';
@@ -36,6 +38,9 @@ export default class ProjectView extends Component {
         this.SetAttendace = this.SetAttendace.bind(this);
         this.arrivalTimeChange = this.arrivalTimeChange.bind(this);
         this.departureTimeChange = this.departureTimeChange.bind(this);
+
+        this.handleMasterWorkHistory = this.handleMasterWorkHistory.bind(this);
+        this.handleMasterWorkToday = this.handleMasterWorkToday.bind(this);
 
         this.state = {
             arrivalTime: attendanceService.getArrivalTime(userService.getLoggedId(),this.project.id), 
@@ -71,11 +76,11 @@ export default class ProjectView extends Component {
     handleTask(task) {
         taskService.chooseTask(task);
         render(<TaskView/>, document.getElementById('app'));
-     }
-       handleTasks(idProject) {
+    }
+    handleTasks(idProject) {
         projectService.chooseProject(this.project);
         render(<ListTaskView/>, document.getElementById('app'));
-     }
+    }
     renderTaskList() {
         //TODO: render missing value from GUI
         return taskService.getTaskOfProjectById(this.project.id).map((task) => (
@@ -83,6 +88,12 @@ export default class ProjectView extends Component {
             <button  className="list" onClick={this.handleTask.bind(this,task)}> {task.nameOfTask} {task.payment}e/{task.unit} </button> <br/>
             </div>
         ));
+    }
+    handleMasterWorkHistory(){
+       render(<WorkHistoryOnProject/>, document.getElementById('app'));
+    }
+    handleMasterWorkToday(){
+        render(<WorkTodayOnProject/>, document.getElementById('app'));
     }
     arrivalTimeChange(event) {
         this.setState({arrivalTime: event.target.value});
@@ -109,11 +120,23 @@ export default class ProjectView extends Component {
             departureTimeConf: this.state.departureTime
         });
     }
+    renderMaster(){
+        return (
+            <div>
+                <button onClick={this.handleMasterWorkToday}>Dnesny zaznam prac</button>
+                <button onClick={this.handleMasterWorkHistory}>Historia prac</button>
+            </div>
+        );
+    }
     EmplView() {
-        //TODO: add special functionality for master
+        let masterView = '';
+        if(projectService.isMaster(userService.getLoggedId())){
+            masterView = this.renderMaster();
+        }
         return (
             <div className="leftRight">
                 <h1>{this.project.nameOfProject}</h1>
+                {masterView}
                 <button onClick={this.handleAddExpenditure}>Vydaje</button> <br/> <br/>
                    <label className="left"> Prichod:</label><input className="right" type="text" value={this.state.arrivalTime} onChange={this.arrivalTimeChange}/> <br/>
                    <label className="left"> Odchod: </label><input className="right" type="text" value={this.state.departureTime} onChange={this.departureTimeChange}/><br/>

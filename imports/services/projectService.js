@@ -3,8 +3,10 @@ import { Projects } from '../api/projects';
 
 import { Meteor } from 'meteor/meteor';
 
+/**
+ * @type {Project}
+ */
 var sellectedProject;
-var projectId;
 
 export class ProjectService {
     
@@ -74,11 +76,20 @@ export class ProjectService {
              console.log(result);
          });
      }
-     getrememberProject(){
-         return sellectedProject;
-     }
-   getProjectId(){
+    getrememberProject(){
+        return sellectedProject;
+    }
+    getProjectId(){
        return sellectedProject.id;
    }
-  
+   /**
+    * return true iff user defined by id is master on sellected project
+    * @param {string} id
+    * @return {boolean} 
+    */
+   isMaster(id){
+        if(sellectedProject == null)
+            return false;
+        return sellectedProject.idMaster == id;
+   }  
 }
