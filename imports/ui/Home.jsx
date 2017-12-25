@@ -8,6 +8,7 @@ import EarningOverview from './EarningOverview';
 import WorkHistory from './WorkHistory';
 import ProjectView from './ProjectView';
 import AddProjectView from './AddProjectView';
+import EmployeesView from './EmployeesView';
 
 // for data manipulation
 import { UserService } from '../services/userService';
@@ -22,7 +23,8 @@ export default class Home extends Component {
         this.handleEarningOverview = this.handleEarningOverview.bind(this);
         this.handleWorkHistory = this.handleWorkHistory.bind(this);
         this.handleNewProject=this.handleNewProject.bind(this);
-        }
+        this.handleEmployees = this.handleEmployees.bind(this);
+    }
     handleProject(project) {
        projectService.chooseProject(project);
        render(<ProjectView/>, document.getElementById('app'));
@@ -47,6 +49,9 @@ export default class Home extends Component {
     handleNewProject() {
         render(<AddProjectView/>,document.getElementById('app'));
     }
+    handleEmployees(){
+        render(<EmployeesView/>,document.getElementById('app'));
+    }
     NavBoss() {
         //TODO: implement other functionalities for boss
         return (
@@ -54,7 +59,7 @@ export default class Home extends Component {
             <button className="nav1" onClick={this.handleLoggOut} >Odhlásiť</button> <br/>
             <button className="nav2">Ukončené projekty</button> 
             <button className="nav2">Dnešné záznamy</button> <br/>
-            <button className="nav2">Zamestnanci</button> 
+            <button className="nav2" onClick={this.handleEmployees}>Zamestnanci</button> 
             <button className="nav2" onClick={this.handleNewProject}>Pridať projekt</button> <br/>
         </div>
         );
