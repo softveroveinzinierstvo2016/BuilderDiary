@@ -10,6 +10,7 @@ import AddExpenditure from './AddExpenditure';
 import ListTaskView from './ListTaskView';
 import WorkHistoryOnProject from './WorkHistoryOnProject';
 import WorkTodayOnProject from  './WorkTodayOnProject';
+import WorkReductionView from  './WorkReductionView';
 
 // for data manipulation
 import { UserService } from '../services/userService';
@@ -70,6 +71,7 @@ export default class ProjectView extends Component {
             <label> Minuté: {this.project.expenditure}</label><br/>
            </p>
            <button onClick={this.handleTasks.bind(this)}>Zobraziť úlohy</button><br/>
+            <button onClick={this.handleWorkReduction.bind(this)}>Skrátenie pracovnej doby</button><br/>
             </div>
         );
     }
@@ -80,6 +82,10 @@ export default class ProjectView extends Component {
     handleTasks(idProject) {
         projectService.chooseProject(this.project);
         render(<ListTaskView/>, document.getElementById('app'));
+    }
+    handleWorkReduction(idProject) {
+       projectService.chooseProject(this.project);
+       render(<WorkReductionView/>, document.getElementById('app'));
     }
     renderTaskList() {
         //TODO: render missing value from GUI
