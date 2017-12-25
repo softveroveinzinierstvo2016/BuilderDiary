@@ -6,6 +6,8 @@ import { TaskService } from '../services/taskService';
 import { WorkService } from '../services/workService';
 import { ProjectService } from '../services/projectService';
 import { EmployeeService } from '../services/employeeService';
+import { WorkTimeReductionService } from '../services/workTimeReductionService';
+
 
 import { WorkHistoryRecord } from '../../models/WorkHistoryRecord';
 import { WorkRecord } from '../../models/WorkRecord';
@@ -22,6 +24,7 @@ let taskService = new TaskService();
 let workService = new WorkService();
 let projectService = new ProjectService();
 let employeeService = new EmployeeService();
+let workTimeReductionService = new WorkTimeReductionService();
 
 let typeOfPeriod = 0;
 let startDay = new Date();
@@ -157,10 +160,13 @@ export class WorkHistoryService{
         taskService.getTaskOfProjectById(projectId).forEach((task)=>{
             taskMap.set(task.id, task);
         });
-
+        workTimeReductionService.getWorkTimeReductionOnProject(projectId).forEach((element)=>{
+            timeReductionMap.set(element.day,element);
+          });
         workService.getWorksWithAttendanceIdsOnProject(attendanceIds, projectId).forEach((work)=>{
             let at = attendanceMap.get(work.idAttendance);
             let stringKey = at.day.toDateString();
+            let stringKeyTR = at.day.getDate()+'.'+at.day.getMonth()+'.'+at.day.getFullYear();
             let workRecords = workDayRecords.get(stringKey);
             if(workRecords == null){
                 workRecords = new Array();
@@ -168,7 +174,7 @@ export class WorkHistoryService{
                 dr.records = workRecords;
                 dr.fullDate = at.day.getDate() + '.' + at.day.getMonth() + '.' + at.day.getFullYear();
                 let tr = new TimeReductionRecord();
-                let timeRed = timeReductionMap.get(stringKey);
+                let timeRed = timeReductionMap.get(stringKeyTR);
                 if(timeRed == null){
                     tr.was = false;
                 } else {

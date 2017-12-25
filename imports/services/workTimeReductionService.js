@@ -4,26 +4,41 @@ import { WorkTimeReductions } from '../api/workTimeReductions';
 import { Meteor } from 'meteor/meteor';
 
 /**
- * @type {Project}
+ * @type {WorkTimeReduction}
  */
-var sellectedWorkTimeReduction;
+let sellectedWorkTimeReduction;
 
 export class WorkTimeReductionService {
     
     constructor() { 
         Meteor.subscribe('workTimeReductions');
-     }
-      
-      rememberThisWorkTimeReduction(date,cause,from,to){
-         let newWorkTimeReduction=new WorkTimeReduction();
-         newWorkTimeReduction.date=date;
-         newWorkTimeReduction.cause=cause;
-         newWorkTimeReduction.from=from;
-         newWorkTimeReduction.to=to;
-         sellectedWorkTimeReduction=newWorkTimeReduction;
-         Meteor.call('workTimeReduction.insert',sellectedWorkTimeReduction,function(error,result){
-             sellectedWorkTimeReduction.id=result;
-             console.log(result);
-         });
-     }
+    }
+    /**
+     * 
+     * @param {string} projectId 
+     * @param {string} date 
+     * @param {string} cause 
+     * @param {string} from 
+     * @param {string} to 
+     */
+    rememberThisWorkTimeReduction(projectId,date,cause,from,to){
+        let newWorkTimeReduction=new WorkTimeReduction();
+        newWorkTimeReduction.day=date;
+        newWorkTimeReduction.reason=cause;
+        newWorkTimeReduction.timeStart=from;
+        newWorkTimeReduction.timeEnd=to;
+        newWorkTimeReduction.projectId = projectId;
+        sellectedWorkTimeReduction=newWorkTimeReduction;
+        Meteor.call('workTimeReduction.insert',sellectedWorkTimeReduction,function(error,result){
+            sellectedWorkTimeReduction._id=result;
+            console.log(result);
+        });
+    }
+    /**
+     * @param {string} projectId
+     * @returns {WorkTimeReduction[]}
+     */
+    getWorkTimeReductionOnProject(projectId){
+        return WorkTimeReductions.find({projectId: projectId});
+    }
 }

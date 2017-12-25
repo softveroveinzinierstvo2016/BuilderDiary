@@ -43,6 +43,8 @@ export default class ProjectView extends Component {
         this.handleMasterWorkHistory = this.handleMasterWorkHistory.bind(this);
         this.handleMasterWorkToday = this.handleMasterWorkToday.bind(this);
 
+        this.handleHistory = this.handleHistory.bind(this);
+
         this.state = {
             arrivalTime: attendanceService.getArrivalTime(userService.getLoggedId(),this.project.id), 
             departureTime: attendanceService.getDepartureTime(userService.getLoggedId(),this.project.id),
@@ -57,21 +59,22 @@ export default class ProjectView extends Component {
     handleGoHome() {
         render(<Home/>,document.getElementById('app'));
     }
+    handleHistory(){
+        render(<WorkHistoryOnProject/>, document.getElementById('app'));
+    }
     BossView() {
-        //TODO: create view for boss
         return (
-            <div> 
-           <label> {this.project.nameOfProject}</label><br/>
-             <p>
-            <label> Zadávateľ: {this.project.sponsor}</label><br/>
-            <label> Adresa: {this.project.adress}</label><br/>
-            <label> Majster: {employeeService.getEmployeeName(this.project.idMaster)}</label><br/>
-            <label> Dátum ukončenia: {this.project.endTime}</label><br/>
-            <label> Celkový rozpočet: {this.project.budget}</label><br/>
-            <label> Minuté: {this.project.expenditure}</label><br/>
-           </p>
-           <button onClick={this.handleTasks.bind(this)}>Zobraziť úlohy</button><br/>
-            <button onClick={this.handleWorkReduction.bind(this)}>Skrátenie pracovnej doby</button><br/>
+            <div className="leftRight"> 
+                <h1> {this.project.nameOfProject}</h1>
+                <button onClick={this.handleHistory}>Historia prac</button><br/>
+                <label className="left"> Zadávateľ:</label><label className="right"> {this.project.sponsor}</label><br/>
+                <label className="left"> Adresa:</label><label className="right"> {this.project.adress}</label><br/>
+                <label className="left"> Majster:</label><label className="right"> {employeeService.getEmployeeName(this.project.idMaster)}</label><br/>
+                <label className="left"> Dátum ukončenia:</label><label className="right"> {this.project.endTime}</label><br/>
+                <label className="left"> Celkový rozpočet:</label><label className="right"> {this.project.budget}</label><br/>
+                <label className="left"> Minuté:</label><label className="right"> {this.project.expenditure}</label><br/>
+                <button onClick={this.handleTasks.bind(this)}>Zobraziť úlohy</button><br/>
+                <button onClick={this.handleWorkReduction.bind(this)}>Skrátenie pracovnej doby</button><br/>
             </div>
         );
     }

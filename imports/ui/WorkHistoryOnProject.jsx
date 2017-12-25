@@ -88,7 +88,7 @@ export default class WorkHistoryOnProject extends Component {
             return '';
         return (
             <div>
-                <label className="timeReducitonRecord">{timeReduction.time}</label><br/>
+                <label className="timeReducitonRecord">Nepracovalo sa: {timeReduction.time}</label><br/>
                 <label className="timeReducitonRecord">{timeReduction.reason}</label><br/>
             </div>
         );

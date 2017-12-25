@@ -1,8 +1,9 @@
 export class WorkTimeReduction{
 
-    id;
+    _id;
     day;
     timeStart;
     timeEnd;
     reason;
+    projectId;
 }

@@ -24,33 +24,28 @@ export default class ListTaskView extends Component {
         this.project = projectService.getChoosedProject();
         this.renderStateTask=this.renderStateTask.bind(this);
         this.addTask=this.addTask.bind(this);
-        
-        
         }
     
-  handleGoHome() {
+    handleGoHome() {
         render(<ProjectView/>,document.getElementById('app'));
     }
-    renderStateTask(expediture,payment){
-     this.stav=expediture*payment;
-     if(this.stav==NaN)
-       this.stav=0;
-     return(
-    <div>{this.stav}</div>
-     );
-
+    renderStateTask(expediture, payment){
+        this.stav=expediture*payment;
+        if(this.stav==NaN)
+            this.stav=0;
+        return (
+            <div>{this.stav}</div>
+        );
     }
     renderTaskList() {
-        //TODO: render missing value from GUI
-        //TODO: ako sa prid8vaju metody v gui
         return taskService.getTaskOfProjectById(this.project.id).map((task) => (
             <div key={task.id}>
-            <label>{task.nameOfTask}</label><br/>
-            Stav: {this.renderStateTask(task.expenditure,task.payment)} /{task.duration} {task.unit}<br/>
-            Vyplatiť:0e<br/>
-            Minuté:{task.expediture}<br/>
-            Zákazník:0 e<br/>
-            Zisk:0e<br/>
+                <label>{task.nameOfTask}</label><br/>
+                Stav: {this.renderStateTask(task.expenditure,task.payment)} /{task.duration} {task.unit}<br/>
+                Vyplatiť:0e<br/>
+                Minuté:{task.expediture}<br/>
+                Zákazník:0 e<br/>
+                Zisk:0e<br/>
             </div>
         ));
     }
