@@ -77,7 +77,8 @@ export default class AddProjectView extends Component {
     }
     dropDownChoose(item){
         let text = item.name + ' '+ item.surname;
-        this.setState({choosedDropDown: text, showDropDown: false, majster: item.id | item._id});
+        let id = item.id;
+        this.setState({choosedDropDown: text, showDropDown: false, majster: id});
     }
     rednerEmployees(){
         return  employeeService.getEmployees().map((employee)=>(

@@ -25,7 +25,20 @@ export class EmployeeService {
             return back;
         });
     }
-
+    /**
+     * get full name of employee with id
+     * @param {string} id
+     * @return {string} 
+     */
+    getEmployeeName(id){
+        let result = '';
+        console.log('hladam '+ id);
+        let employee = Employees.findOne({_id: id});
+        console.log(employee);
+        if(employee != null)
+            result = employee.name + ' ' + employee.surname;
+        return result;
+    }
 
     /**
      * set employee as chosen for detail view

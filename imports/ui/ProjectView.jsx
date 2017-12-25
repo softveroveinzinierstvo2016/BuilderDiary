@@ -14,6 +14,7 @@ import { UserService } from '../services/userService';
 import { ProjectService } from '../services/projectService';
 import { TaskService } from '../services/taskService';
 import { AttendanceService } from '../services/attendanceService';
+import { EmployeeService } from '../services/employeeService';
 
 import { Project } from '../../models/Project';
 
@@ -21,6 +22,7 @@ let userService = new UserService();
 let projectService = new ProjectService();
 let taskService = new TaskService();
 let attendanceService = new AttendanceService();
+let employeeService = new EmployeeService();
 
 let timePattern = /(^(([0-1][0-9])|(2[0-3])):[0-5][0-9]$)|(^--:--$)/
 
@@ -57,7 +59,7 @@ export default class ProjectView extends Component {
              <p>
             <label> Zadávateľ: {this.project.sponsor}</label><br/>
             <label> Adresa: {this.project.adress}</label><br/>
-            <label> Majster: {this.project.idMajster}</label><br/>
+            <label> Majster: {employeeService.getEmployeeName(this.project.idMaster)}</label><br/>
             <label> Dátum ukončenia: {this.project.endTime}</label><br/>
             <label> Celkový rozpočet: {this.project.budget}</label><br/>
             <label> Minuté: {this.project.expenditure}</label><br/>
