@@ -38,14 +38,14 @@ export default class ListTaskView extends Component {
         if(this.stav==NaN)
             this.stav=0;
         return (
-           <div>{this.stav}/{this.duration} {this.unit}</div>
+           <div>Stav: {this.stav}/{this.duration} {this.unit}</div>
         );
     }
     renderTaskList() {
         return taskService.getTaskOfProjectById(this.project.id).map((task) => (
             <div key={task.id}>
                 <label>{task.nameOfTask}</label><br/>
-                Stav: {this.renderStateTask(task.expenditure,task.payment, task.duration,task.unit)} 
+                {this.renderStateTask(task.expenditure,task.payment,task.duration,task.unit)} 
                 Vyplatiť:0e<br/>
                 Minuté:{task.expediture}<br/>
                 Zákazník:0 e<br/>
