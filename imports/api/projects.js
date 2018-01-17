@@ -23,8 +23,22 @@ if(Meteor.isServer) {
     });
     console.log(id);
     return id;
+    },
 
-       }
-
+    'project.update' : function(project){
+        //check(project,Projects);
+       console.log(project);
+      var id=Projects.update({_id:project.id},{$set:{
+      nameOfProject:project.nameOfProject,
+      sponsor: project.sponsor,
+      adress: project.adress,
+      endTime: project.endTime,
+      idMaster:project.idMaster,
+      budget: project.budget,
+      expenditure: project.expenditure
+      }});
+    console.log(id);
+    return id;
+    }
     })
 }

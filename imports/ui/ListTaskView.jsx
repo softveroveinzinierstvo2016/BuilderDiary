@@ -6,7 +6,7 @@ import { render } from 'react-dom';
 import App from './App';
 import AddTaskView from './AddTaskView';
 import ProjectView from './ProjectView';
-
+import EditTaskView from './EditTaskView';
 
 // for data manipulation
 import { UserService } from '../services/userService';
@@ -29,23 +29,28 @@ export default class ListTaskView extends Component {
     handleGoHome() {
         render(<ProjectView/>,document.getElementById('app'));
     }
-    renderStateTask(expediture, payment){
+    handleEditTask(task) {
+        taskService.chooseTask(task);
+        render(<EditTaskView/>,document.getElementById('app'));
+    }
+    renderStateTask(expediture, payment,duration, unit){
         this.stav=expediture*payment;
         if(this.stav==NaN)
             this.stav=0;
         return (
-            <div>{this.stav}</div>
+           <div>{this.stav}/{this.duration} {this.unit}</div>
         );
     }
     renderTaskList() {
         return taskService.getTaskOfProjectById(this.project.id).map((task) => (
             <div key={task.id}>
                 <label>{task.nameOfTask}</label><br/>
-                Stav: {this.renderStateTask(task.expenditure,task.payment)} /{task.duration} {task.unit}<br/>
+                Stav: {this.renderStateTask(task.expenditure,task.payment, task.duration,task.unit)} 
                 Vyplatiť:0e<br/>
                 Minuté:{task.expediture}<br/>
                 Zákazník:0 e<br/>
                 Zisk:0e<br/>
+                <button onClick={this.handleEditTask.bind(this,task)}>Upraviť ulohu</button><br/>
             </div>
         ));
     }

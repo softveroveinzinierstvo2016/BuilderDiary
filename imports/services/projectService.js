@@ -76,6 +76,23 @@ export class ProjectService {
              console.log(result);
          });
      }
+     rememberThisProjectEdit(id,name,sponzor,adress,time,majster,badget){
+        let newProject=new Project();
+        newProject.id=id;
+        newProject.nameOfProject=name;
+        newProject.adress=adress;
+        newProject.budget=badget;
+        newProject.endTime=time;
+        newProject.idMaster=majster;
+        newProject.expenditure=0;
+        newProject.sponsor=sponzor;
+        sellectedProject=newProject;
+        Meteor.call('project.update',sellectedProject,function(error,result){
+            sellectedProject.id=result;
+            console.log(result);
+        });
+    }
+
     getrememberProject(){
         return sellectedProject;
     }

@@ -115,6 +115,19 @@ export class TaskService {
             back.expenditure = 0;
          Meteor.call('task.insert',back);
      }
+     rememberThisTaskEdit(id,name,duration,payment, unit, sumBoss){
+        let back=new Task();
+         back.id=id;
+         back.idProject  = idProjektu;
+         back.nameOfTask =name;
+         back.duration = duration;
+         back.payment = payment;
+         back.unit = unit;
+         back.payment_boss = sumBoss;
+         back.sum = payment*duration;
+         back.expenditure = 0;
+      Meteor.call('task.update',back);
+  }
     /**
      * 
      * @param {string} taskIdList
