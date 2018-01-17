@@ -26,7 +26,14 @@ export default class EmployeeDetailView extends Component {
     }
 
     bossView(){
-        return(this.employee.name);
+        return(
+        <div>
+            <label>Meno: </label> <label>{this.employee.name}</label> <br/>
+            <label>Priezvisko: </label> <label>{this.employee.surname}</label> <br/>
+            <label>Login: </label> <label>{this.employee.login}</label> <br/>
+            <label>Sum: </label> <label>{this.employee.sumAssistant}</label> <br/>
+        </div>
+        );
     }
 
 
