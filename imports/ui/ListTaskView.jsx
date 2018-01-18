@@ -22,8 +22,12 @@ export default class ListTaskView extends Component {
         super(props);
         this.handleGoHome = this.handleGoHome.bind(this);
         this.project = projectService.getChoosedProject();
-        this.renderStateTask=this.renderStateTask.bind(this);
         this.addTask=this.addTask.bind(this);
+        this.state ={
+            stav:'0',
+            vyplatit:'0',
+            zisk:'0'
+        };
         }
     
     handleGoHome() {
@@ -33,25 +37,26 @@ export default class ListTaskView extends Component {
         taskService.chooseTask(task);
         render(<EditTaskView/>,document.getElementById('app'));
     }
-    renderStateTask(expediture, payment,duration, unit){
-        this.stav=expediture*payment;
-        if(this.stav==NaN)
-            this.stav=0;
-        return (
-           <div>Stav: {this.stav}/{this.duration} {this.unit}</div>
-        );
+    handleStateTask(task){
+        result=0*task.payment;
+        this.setState({stav:result});
+        result=(task.payment_boss*task.duration)-(task.payment*task.duration);
+        this.setState({zisk:result});
     }
     renderTaskList() {
         return taskService.getTaskOfProjectById(this.project.id).map((task) => (
-            <div key={task.id}>
-                <label>{task.nameOfTask}</label><br/>
-                {this.renderStateTask(task.expenditure,task.payment,task.duration,task.unit)} 
-                Vyplatiť:0e<br/>
-                Minuté:{task.expediture}<br/>
-                Zákazník:0 e<br/>
-                Zisk:0e<br/>
-                <button onClick={this.handleEditTask.bind(this,task)}>Upraviť ulohu</button><br/>
-            </div>
+        <div key={task.id}>
+            {this.handleStateTask.bind(this,task)}
+            <label>{task.nameOfTask}</label><br/>
+            <div>Stav: {this.state.stav}/{task.duration} {task.unit}</div>
+            Vyplatiť:{task.sum}e<br/>
+            Minuté:{task.expediture}<br/>
+            Zákazník:{task.payment_boss}<br/>
+            Zisk:{this.state.zisk}e<br/>
+            <button onClick={this.handleEditTask.bind(this,task)}>Upraviť ulohu</button><br/>
+        </div>
+           
+           
         ));
     }
 

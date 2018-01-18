@@ -41,9 +41,15 @@ if(Meteor.isServer) {
     return id;
     },
 
-    'project.setEnded'(project){
-     Projects.update({_id:project.id},
-        {$set:{ended:project.ended}})
-    }
+    'project.setEnded':function(project){
+        //check(project,Projects);
+       console.log(project);
+      var id=Projects.update({_id:project.id},{$set:{
+      ended:1
+      }});
+    console.log(id);
+    return id;
+    },
+
     })
 }

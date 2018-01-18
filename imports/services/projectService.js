@@ -114,7 +114,10 @@ export class ProjectService {
         newProject.id=id;
         newProject.ended=1;
         sellectedProject=newProject;
-        Meteor.call('project.setEnded',sellectedProject);
+        Meteor.call('project.setEnded',sellectedProject,function(error,result){
+            sellectedProject.id=result;
+            console.log(result);
+        });
     }
     getrememberProject(){
         return sellectedProject;
@@ -131,5 +134,6 @@ export class ProjectService {
         if(sellectedProject == null)
             return false;
         return sellectedProject.idMaster == id;
-   }  
+   } 
+  
 }

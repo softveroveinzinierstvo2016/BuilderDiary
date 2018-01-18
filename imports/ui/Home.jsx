@@ -11,6 +11,7 @@ import AddProjectView from './AddProjectView';
 import EmployeesView from './EmployeesView';
 import EndedProjectsView from './EndedProjectsView';
 
+
 // for data manipulation
 import { UserService } from '../services/userService';
 import { ProjectService } from '../services/projectService';
@@ -56,6 +57,7 @@ export default class Home extends Component {
     handleEndedProjects(){
         render(<EndedProjectsView/>,document.getElementById('app'));
     }
+   
     
     NavBoss() {
         //TODO: implement other functionalities for boss
@@ -63,7 +65,7 @@ export default class Home extends Component {
         <div>
             <button className="nav1" onClick={this.handleLoggOut} >Odhlásiť</button> <br/>
             <button className="nav2" onClick={this.handleEndedProjects.bind(this)}>Ukončené projekty</button> 
-            <button className="nav2">Dnešné záznamy</button> <br/>
+            <button className="nav2" >Dnešné záznamy</button> <br/>
             <button className="nav2" onClick={this.handleEmployees}>Zamestnanci</button> 
             <button className="nav2" onClick={this.handleNewProject}>Pridať projekt</button> <br/>
         </div>
