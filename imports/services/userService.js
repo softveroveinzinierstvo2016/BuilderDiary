@@ -1,14 +1,18 @@
-import  {Employee } from '../../models/Employee';
+import  { Employee } from '../../models/Employee';
 import { Employees } from '../api/employees';
 
 import { Meteor } from 'meteor/meteor';
 
-var loggedUser;
+// for navigation
+import App from '../ui/App';
+/**
+ * @type {Employee}
+ */
+let loggedUser;
 
 export class UserService {
     
     constructor() { 
-      Meteor.subscribe('employees');
      }
      /**
       * logg user out
@@ -20,41 +24,19 @@ export class UserService {
      * log employee
      * @param {string} login 
      * @param {string} password
-     * @return {boolean}
      */
     loggUser(login, password) {
-        //TODO: move this to server and return user id or null - Meteor.call('function_name');
+        loggedUser = null;
         if(!login || !password)
             return false;
-        let employees = Array;
-        employees = Employees.find({}).map((employee) => {
-            let back = new Employee();
-            back.login = employee.login;
-            back.password = employee.password;
-            back.name = employee.name;
-            back.surname = employee.surname;
-            back.role = employee.role;
-            back.id = employee._id;
-            back.sumAssistant = employee.sumAssistant;
-            return back;
+        Meteor.call("employees.loggUser",login, password, function(error, result){
+            if(error)
+                return;
+            loggedUser = result;
+            if(!loggedUser)
+                return;
+            App.enter();
         });
-        for(let i = 0; i < employees.length; i++) {
-            if(employees[i].login === login && 
-              employees[i].password === password
-            ) {
-                loggedUser = new Employee();
-                loggedUser.login = employees[i].login;
-                loggedUser.password = employees[i].password;
-                loggedUser.name = employees[i].name;
-                loggedUser.surname = employees[i].surname;
-                loggedUser.id = employees[i].id;
-                loggedUser.role = employees[i].role;
-                loggedUser.sumAssistant = employees[i].sumAssistant;
-                return true;
-            }
-        }
-        loggedUser = null;
-        return false;
     }
     /**
      * get if employee is logged

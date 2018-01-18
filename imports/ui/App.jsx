@@ -11,6 +11,9 @@ import { UserService } from '../services/userService';
 let userService = new UserService();
 
 export default class App extends Component {
+    static enter(){
+        render(<Home/>, document.getElementById('app'));
+    }
     constructor(props) {
         super(props);
         this.state = {name: '', password: ''};
@@ -18,13 +21,9 @@ export default class App extends Component {
         this.nameChange = this.nameChange.bind(this);
         this.psswChange = this.psswChange.bind(this);
         this.stepIn  = this.stepIn.bind(this);
-
     }
-
     stepIn() {
-        console.log("name: " + this.state.name+" password: "+this.state.password);
-        if(userService.loggUser(this.state.name,this.state.password))
-            render(<Home/>,document.getElementById('app'));
+        userService.loggUser(this.state.name,this.state.password);
     }
     nameChange(event) {
       this.setState({name: event.target.value});

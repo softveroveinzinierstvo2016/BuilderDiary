@@ -10,8 +10,6 @@ if(Meteor.isServer) {
     });
     Meteor.methods({
      'project.insert' : function(project){
-         //check(project,Projects);
-        console.log(project);
     var id=Projects.insert({
        nameOfProject:project.nameOfProject,
        sponsor: project.sponsor,
@@ -21,13 +19,10 @@ if(Meteor.isServer) {
        budget: project.budget,
        expenditure: project.expenditure
     });
-    console.log(id);
     return id;
     },
 
     'project.update' : function(project){
-        //check(project,Projects);
-       console.log(project);
       var id=Projects.update({_id:project.id},{$set:{
       nameOfProject:project.nameOfProject,
       sponsor: project.sponsor,
@@ -37,7 +32,6 @@ if(Meteor.isServer) {
       budget: project.budget,
       expenditure: project.expenditure
       }});
-    console.log(id);
     return id;
     }
     })
