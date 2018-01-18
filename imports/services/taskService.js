@@ -6,12 +6,13 @@ import { Projects } from '../api/projects';
 import { Meteor } from 'meteor/meteor';
 
 import { ProjectService } from './projectService';
+import { UserService } from './userService';
 
 var sellectedTask;
 var idProjektu;
 var projektName;
 let projectService = new ProjectService();
-
+let userService = new UserService();
 export class TaskService {
     
     constructor() { 
@@ -31,6 +32,7 @@ export class TaskService {
             back.payment_boss = task.payment_boss;
             back.sum = task.sum;
             back.expenditure = task.expenditure;
+            back.help = task.help;
             back.id = task._id;
             return back;
           });
@@ -66,11 +68,27 @@ export class TaskService {
             back.unit = task.unit;
             back.payment_boss = task.payment_boss;
             back.sum = task.sum;
+            back.help = task.help;
             back.expenditure = task.expenditure;
             back.id = task._id;
             return back;
           });
      }
+      /**
+      * return tasks in project for logged employee based on his status
+      * @param {string} projectId
+      */
+      getTaskOfProjectByIdBasedOnStatus(projectId) {
+            if(userService.isLoggedAssistant())
+                return Tasks.find({'idProject': projectId, help: true}).map((task) => {
+                    let back = new Task();
+                    back = task;
+                    back.id = task._id;
+                    return back;
+                });
+            return this.getTaskOfProjectById(projectId);
+
+    }
       getTaskOfActualProjectById() {
          return Tasks.find({'idProject': idProjektu}).map((task) => {
             let back = new Task();
@@ -83,6 +101,7 @@ export class TaskService {
             back.sum = task.sum;
             back.expenditure = task.expenditure;
             back.id = task._id;
+            back.help = task.help;
             return back;
           });
      }
@@ -100,8 +119,16 @@ export class TaskService {
      getChoosedTask() {
          return sellectedTask;
      }
-    
-     rememberThisTask(name,duration,payment, unit, sumBoss){
+    /**
+     * 
+     * @param {string} name 
+     * @param {string} duration 
+     * @param {number} payment 
+     * @param {string} unit 
+     * @param {number} sumBoss 
+     * @param {boolean} help 
+     */
+     rememberThisTask(name,duration,payment, unit, sumBoss, help){
            let back=new Task();
             back.idProject  = idProjektu;
             back.nameOfTask =name;
@@ -110,6 +137,7 @@ export class TaskService {
             back.unit = unit;
             back.payment_boss = sumBoss;
             back.sum = payment*duration;
+            back.help = help;
             back.expenditure = 0;
          Meteor.call('task.insert',back);
      }

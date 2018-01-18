@@ -18,20 +18,28 @@ export default class AddProjectView extends Component {
     constructor(props) {
         super(props);
         this.handleGoHome=this.handleGoHome.bind(this);
-        this.state = {name:'', duration:'', payment:'', unit:'', sumBoss:''};
+        this.defaultType = 0;
+        this.typeN = this.defaultType;
+        this.typeM = 1;
+        this.type = [
+            "odborna",
+            "pomocna"
+        ]
+        this.state = {name:'', duration:'', payment:'', unit:'', sumBoss:'',type: this.type[this.typeN]};
 
         this.nameChange = this.nameChange.bind(this);
         this.durationChange = this.durationChange.bind(this);
         this.paymentChange = this.paymentChange.bind(this);
         this.unitChange = this.unitChange.bind(this);
         this.sumBossChange = this.sumBossChange.bind(this);
+        this.switchType = this.switchType.bind(this);
         this.add = this.add.bind(this);
        
     }
-     handleGoHome() {
+    handleGoHome() {
         render(<Home/>,document.getElementById('app'));
     }
- renderTaskById() {
+    renderTaskById() {
         return taskService.getTaskOfActualProjectById().map((task) => (
             <div>
             <label key={task.id}>{task.nameOfTask} </label> <label key={task.id}>{task.duration} </label> <label key={task.id}>{task.unit} </label><label key={task.id}>{task.payment} </label>  <label key={task.id}>{task.payment_boss} </label><br/>
@@ -39,10 +47,8 @@ export default class AddProjectView extends Component {
         ));
     }
     nameChange(event) {
-       // this.setState({name: event.target.value});
         this.setState({name: event.target.value});
     }
-
     durationChange(event) {
         this.setState({duration: event.target.value});
     }
@@ -55,26 +61,33 @@ export default class AddProjectView extends Component {
     sumBossChange(event) {
         this.setState({sumBoss: event.target.value});
     }
-
-   
-  add(){
-      taskService.setProjectId();
-      taskService.rememberThisTask(this.state.name,this.state.duration,this.state.payment,this.state.unit,this.state.sumBoss);
-      this.setState({name: ''});
-       this.setState({duration: ''});
-       this.setState({payment:''});
+    switchType() {
+        this.typeN++;
+        if(this.typeN > this.typeM)
+            this.typeM = 0;
+        this.setState({type: this.type[this.typeN]});
+    }
+    add(){
+        taskService.setProjectId();
+        let help  = false;
+        if(this.state.type === "pomocna")
+            help = true;
+        taskService.rememberThisTask(this.state.name,this.state.duration,this.state.payment,this.state.unit,this.state.sumBoss, help);
+        this.setState({name: ''});
+        this.setState({duration: ''});
+        this.setState({payment:''});
         this.setState({unit: ''});
         this.setState({sumBoss: ''});
-
-      
-      
- }
+        this.typeN = this.defaultType;
+        this.setState({type: this.type[this.typeN]});
+    }
     BossView(){
         // Todo: opravit jednotka na input combobox
         return(
           <div>
            <h1>Pridanie Úlohy</h1>
            <div className="leftRight">
+                <label className="left">Typ ulohy:</label><button onClick={this.switchType}>{this.state.type}</button><br/>
                 <label className="left">Názov úlohy:</label><input className="right" type="text" value={this.state.name} onChange={this.nameChange}/><br/>
                 <label className="left">Trvanie úlohy:</label><input className="right" type="text" value={this.state.duration} onChange={this.durationChange}/><br/>
                 <label className="left">Plat:</label><input className="right" type="text" value={this.state.payment} onChange={this.paymentChange}/><br/>

@@ -2,6 +2,8 @@ import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 
+import {Task} from '../../models/Task';
+
 export const Tasks = new Mongo.Collection('task');
 
 if(Meteor.isServer) {
@@ -9,6 +11,9 @@ if(Meteor.isServer) {
         return Tasks.find();
     });
      Meteor.methods({
+       /**
+        * @param {Task} task
+        */
        'task.insert'(task){
           Tasks.insert({
           idProject:task.idProject,
@@ -18,9 +23,14 @@ if(Meteor.isServer) {
           unit:task.unit,
           payment_boss:task.payment_boss,
           sum:task.sum,
-          expenditure:task.expenditure
+          expenditure:task.expenditure,
+          help: task.help
         });
        },
+       /**
+        * 
+        * @param {Task} task 
+        */
        'task.update'(task){
          Tasks.update({id:task.id},{$set:{
          nameOfTask:task.nameOfTask,

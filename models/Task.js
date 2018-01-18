@@ -9,5 +9,8 @@ export class Task{
     payment_boss;
     sum;
     expenditure;
-
+    /**
+     * @type {boolean}
+     */
+    help;
 }
