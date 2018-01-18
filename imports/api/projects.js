@@ -39,6 +39,11 @@ if(Meteor.isServer) {
       }});
     console.log(id);
     return id;
+    },
+
+    'project.setEnded'(project){
+     Projects.update({_id:project.id},
+        {$set:{ended:project.ended}})
     }
     })
 }

@@ -16,6 +16,7 @@ import { EmployeeService } from '../services/employeeService';
 let projectService = new ProjectService();
 let userService = new UserService();
 let taskService = new TaskService();
+let employeeService = new EmployeeService();
 
 
 
@@ -24,7 +25,7 @@ export default class EditProjectView extends Component {
         super(props);
         this.project = projectService.getChoosedProject();
         this.handleGoHome=this.handleGoHome.bind(this);
-        this.state = {showDropDown: false, choosedDropDown: '--vyber majstra--',
+        this.state = {showDropDown: false, choosedDropDown: this.project.majster,
         name:this.project.nameOfProject, 
         sponsor:this.project.sponsor, 
         adress:this.project.adress, 

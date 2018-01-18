@@ -17,7 +17,7 @@ export class ProjectService {
       * get all projects
       */
      getProjects() {
-         return Projects.find({}).map((project) => {
+         return Projects.find({'ended':{$ne:1}}).map((project) => {
             let back = new Project();
             back.nameOfProject = project.nameOfProject;
             back.sponsor = project.sponsor;
@@ -30,6 +30,23 @@ export class ProjectService {
             return back;
           });
      }
+
+
+
+     getEndedProjects() {
+        return Projects.find({'ended':1}).map((project) => {
+           let back = new Project();
+           back.nameOfProject = project.nameOfProject;
+           back.sponsor = project.sponsor;
+           back.adress = project.adress;
+           back.endTime = project.endTime;
+           back.idMaster = project.idMaster;
+           back.budget = project.budget;
+           back.expenditure = project.expenditure;
+           back.id = project._id;
+           return back;
+         });
+    }
      /**
       * set project as choosed for detail view
       * @param {Project} project project to be set for detail view
@@ -92,7 +109,13 @@ export class ProjectService {
             console.log(result);
         });
     }
-
+    setEndOfProject(id){
+        let newProject=new Project();
+        newProject.id=id;
+        newProject.ended=1;
+        sellectedProject=newProject;
+        Meteor.call('project.setEnded',sellectedProject);
+    }
     getrememberProject(){
         return sellectedProject;
     }

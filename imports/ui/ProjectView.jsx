@@ -12,6 +12,7 @@ import WorkHistoryOnProject from './WorkHistoryOnProject';
 import WorkTodayOnProject from  './WorkTodayOnProject';
 import WorkReductionView from  './WorkReductionView';
 import EditProjectView from  './EditProjectView';
+import EndedProjectsView from './EndedProjectsView';
 
 // for data manipulation
 import { UserService } from '../services/userService';
@@ -63,6 +64,11 @@ export default class ProjectView extends Component {
     handleHistory(){
         render(<WorkHistoryOnProject/>, document.getElementById('app'));
     }
+
+    handleEndProject(){
+        projectService.setEndOfProject(this.project.id);
+        render(<EndedProjectsView/>, document.getElementById('app'));
+    }
     BossView() {
         return (
             <div className="leftRight"> 
@@ -77,6 +83,7 @@ export default class ProjectView extends Component {
                 <button onClick={this.handleTasks.bind(this)}>Zobraziť úlohy</button><br/>
                 <button onClick={this.handleWorkReduction.bind(this)}>Skrátenie pracovnej doby</button><br/>
                 <button onClick={this.handleEditProject.bind(this)}>Upraviť projekt</button><br/>
+                <button onClick={this.handleEndProject.bind(this)}>Ukoncit projekt</button><br/>
             </div>
         );
     }
