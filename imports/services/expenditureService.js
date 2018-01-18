@@ -59,7 +59,6 @@ export class ExpenditureService {
       addExpenditure(sum, reason) {
         let userId = userService.getLoggedId();
         let projectId = projectService.getChoosedProjectId();
-        console.log(userId + " and  "+ projectId);
         let attendaceToday = attendanceService.getToday(userId, projectId);
          if(attendaceToday == null)
             return false;

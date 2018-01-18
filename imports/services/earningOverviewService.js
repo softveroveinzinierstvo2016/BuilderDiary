@@ -184,7 +184,7 @@ export class EarningOverviewService{
      * @return {string}
      */
     getPeriodString(){
-        return "" + startDay.getDate() + "." + startDay.getMonth() + "." + startDay.getFullYear() + 
-        " - " + endDay.getDate() + "." + endDay.getMonth() + "." + endDay.getFullYear();
+        return "" + startDay.getDate() + "." + (startDay.getMonth() + 1) + "." + startDay.getFullYear() + 
+        " - " + endDay.getDate() + "." + (endDay.getMonth() + 1) + "." + endDay.getFullYear();
     }
 }

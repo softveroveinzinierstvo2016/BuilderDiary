@@ -73,7 +73,6 @@ export class ProjectService {
          sellectedProject=newProject;
          Meteor.call('project.insert',sellectedProject,function(error,result){
              sellectedProject.id=result;
-             console.log(result);
          });
      }
      rememberThisProjectEdit(id,name,sponzor,adress,time,majster,badget){
@@ -89,7 +88,6 @@ export class ProjectService {
         sellectedProject=newProject;
         Meteor.call('project.update',sellectedProject,function(error,result){
             sellectedProject.id=result;
-            console.log(result);
         });
     }
 

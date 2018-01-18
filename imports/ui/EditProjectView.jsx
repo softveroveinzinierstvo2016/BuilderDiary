@@ -16,6 +16,7 @@ import { EmployeeService } from '../services/employeeService';
 let projectService = new ProjectService();
 let userService = new UserService();
 let taskService = new TaskService();
+let employeeService = new EmployeeService();
 
 
 

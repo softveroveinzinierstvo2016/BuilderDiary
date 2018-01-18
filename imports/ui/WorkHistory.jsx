@@ -35,7 +35,7 @@ export default class WorkHistory extends Component {
         return workHistoryService.getWorkHistoy().map((record)=>(
             <div key={record.work._id}>
                 <div className="dayField">
-                    {record.day.getDate()}.{record.day.getMonth()}.{record.day.getFullYear()}
+                    {record.day.getDate()}.{record.day.getMonth()+1}.{record.day.getFullYear()}
                     <br/>
                     <div className="projectField">
                         {record.projectName}

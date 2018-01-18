@@ -39,10 +39,14 @@ export default class WorkHistoryOnProject extends Component {
     }
     handleNextPeriod(){
         workHistoryService.nextPeriod();
+        prevName = '';
+        prevTime = '';
         this.setState({period: workHistoryService.getPeriodString()});
     }
     handlePreviousePeriod(){
         workHistoryService.previousePeriod();
+        prevName = '';
+        prevTime = '';
         this.setState({period: workHistoryService.getPeriodString()});
     }
     isNewPerson(record)

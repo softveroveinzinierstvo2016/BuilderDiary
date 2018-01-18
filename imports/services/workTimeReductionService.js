@@ -23,7 +23,7 @@ export class WorkTimeReductionService {
      */
     rememberThisWorkTimeReduction(projectId,date,cause,from,to){
         let newWorkTimeReduction=new WorkTimeReduction();
-        newWorkTimeReduction.day=date;
+        newWorkTimeReduction.day= date;
         newWorkTimeReduction.reason=cause;
         newWorkTimeReduction.timeStart=from;
         newWorkTimeReduction.timeEnd=to;

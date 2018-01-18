@@ -85,8 +85,8 @@ export class WorkHistoryService{
      * @return {string}
      */
     getPeriodString(){
-        return "" + startDay.getDate() + "." + startDay.getMonth() + "." + startDay.getFullYear() + 
-        " - " + endDay.getDate() + "." + endDay.getMonth() + "." + endDay.getFullYear();
+        return "" + startDay.getDate() + "." + (startDay.getMonth() + 1) + "." + startDay.getFullYear() + 
+        " - " + endDay.getDate() + "." + (endDay.getMonth() + 1) + "." + endDay.getFullYear();
     }
     /**
      * 
@@ -166,13 +166,13 @@ export class WorkHistoryService{
         workService.getWorksWithAttendanceIdsOnProject(attendanceIds, projectId).forEach((work)=>{
             let at = attendanceMap.get(work.idAttendance);
             let stringKey = at.day.toDateString();
-            let stringKeyTR = at.day.getDate()+'.'+at.day.getMonth()+'.'+at.day.getFullYear();
+            let stringKeyTR = at.day.getDate()+'.'+(at.day.getMonth() + 1)+'.'+at.day.getFullYear();
             let workRecords = workDayRecords.get(stringKey);
             if(workRecords == null){
                 workRecords = new Array();
                 let dr = new DayRecord();
                 dr.records = workRecords;
-                dr.fullDate = at.day.getDate() + '.' + at.day.getMonth() + '.' + at.day.getFullYear();
+                dr.fullDate = at.day.getDate() + '.' + (at.day.getMonth() + 1) + '.' + at.day.getFullYear();
                 let tr = new TimeReductionRecord();
                 let timeRed = timeReductionMap.get(stringKeyTR);
                 if(timeRed == null){

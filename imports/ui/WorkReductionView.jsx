@@ -22,7 +22,7 @@ export default class WorkReductionView extends Component {
         super(props);
         this.handleGoHome=this.handleGoHome.bind(this);
         let today = new Date();
-        let dateString = today.getDate()+'.'+today.getMonth()+'.'+today.getFullYear();
+        let dateString = today.getDate()+'.'+(today.getMonth() + 1)+'.'+today.getFullYear();
         this.state = {info: '',date: dateString, cause:'', from:'--:--', to:'--:--'};
         this.dateChange = this.dateChange.bind(this);
         this.causeChange = this.causeChange.bind(this);
