@@ -43,7 +43,7 @@ export default class EditWorkView extends Component {
     EmplView() {
         var viewWorked = <label>{this.state.worked}</label>;
         var confirmButton;
-        if(!workService.isLocked()){
+        if(!workService.isLockedWork()){
             viewWorked = <input className="right2input" type="text" value={this.state.worked} onChange={this.workedOnChange}/>;
             confirmButton = (
                 <div>

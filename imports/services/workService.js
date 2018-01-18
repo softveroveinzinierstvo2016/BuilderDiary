@@ -55,7 +55,7 @@ export class WorkService {
     /**
      * return true iff work to edit is locked
      */
-    isLocked() {
+    isLockedWork() {
         let userId = userService.getLoggedId();
         let attendance  = attendanceService.getAttendance(workToEdit.idAttendance);
         if(!attendance || !attendance.approved)
