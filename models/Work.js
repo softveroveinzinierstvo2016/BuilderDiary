@@ -7,4 +7,5 @@ export class Work
     idTask;
     worked; //odpracovane
     payment;
+    approved;
 }

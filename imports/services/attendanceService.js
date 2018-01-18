@@ -30,6 +30,14 @@ export class AttendanceService {
         return result;
     };
     /**
+     * get attendance record
+     * @param {string} attendanceId
+     * @return {Attendance}
+     */
+    getAttendance(attendanceId){
+        return Attendances.findOne({_id: attendanceId});
+    }
+    /**
      * get today's arrival time on project for employee
      * @param {string} useId id of employee
      * @param {string} projectId id of project

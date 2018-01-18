@@ -1,11 +1,20 @@
 import { Works } from '../api/works';
 import { Work } from '../../models/Work';
+import { Task } from '../../models/Task';
 
 import { Meteor } from 'meteor/meteor';
 
 import { AttendanceService } from '../services/attendanceService';
+import { UserService } from './userService';
+import { TaskService } from './taskService';
 
 let attendanceService = new AttendanceService();
+let taskService = new TaskService();
+let userService = new UserService();
+/**
+ * @type {Work}
+ */
+let workToEdit;
 export class WorkService {
     constructor() {
         Meteor.subscribe('works');
@@ -32,7 +41,7 @@ export class WorkService {
         return true;
     }
     /**
-     * return true iff editing is locked
+     * return true iff editing is locked for todays record on the project
      * @param {string} userId 
      * @param {string} projectId
      * @return {boolean}
@@ -42,6 +51,16 @@ export class WorkService {
         if(attendanceToday == null)
             return false;
         return attendanceToday.approved;
+    }
+    /**
+     * return true iff work to edit is locked
+     */
+    isLocked() {
+        let userId = userService.getLoggedId();
+        let attendance  = attendanceService.getAttendance(workToEdit.idAttendance);
+        if(!attendance || !attendance.approved)
+            return false;
+        return true;
     }
     /**
      * get sum of approved worked project hours on task for employee
@@ -130,5 +149,35 @@ export class WorkService {
     getWorksWithAttendanceIdsOnProject(attendanceIds,projectId){
         return Works.find({idAttendance: {$in: attendanceIds}, idProject: projectId});
     }
-
+    /**
+     * 
+     * @param {Work} work 
+     */
+    prepareToEdit(work){
+        workToEdit = work;
+    }
+    /**
+     * @return {Task}
+     */
+    getEditingTask(){
+        return taskService.getTask(workToEdit.idTask);
+    }
+    getWorkedOnEditing(){
+        if(!workToEdit)
+            return 0;
+        return  workToEdit.worked;
+    }
+    getPayedOnEditing(){
+        if(!workToEdit)
+            return 0;
+        return workToEdit.payment;
+    }
+    /**
+     * edit choosed work
+     * @param {number} worked 
+     */
+    editWork(worked){
+        workToEdit.worked = worked;
+        Meteor.call('works.insert-update', workToEdit);
+    }
 }

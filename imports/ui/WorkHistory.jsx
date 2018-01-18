@@ -5,12 +5,18 @@ import { render } from 'react-dom';
 // for navigation
 import Home from './Home';
 import App from './App';
+import EditWorkView from './EditWorkView';
+
+// models
+import {Work} from '../../models/Work';
 
 // for data manipulation
 import { UserService } from '../services/userService';
 import { WorkHistoryService } from '../services/workHistoryService';
+import { WorkService} from '../services/workService';
 let userService = new UserService();
 let workHistoryService = new WorkHistoryService();
+let workService = new WorkService();
 
 export default class WorkHistory extends Component {
     constructor(props) {
@@ -31,6 +37,23 @@ export default class WorkHistory extends Component {
         workHistoryService.previousePeriod();
         this.setState({period: workHistoryService.getPeriodString()});
     }
+    /**
+     * 
+     * @param {Work} work 
+     */
+    handleEditTask(work){
+        workService.prepareToEdit(work);
+        render(<EditWorkView/>, document.getElementById('app'));
+    }
+    /**
+     * 
+     * @param {Work} work 
+     */
+    renderIfNotApproved(work){
+        if(work.approved)
+            return;
+        return <button key={work._id} onClick={this.handleEditTask.bind(this, work)}>Nebola schvalena (Upravit)</button>;
+    }
     renderWorkHistory(){
         return workHistoryService.getWorkHistoy().map((record)=>(
             <div key={record.work._id}>
@@ -40,6 +63,7 @@ export default class WorkHistory extends Component {
                     <div className="projectField">
                         {record.projectName}
                         <br/>
+                            {this.renderIfNotApproved(record.work)}
                         <div className="taskField">
                             {record.taskName}: {record.work.worked}{record.unit}{" "}{record.work.payment}e
                         </div>

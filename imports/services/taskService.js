@@ -136,4 +136,11 @@ export class TaskService {
     getTasksByIds(taskIdList){
         return Tasks.find({_id: {$in: taskIdList}});
     }
+    /**
+     * @param {string} id
+     * @return {Task}
+     */
+    getTask(id){
+        return Tasks.findOne({_id: id});
+    }
 }
