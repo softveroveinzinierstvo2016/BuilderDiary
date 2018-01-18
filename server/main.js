@@ -19,5 +19,4 @@ import '../imports/api/payed';
 */
 
 Meteor.startup(() => {
- 
 });

@@ -2,6 +2,11 @@ import { Meteor } from 'meteor/meteor';
 
 import { Payeds } from '../api/payed';
 import { Payed } from '../../models/Payed';
+import { Employee } from '../../models/Employee';
+/**
+ * @type{Employee}
+ */
+let employeeRem;
 
 export class PayedService{
     constructor(){
@@ -10,11 +15,17 @@ export class PayedService{
     /**
      * 
      * @param {String} employeeId 
+     * @return {number}
      */
     getSum(employeeId){
         let sum = 0;
-        Payeds.find({idEmployee: employeeId}).forEach((payed)=>{
-            sum = sum + payed.sum;
+        console.log(Payeds.find({}).fetch());
+        this.getList(employeeId).forEach((payed)=>{
+            /**
+             * @type {number}
+             */
+            let num = Number(payed.sum);
+            sum = sum + num;
         });
         return sum;
     }
@@ -34,5 +45,11 @@ export class PayedService{
      */
     getList(employeeId){
         return Payeds.find({employeeId: employeeId});
+    }
+    setEmployee(employee){
+        employeeRem = employee;
+    }
+    getEmployee(){
+        return  employeeRem;
     }
 }

@@ -165,7 +165,8 @@ export class EarningOverviewService{
      * @returns {number}
      */
     getToPay(){
-        return this.getEarned() - this.getPayed();
+        let number = this.getEarned() - this.getPayed();
+        return number < 0 ? 0 : number;
     }
     /**
      * return how many have beed earned

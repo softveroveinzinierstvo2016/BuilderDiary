@@ -48,6 +48,5 @@ process.env.MOBILE_DDP_URL = theURL;
 process.env.DDP_DEFAULT_CONNECTION_URL = theURL;
 
 Meteor.startup(() => {
-  console.log("client start");
   render(<App />, document.getElementById('app'));
 });
