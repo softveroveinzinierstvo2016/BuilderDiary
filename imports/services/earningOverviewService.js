@@ -1,12 +1,14 @@
 import { Meteor } from 'meteor/meteor';
 
-
 import { AttendanceService } from '../services/attendanceService';
 import { UserService } from '../services/userService';
 import { TaskService } from '../services/taskService';
 import { WorkService } from '../services/workService';
 import { ProjectService } from '../services/projectService';
 import { ExpenditureService } from '../services/expenditureService';
+import { WageService } from '../services/wageService';
+import { PayedService } from '../services/payedService';
+
 
 import { EarningOverviewRecord } from '../../models/EarningOverviewRecord';
 import { Task } from '../../models/Task';
@@ -15,12 +17,15 @@ import { Project } from '../../models/Project';
 import { Expenditure } from '../../models/Expenditure';
 
 
+
 let attendanceService = new AttendanceService();
 let userService = new UserService();
 let taskService = new TaskService();
 let workService = new WorkService();
 let projectService = new ProjectService();
 let expenditureService = new ExpenditureService();
+let wageService = new WageService();
+let payedService = new PayedService();
 
 let typeOfPeriod = 0;
 let startDay = new Date();
@@ -152,21 +157,23 @@ export class EarningOverviewService{
      * @returns {number}
      */
     getPayed(){
-        return 0;
+        let userId = userService.getLoggedId();
+        return payedService.getSum(userId);
     }
     /**
      * returns how many need to payed
      * @returns {number}
      */
     getToPay(){
-        return 0;
+        return this.getEarned() - this.getPayed();
     }
     /**
      * return how many have beed earned
      * @returns {number}
      */
     getEarned(){
-        return 0;
+        let userId = userService.getLoggedId();
+        return wageService.getSum(userId);
     }
     previousePeriod(){
         let firstDay = startDay.getDate();

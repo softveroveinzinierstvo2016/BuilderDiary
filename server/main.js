@@ -9,6 +9,7 @@ import '../imports/api/tasks';
 import '../imports/api/workTimeReductions';
 import '../imports/api/works';
 import '../imports/api/expenditures';
+import '../imports/api/payed';
 
 /*
   set specific database:
