@@ -24,8 +24,8 @@ export default class EndedProjectsView extends Component {
     renderProjects() {
         return projectService.getEndedProjects().map((project) => (
          <div>
-           <label>{project.nameOfProject}</label><br/>
-           <table>
+           <label className="">{project.nameOfProject}</label><br/>
+           <table className="table">
                <tr>
                  <th>Zakaznik</th>
                  <th>Minute</th> 
