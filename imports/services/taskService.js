@@ -57,7 +57,6 @@ export class TaskService {
       * @param {string} projectId
       */
       getTaskOfProjectById(projectId) {
-         //TODO: get tasks using user id - IMPORTANT FOR ASSISTANT
          return Tasks.find({'idProject': projectId}).map((task) => {
             let back = new Task();
             back.idProject  = task.idProject;
@@ -73,7 +72,6 @@ export class TaskService {
           });
      }
       getTaskOfActualProjectById() {
-         //TODO: get tasks using user id - IMPORTANT FOR ASSISTANT
          return Tasks.find({'idProject': idProjektu}).map((task) => {
             let back = new Task();
             back.idProject  = task.idProject;

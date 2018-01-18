@@ -19,7 +19,6 @@ export class PayedService{
      */
     getSum(employeeId){
         let sum = 0;
-        console.log(Payeds.find({}).fetch());
         this.getList(employeeId).forEach((payed)=>{
             /**
              * @type {number}

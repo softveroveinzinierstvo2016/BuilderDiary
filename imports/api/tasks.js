@@ -10,8 +10,6 @@ if(Meteor.isServer) {
     });
      Meteor.methods({
        'task.insert'(task){
-         //check(project,Projects);
-        console.log(task);
           Tasks.insert({
           idProject:task.idProject,
           nameOfTask:task.nameOfTask,
@@ -24,8 +22,6 @@ if(Meteor.isServer) {
         });
        },
        'task.update'(task){
-        //check(project,Projects);
-       console.log(task);
          Tasks.update({id:task.id},{$set:{
          nameOfTask:task.nameOfTask,
          duration:task.duration,

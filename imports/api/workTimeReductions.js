@@ -12,7 +12,6 @@ if(Meteor.isServer) {
     
     Meteor.methods({
         'workTimeReduction.insert' : function(workTimeReduction){
-            console.log(workTimeReduction);
             var id = WorkTimeReductions.insert({
                 day : workTimeReduction.day,
                 reason : workTimeReduction.reason,
@@ -20,7 +19,6 @@ if(Meteor.isServer) {
                 timeEnd : workTimeReduction.timeEnd,
                 projectId: workTimeReduction.projectId
             });
-            console.log(id);
             return id;
         }
     })

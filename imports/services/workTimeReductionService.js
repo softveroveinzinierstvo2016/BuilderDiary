@@ -31,7 +31,6 @@ export class WorkTimeReductionService {
         sellectedWorkTimeReduction=newWorkTimeReduction;
         Meteor.call('workTimeReduction.insert',sellectedWorkTimeReduction,function(error,result){
             sellectedWorkTimeReduction._id=result;
-            console.log(result);
         });
     }
     /**

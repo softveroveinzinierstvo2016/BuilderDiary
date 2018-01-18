@@ -4,7 +4,6 @@ import { Employees } from '../api/employees';
 import { Meteor } from 'meteor/meteor';
 
 var selectedEmployee;
-//var rememberEmployee;
 
 export class EmployeeService {
 
