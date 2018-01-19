@@ -14,7 +14,7 @@ import { ExpenditureService } from '../services/expenditureService';
 let userService = new UserService();
 let expenditureService = new ExpenditureService();
 
-let sumPattern = /^([0-9])*$/;
+let numberPattern = /^(()|[0]|([1-9]([0-9])*))$/
 
 export default class AddExpenditure extends Component {
     constructor(props) {
@@ -37,19 +37,25 @@ export default class AddExpenditure extends Component {
         render(<ProjectView/>,document.getElementById('app'));
     }
     sumOnChange(event){
-        this.setState({sum: event.target.value});
+        let val = event.target.value;
+        if(!numberPattern.test(val))
+            return;
+        this.setState({sum: val});
     }
     reasonOnChange(event){
         this.setState({reason: event.target.value});
     }
     handleAddExpenditure(){
+        let sum = this.state.sum;
+        if(sum === '')
+            sum = 0;
         if(expenditureService.todayIsLocked()){
             this.setState({info: "Dnes sa uz nedaju pridavat zaznamy"});
             return;
         }
-        if(this.state.reason == null || this.state.reason.trim() === "" || !sumPattern.test(this.state.sum))
+        if(this.state.reason == null || this.state.reason.trim() === "" || !numberPattern.test(sum))
             return;
-        if(!expenditureService.addExpenditure(this.state.sum,this.state.reason)){
+        if(!expenditureService.addExpenditure(sum,this.state.reason)){
             this.setState({info: "Najprv si zapis dochadzku"});
             return;
         } else {
