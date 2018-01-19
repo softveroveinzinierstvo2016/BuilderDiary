@@ -6,6 +6,7 @@ import App from './App';
 import Home from './Home';
 import EmployeeDetailView from './EmployeeDetailView';
 import EmployerPayView from './EmployerPayView';
+import AddEmployeeView from './AddEmployeeView';
 
 import { EmployeeService } from '../services/employeeService';
 import { PayedService } from '../services/payedService';
@@ -34,6 +35,9 @@ export default class EmployeesView extends Component {
         payedService.setEmployee(employee);
         render(<EmployerPayView/>, document.getElementById('app'));
     }
+    handleAddEmpl(){
+        render(<AddEmployeeView/>, document.getElementById('app'));
+    }
     renderEmployees() {
         return employeeService.getEmployees().map((employee) => (
             <div>
@@ -52,6 +56,7 @@ export default class EmployeesView extends Component {
         return(
             <div className="container">
                 <button onClick={this.handleGoHome} >Domov</button> <br/>
+                <button onClick={this.handleAddEmpl}>Pridať zamestnanca</button> <br/>
                 {this.renderEmployees()}
             </div>
         );

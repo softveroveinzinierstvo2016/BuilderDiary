@@ -50,7 +50,6 @@ export default class AddEmployeeView extends Component {
     }
 
     assistantChange(event) {
-        //this.setState({assistant: event.target.value});
         if (true === document.getElementById("assistCheckBox").checked){
             this.setState({assistant: true})
         } else {
@@ -66,7 +65,13 @@ export default class AddEmployeeView extends Component {
             this.state.passwordNew,
             this.state.assistant
         )
-        render(<AddTaskView/>, document.getElementById('app'));
+        this.setState({
+            name: '',
+            surname: '',
+            loginNew: '',
+            passwordNew: '',
+            assistant: false
+        })
     }
 
     BossView(){

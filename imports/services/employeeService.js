@@ -70,7 +70,6 @@ export class EmployeeService {
         selectedEmployee=newEmployee;
         Meteor.call('employee.insert',selectedEmployee,function(error,result){
             selectedEmployee.id=result;
-            console.log(result);
         });
     }
 
