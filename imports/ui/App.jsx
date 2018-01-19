@@ -35,8 +35,8 @@ export default class App extends Component {
         return (
             <div className="container">
                 <div className="loggin">
-                    <input type="text" value={this.state.name} onChange={this.nameChange}/> <br/>
-                    <input type="password" value={this.state.password} onChange={this.psswChange} /> <br/>  
+                    <input type="text"  onChange={this.nameChange}/> <br/>
+                    <input type="password" onChange={this.psswChange} /> <br/>  
                     <button onClick={this.stepIn}>Prihlasit</button> 
                 </div>
             </div> 

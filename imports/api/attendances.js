@@ -1,8 +1,8 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
+import { check, Match } from 'meteor/check';
 
-import { Attendace } from '../../models/Attendance';
+import { Attendance } from '../../models/Attendance';
 
 export const Attendances = new Mongo.Collection('attendance');
 
@@ -13,7 +13,7 @@ if(Meteor.isServer) {
     Meteor.methods({
         /**
          * insert or update attendace for today
-         * @param {Attendace} attendance
+         * @param {Attendance} attendance
          */
        'attendance.insert-update'(attendance){
         let date = new Date();

@@ -6,7 +6,7 @@ export const Employees = new Mongo.Collection('employee');
 
 if(Meteor.isServer) {
     Meteor.publish('employees', function usersPublication() {
-        return Employees.find();
+        return Employees.find({},{fields: {login: 0, password: 0}});
     });
     Meteor.methods({
         'employees.loggUser': function(loggName, password){
@@ -15,7 +15,11 @@ if(Meteor.isServer) {
             let user = Employees.findOne({login: loggName, password: password});
             if(!user)
                 return null;
+            if(user.login != loggName || user.password != password)
+                return null;
             user.id = user._id;
+            user.login = '';
+            user.password = '';
             return user;
         }
     });
