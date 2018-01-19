@@ -40,7 +40,7 @@ export default class ListTaskView extends Component {
     handleStateTask(task){
         result=0*task.payment;
         this.setState({stav:result});
-        result=(task.payment_boss*task.duration)-(task.payment*task.duration);
+        result=(task.payment_boss*task.duration);
         this.setState({zisk:result});
     }
     renderTaskList() {

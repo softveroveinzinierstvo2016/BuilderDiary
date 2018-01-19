@@ -15,15 +15,23 @@ export default class EndedProjectsView extends Component {
     constructor(props) {
         super(props);
         this.handleGoHome=this.handleGoHome.bind(this);
+        this.state={profit:'0'};
     }
     handleGoHome() {
         
         render(<Home/>,document.getElementById('app'));
     }
+    handleProfit(project){
+        if(project.expenditure!=null)
+           result=project.budget-project.expenditure;
+        else
+           result=project.budget;
+        this.setState({profit: result});
+    }
 
     renderProjects() {
         return projectService.getEndedProjects().map((project) => (
-         <div>
+         <div key={project.id}>
            <label className="">{project.nameOfProject}</label><br/>
            <table className="table">
                <tr>
@@ -32,9 +40,9 @@ export default class EndedProjectsView extends Component {
                  <th>Zisk</th>
                 </tr>
                 <tr>
-                 <td>{project.budget}</td>
-                 <td>{project.expenditure}</td>
-                 <td>0</td>
+                 <td>{project.budget}e</td>
+                 <td>{project.expenditure}e</td>
+                 <td>{projectService.getProjectProfit(project)}e</td>
                 </tr>
             </table>
          </div>

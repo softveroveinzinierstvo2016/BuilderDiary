@@ -133,5 +133,11 @@ export class ProjectService {
             return false;
         return sellectedProject.idMaster == id;
    } 
+
+   getProjectProfit(project){
+       let result= '';
+       result=parseInt(project.budget)-parseInt(project.expenditure);
+       return result;
+   }
   
 }
