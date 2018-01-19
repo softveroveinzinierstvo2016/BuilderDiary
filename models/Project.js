@@ -7,4 +7,5 @@ export class Project{
     idMaster;
     budget;
     expenditure;
+    ended;
 }

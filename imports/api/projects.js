@@ -33,6 +33,17 @@ if(Meteor.isServer) {
       expenditure: project.expenditure
       }});
     return id;
-    }
+    },
+
+    'project.setEnded':function(project){
+        //check(project,Projects);
+       console.log(project);
+      var id=Projects.update({_id:project.id},{$set:{
+      ended:1
+      }});
+    console.log(id);
+    return id;
+    },
+
     })
 }
