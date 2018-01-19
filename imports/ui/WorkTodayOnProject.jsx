@@ -76,8 +76,8 @@ export default class WorkTodayOnProject extends Component {
             view = this.EmplView();
         return (
             <div className="container">
-                <button className="nav1" onClick={this.handleGoHome}>Spet na projekt</button> <br/>
-                <label> Dnesny zaznam prac </label>
+                <button className="nav1" onClick={this.handleGoHome}>Späť na projekt</button> <br/>
+                <label> Dnešný záznam prác </label>
                 <hr/>
                 {projectService.getChoosedProject().nameOfProject}
                 <hr/>

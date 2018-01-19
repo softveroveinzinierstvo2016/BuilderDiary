@@ -74,7 +74,7 @@ export default class ProjectView extends Component {
         return (
             <div className="leftRight"> 
                 <h1> {this.project.nameOfProject}</h1>
-                <button onClick={this.handleHistory}>Historia prac</button><br/>
+                <button onClick={this.handleHistory}>História prác</button><br/>
                 <label className="left"> Zadávateľ:</label><label className="right"> {this.project.sponsor}</label><br/>
                 <label className="left"> Adresa:</label><label className="right"> {this.project.adress}</label><br/>
                 <label className="left"> Majster:</label><label className="right"> {employeeService.getEmployeeName(this.project.idMaster)}</label><br/>
@@ -166,8 +166,8 @@ export default class ProjectView extends Component {
     renderMaster(){
         return (
             <div>
-                <button onClick={this.handleMasterWorkToday}>Dnesny zaznam prac</button>
-                <button onClick={this.handleMasterWorkHistory}>Historia prac</button>
+                <button onClick={this.handleMasterWorkToday}>Dnešný záznam prác</button>
+                <button onClick={this.handleMasterWorkHistory}>História prác</button>
             </div>
         );
     }
@@ -180,14 +180,14 @@ export default class ProjectView extends Component {
             <div className="leftRight">
                 <h1>{this.project.nameOfProject}</h1>
                 {masterView}
-                <button onClick={this.handleAddExpenditure}>Vydaje</button> <br/> <br/>
-                   <label className="left"> Prichod:</label><input className="right" type="text" value={this.state.arrivalTime} onChange={this.arrivalTimeChange}/> <br/>
+                <button onClick={this.handleAddExpenditure}>Výdaje</button> <br/> <br/>
+                   <label className="left"> Príchod:</label><input className="right" type="text" value={this.state.arrivalTime} onChange={this.arrivalTimeChange}/> <br/>
                    <label className="left"> Odchod: </label><input className="right" type="text" value={this.state.departureTime} onChange={this.departureTimeChange}/><br/>
                 <div className="error"> {this.state.info} </div>
                 <br/>
-                <button onClick={this.SetAttendace}>Zaznamenat</button>
+                <button onClick={this.SetAttendace}>Zaznamenať</button>
                 <br/>
-                    Prichod: {this.state.arrivalTimeConf} Odchod: {this.state.departureTimeConf}
+                    Príchod: {this.state.arrivalTimeConf} Odchod: {this.state.departureTimeConf}
                 <br/>
                 {this.renderTaskList()}
             </div>

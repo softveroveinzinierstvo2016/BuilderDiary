@@ -72,13 +72,13 @@ export default class EarningOverview extends Component {
     renderWholeSum(){
         return (
             <div className="leftRight">
-                <label className="leftBl">Zarobene </label>
+                <label className="leftBl">Zarobené </label>
                 <label className="rightBl">{earningOverviewService.getEarned()} </label>
                 <br/>
-                <label className="leftYe">Vyplatene </label>
+                <label className="leftYe">Vyplatené </label>
                 <label className="rightYe">{earningOverviewService.getPayed()}</label>
                 <br/>
-                <label className="leftBl">Ostava vyplatit </label>
+                <label className="leftBl">Ostáva vyplatiť </label>
                 <label className="rightBl">{earningOverviewService.getToPay()}</label>
             </div>
         );

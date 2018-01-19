@@ -190,7 +190,7 @@ export class WorkHistoryService{
             wr.fullname = employeeService.getEmployeeName(at.idEmployee);
             wr.time = at.arrivalTime + ' - ' + at.departureTime;
             wr.taskname = taskMap.get(work.idTask).nameOfTask;
-            wr.description = 'Odrobene ' + work.worked +' '  + taskMap.get(work.idTask).unit + ' za ' + work.payment + ' e';   
+            wr.description = 'Odrobené ' + work.worked +' '  + taskMap.get(work.idTask).unit + ' za ' + work.payment + ' e';   
             workRecords.push(wr);
             workDayRecords.set(stringKey, workRecords);
         });

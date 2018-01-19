@@ -37,7 +37,7 @@ export default class App extends Component {
                 <div className="loggin">
                     <input type="text"  onChange={this.nameChange}/> <br/>
                     <input type="password" onChange={this.psswChange} /> <br/>  
-                    <button onClick={this.stepIn}>Prihlasit</button> 
+                    <button onClick={this.stepIn}>Prihlásiť</button> 
                 </div>
             </div> 
         );

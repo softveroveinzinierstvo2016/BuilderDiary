@@ -52,7 +52,7 @@ export default class WorkHistory extends Component {
     renderIfNotApproved(work){
         if(work.approved)
             return;
-        return <button key={work._id} onClick={this.handleEditTask.bind(this, work)}>Nebola schvalena (Upravit)</button>;
+        return <button key={work._id} onClick={this.handleEditTask.bind(this, work)}>Nebola schválená (Upraviť)</button>;
     }
     renderWorkHistory(){
         return workHistoryService.getWorkHistoy().map((record)=>(

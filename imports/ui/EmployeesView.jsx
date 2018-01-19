@@ -41,7 +41,7 @@ export default class EmployeesView extends Component {
                 <br/>
                 <div className="leftRight">
                     <button className="left"  onClick={this.handleAttendance.bind(this, employee)}>Dochádzka</button>
-                    <button className="right" onClick={this.handleFinance.bind(this, employee)}>Vyplatit</button>
+                    <button className="right" onClick={this.handleFinance.bind(this, employee)}>Vyplatiť</button>
                 </div>
                 <br/>
             </div>

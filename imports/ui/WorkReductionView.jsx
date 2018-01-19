@@ -56,7 +56,7 @@ export default class WorkReductionView extends Component {
                 <label className="left">Nepracovalo sa</label> <br/>
                 <label className="left">Od:</label><input className="right" type="text" value={this.state.from} onChange={this.fromChange}/><br/>
                 <label className="left">Do:</label><input className="right" type="text" value={this.state.to} onChange={this.toChange}/><br/>
-                <button onClick={this.add}>Pridat</button><br/>
+                <button onClick={this.add}>Pridať</button><br/>
             </div>
         );
 

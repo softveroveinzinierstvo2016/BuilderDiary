@@ -29,17 +29,18 @@ input{
     width: 30%;
 }
 .dayField{
-    background-color: aquamarine;
+    background-color: lightslategray;
+    color: black;
     border: 1px;
     border-style: inset;
 }
 .projectField{
-    background-color: blue;
-    color: white;
+    background-color: cyan;
+    color: black;
 }
 .taskField{
-    background-color: darkblue;
-    color: white;
+    background-color: lightgreen;
+    color: black;
 }
 .list{
     background-color: aqua;

@@ -46,9 +46,9 @@ export default class EmployeerPayView extends Component {
                 <h1> {this.employee.name + ' ' + this.employee.surname} </h1>
                 <div className="leftRight">
                     <label className = "left">Suma</label> <input className="right" type="text" value={this.state.sum} onChange={this.sumOnChange}></input> <br/>
-                    <label className = "left">Poznamka</label> <input className = "right" type = "text" value = {this.state.notice} onChange={this.noticeOnChange}></input> <br/>
+                    <label className = "left">Poznámka</label> <input className = "right" type = "text" value = {this.state.notice} onChange={this.noticeOnChange}></input> <br/>
                 </div>
-                <button onClick={this.pay}> Vyplat </button>
+                <button onClick={this.pay}> Vyplatiť </button>
             </div>
         );
     }

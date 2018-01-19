@@ -122,8 +122,8 @@ export default class WorkHistoryOnProject extends Component {
             view = this.EmplView();
         return (
             <div className="container">
-                <button className="nav1" onClick={this.handleGoHome}>Spet na projekt</button> <br/>
-                <label> Historia prac: {projectService.getChoosedProject().nameOfProject}</label>
+                <button className="nav1" onClick={this.handleGoHome}>Späť na projekt</button> <br/>
+                <label> História prác: {projectService.getChoosedProject().nameOfProject}</label>
                 <hr/> 
                 <div className="choosePeriod">
                     {this.state.period}<br/>

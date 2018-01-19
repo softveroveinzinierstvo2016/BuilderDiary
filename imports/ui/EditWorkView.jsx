@@ -70,7 +70,7 @@ export default class EditWorkView extends Component {
            view = this.EmplView();
         return (
             <div className="container">
-                <button className="nav1" onClick={this.handleGoBack}>Spet</button> <br/>
+                <button className="nav1" onClick={this.handleGoBack}>Späť</button> <br/>
                 {view}
             </div> 
         );

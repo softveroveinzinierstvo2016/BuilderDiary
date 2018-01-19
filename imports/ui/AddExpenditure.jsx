@@ -72,15 +72,15 @@ export default class AddExpenditure extends Component {
     view(){
         return (
             <div>
-                <h1>{this.projectName} - Vydaje</h1>
+                <h1>{this.projectName} - Výdaje</h1>
                 <div className="leftRight">
                     <label className="left">Suma</label> <input className="right" type="text" value={this.state.sum} onChange={this.sumOnChange}/> <br/>
                     <label className="left">Dovod</label> <input className="right" type="text" value={this.state.reason} onChange={this.reasonOnChange}/><br/>
                 </div>
                 <br/>
-                <button onClick={this.handleAddExpenditure}>Zaznamenat</button> <br/>
+                <button onClick={this.handleAddExpenditure}>Zaznamenať</button> <br/>
                 <div className="error">{this.state.info}</div>
-                <h1>Dnesne vydaje</h1>
+                <h1>Dnešné výdaje</h1>
                 <div className="leftRight">
                     {this.renderToday()}
                 </div>

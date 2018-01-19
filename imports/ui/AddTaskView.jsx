@@ -87,14 +87,14 @@ export default class AddProjectView extends Component {
           <div>
            <h1>Pridanie Úlohy</h1>
            <div className="leftRight">
-                <label className="left">Typ ulohy:</label><button onClick={this.switchType}>{this.state.type}</button><br/>
+                <label className="left">Typ úlohy:</label><button className="right" onClick={this.switchType}>{this.state.type}</button><br/>
                 <label className="left">Názov úlohy:</label><input className="right" type="text" value={this.state.name} onChange={this.nameChange}/><br/>
                 <label className="left">Trvanie úlohy:</label><input className="right" type="text" value={this.state.duration} onChange={this.durationChange}/><br/>
                 <label className="left">Plat:</label><input className="right" type="text" value={this.state.payment} onChange={this.paymentChange}/><br/>
                 <label className="left">Jednotka:</label><input className="right" type="text" value={this.state.unit} onChange={this.unitChange}/><br/>
                 <label className="left">Plat pre šéfa:</label><input className="right" type="text"value={this.state.sumBoss} onChange={this.sumBossChange}/><br/>
            </div>
-           <button onClick={this.add} >Pridat ulohy</button>
+           <button onClick={this.add} >Pridať úlohy</button>
           </div>
 
         );

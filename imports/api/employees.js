@@ -22,9 +22,7 @@ if(Meteor.isServer) {
             user.password = '';
             return user;
         },
-
         'employee.insert': function(employee){
-            console.log(employee);
             var id=Employees.insert({
                 name: employee.name,
                 surname: employee.surname,
@@ -33,7 +31,6 @@ if(Meteor.isServer) {
                 role: employee.role,
                 sumAssistant: employee.sumAssistant
             });
-            console.log(id);
             return id;
         }
 
