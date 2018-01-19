@@ -30,7 +30,8 @@ let attendanceService = new AttendanceService();
 let employeeService = new EmployeeService();
 
 let timePattern = /(^(([0-1][0-9])|(2[0-3])):[0-5][0-9]$)|(^--:--$)/
-
+let firstPattern = /(^(([0-1][0-9])|(2[0-3])))$/
+let secondPattern = /(^:[0-5][0-9]$)/
 export default class ProjectView extends Component {
     constructor(props) {
         super(props);
@@ -118,10 +119,30 @@ export default class ProjectView extends Component {
         render(<WorkTodayOnProject/>, document.getElementById('app'));
     }
     arrivalTimeChange(event) {
-        this.setState({arrivalTime: event.target.value});
+        let res = event.target.value;
+        if(res.length>5)
+            return;
+        if(res == ''){
+            res = ":";
+        }
+         else
+        if(firstPattern.test(res)){
+            res = res + ":";
+        }
+        this.setState({arrivalTime: res});
     }
     departureTimeChange(event) {
-        this.setState({departureTime: event.target.value});
+        let res = event.target.value;
+        if(res.length>5)
+            return;
+        if(res == ''){
+            res = ":";
+        }
+        else
+        if(firstPattern.test(res)){
+            res = res + ":";
+        }
+        this.setState({departureTime: res});
     }
     SetAttendace() {
         if(!timePattern.test( this.state.arrivalTime) || !timePattern.test(this.state.departureTime)) {

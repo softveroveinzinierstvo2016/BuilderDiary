@@ -15,7 +15,7 @@ import { WorkService } from '../services/workService';
 let userService = new UserService();
 let taskService = new TaskService();
 let workService = new WorkService();
-
+let numberPattern = /^(()|[0]|([1-9]([0-9])*))$/
 export default class TaskView extends Component {
     constructor(props) {
         super(props);
@@ -37,9 +37,14 @@ export default class TaskView extends Component {
         render(<ProjectView/>,document.getElementById('app'));
     }
     workedTodayOnChange(event) {
-        this.setState({workedToday: event.target.value});
+        let val = event.target.value;
+        if(!numberPattern.test(val))
+            return;
+        this.setState({workedToday: val});
     }
     handleLoggWork(){
+        if(this.state.workedToday === '')
+            this.setState({workedToday: 0});
         let answer = workService.loggWork(userService.getLoggedId(),this.task.idProject,this.task.id,this.state.workedToday);
         if(!answer) {
             this.setState({info: 'Najprv si zapíš príchod'});

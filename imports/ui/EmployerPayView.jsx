@@ -36,6 +36,7 @@ export default class EmployeerPayView extends Component {
         this.setState({notice: event.target.value});
     }
     pay(){
+        if(this.state.sum)
         payedService.pay(this.employee.id, this.state.sum, this.state.notice);
         this.setState({sum: 0, notice: "mesacna vyplata"});
     }

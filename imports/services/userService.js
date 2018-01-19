@@ -28,7 +28,12 @@ export class UserService {
     loggUser(login, password) {
         loggedUser = null;
         if(!login || !password)
-            return false;
+            return;
+        let loginMatchPattern = /^([a-z]|[A-Z])*$/;
+        let passwordMatchPattern = /^([a-z]|[A-Z]|[0-9])*$/;
+        if(!loginMatchPattern.test(login) || !passwordMatchPattern.test(password)){
+            return; 
+        }
         Meteor.call("employees.loggUser",login, password, function(error, result){
             if(error)
                 return;
