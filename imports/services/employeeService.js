@@ -55,5 +55,24 @@ export class EmployeeService {
         return selectedEmployee;
     }
 
+    rememberThisEmoployee(name,surname,login,password,assistant){
+        let newEmployee = new Employee();
+        newEmployee.name=name;
+        newEmployee.surname=surname;
+        newEmployee.login=login;
+        newEmployee.password=password;
+        if(assistant===true){
+            newEmployee.role=2;
+        } else {
+            newEmployee.role=0;
+        }
+        newEmployee.sumAssistant=0;
+        selectedEmployee=newEmployee;
+        Meteor.call('employee.insert',selectedEmployee,function(error,result){
+            selectedEmployee.id=result;
+            console.log(result);
+        });
+    }
+
 
 }
