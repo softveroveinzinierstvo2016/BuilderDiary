@@ -2,6 +2,7 @@ import { Employee } from '../../models/Employee';
 import { Employees } from '../api/employees';
 
 import { Meteor } from 'meteor/meteor';
+import { UserService } from './userService';
 
 var selectedEmployee;
 
@@ -54,7 +55,21 @@ export class EmployeeService {
     getChosenEmployee() {
         return selectedEmployee;
     }
-
+    /**
+     * promote employee choosed by chooseEmployee(employee)
+     */
+    promoteChoosenEmployee(){
+        let id = selectedEmployee.id;
+        if(!id){
+            id = selectedEmployee._id;
+        }
+        Meteor.call('employees.promote',id);
+    }
+    isAssistant(){
+        if(!selectedEmployee)
+            return true;
+        return UserService.isAssistant(selectedEmployee.role);
+    }
     rememberThisEmoployee(name,surname,login,password,assistant){
         let newEmployee = new Employee();
         newEmployee.name=name;

@@ -7,31 +7,81 @@ import App from './App';
 import EmployeesView from './EmployeesView';
 
 import { EmployeeService } from '../services/employeeService';
+import { ExpenditureService } from '../services/expenditureService';
+import { EarningOverviewService } from '../services/earningOverviewService';
+import { ReductionWagesService } from '../services/reductionWagesService';
 
 import { Employee } from '../../models/Employee';
 
 let employeeService = new EmployeeService();
+let expenditureService = new ExpenditureService();
+let earningOverviewService = new EarningOverviewService();
+let reductionWagesService = new ReductionWagesService();
 
 export default class EmployeeDetailView extends Component {
 
     constructor(props) {
         super(props);
         this.employee = employeeService.getChosenEmployee();
-        this.handleGoHome = this.handleGoHome.bind(this);
+        this.handleAddWageDeduction = this.handleAddWageDeduction.bind(this);
+        this.handleGoBack = this.handleGoBack.bind(this);
     }
 
-    handleGoHome() {
+    handleGoBack() {
         render(<EmployeesView/>,document.getElementById('app'));
     }
     handleAddWageDeduction(){
         // tu prepni na pridavanie zrazok
     }
+    handlePromotion(){
+        employeeService.promoteChoosenEmployee();
+    }
+    renderExpenditures(){
+        return expenditureService.getExpenditureRecords(this.employee.id).map((record)=>(
+            <div key={record.id}>
+            <label className="left">{record.name}</label><label className="right">{record.value}</label><br/>
+            </div>
+        ));
+    }
+    renderWageDeduction(){
+        return reductionWagesService.getReductions().map((record)=>(
+            <div key={record.id}>
+                <label className="left">{record.date}</label><label className="right">{record.sum}</label> <br/>
+                <label>{record.reason}</label>
+            </div>
+        ));
+    }
     bossView(){
+        let promoteView = '';
+        if(employeeService.isAssistant())
+            promoteView = (
+                <div>
+                    <button onClick={this.handlePromotion}>Povýšiť zamestnanca</button>
+                    <br/>
+                </div>
+            );
         return(
         <div>
-            <button onClick={this.handleGoBack}></button> <br/>
             <h1>{employeeService.getEmployeeName(this.employee.id)}</h1>
+            {promoteView}
             <button onClick={this.handleAddWageDeduction}>Pridať zrážky</button><br/>
+            <label>Zrážky zo mzdy</label><br/>
+            <hr/>
+            <div className = "leftRight">
+                {this.renderWageDeduction()}
+            </div>
+            <hr/>
+            <label>Výdavky</label><br/>
+            <hr/>
+            <div className ="leftRight">
+                {this.renderExpenditures()}
+            </div>
+            <hr/>
+            <div className="leftRight">
+                <label className="leftBl">Celkom</label> <label className="rightBl">{earningOverviewService.getEarnedForEmployee(this.employee.id)}e</label><br/>
+                <label className="leftYe">Vyplatené</label> <label className="rightYe">{earningOverviewService.getPayedForEmployee(this.employee.id)}e</label><br/>
+                <label className="leftBl">Ostáva vyplatiť</label> <label className="rightBl">{earningOverviewService.getToPayForEmployee(this.employee.id)}e</label>
+            </div>
         </div>
         );
     }
@@ -41,7 +91,7 @@ export default class EmployeeDetailView extends Component {
         view = this.bossView();
         return(
             <div className="container">
-                <button onClick={this.handleGoHome} >Späť na zamestnancov</button> <br/>
+                <button onClick={this.handleGoBack} >Späť na zamestnancov</button> <br/>
                 {view}
             </div>
         );

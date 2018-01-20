@@ -86,4 +86,25 @@ export class UserService {
     isLoggedAssistant() {
         return loggedUser.role === 2;
     }
+    /**
+     * 
+     * @param {number} role 
+     */
+    static isAssistant(role){
+        return role === 2;
+    }
+    /**
+     * 
+     * @param {number} role 
+     */
+    static isEmployee(role){
+        return role === 0 || role === 2;
+    }
+    /**
+     * 
+     * @param {number} role 
+     */
+    static isBoss(role){
+        return role === 1;
+    }
 }

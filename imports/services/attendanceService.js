@@ -132,4 +132,10 @@ export class AttendanceService {
         endDay.setHours(0,0,0,0);
         return Attendances.find({idProject: projectId ,day:{$gte: startDay, $lte: endDay}});
     }
+    /**
+     * @param {string} employeeId 
+     */
+    getAttendanceByUser(employeeId){
+        return Attendances.find({idEmployee: employeeId});
+    }
 }

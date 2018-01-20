@@ -7,6 +7,11 @@ import {AttendanceService} from './attendanceService';
 import {UserService} from './userService';
 import {ProjectService} from './projectService';
 
+import { Attendance } from '../../models/Attendance';
+import { EarningOverviewRecord } from  '../../models/EarningOverviewRecord';
+import { RecordLine } from '../../models/RecordLine';
+import EarningOverview from '../ui/EarningOverview';
+
 let attendanceService = new AttendanceService();
 let projectService = new ProjectService();
 let userService = new UserService();
@@ -71,4 +76,25 @@ export class ExpenditureService {
         Meteor.call('expenditure.insert',newExpenditure);
         return true;
       }
+     getExpenditureRecords(employeeId){
+        /**
+         * @type {Map<string,Attendance>}
+         */
+        let attendanceMap = new Map();
+        /**
+         * @type {RecordLine[]}
+         */
+        let recordLines = new Array();
+        attendanceService.getAttendanceByUser(employeeId).forEach((element)=>{
+            attendanceMap.set(element._id, element);
+        });
+        Expenditures.find({employeeID: employeeId}).forEach((element)=>{
+            let recordLine = new RecordLine();
+            recordLine.id = element._id;
+            recordLine.name = element.reason;
+            recordLine.value = element.sum;
+            recordLines.push(recordLine);
+        });
+        return recordLines; 
+    }
 }

@@ -3,4 +3,5 @@ export class ReductionWage{
     idEmployee;
     reason;
     sum;
+    date;
 }

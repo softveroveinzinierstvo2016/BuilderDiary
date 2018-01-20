@@ -8,6 +8,7 @@ import { ProjectService } from '../services/projectService';
 import { ExpenditureService } from '../services/expenditureService';
 import { WageService } from '../services/wageService';
 import { PayedService } from '../services/payedService';
+import { ReductionWagesService } from '../services/reductionWagesService';
 
 
 import { EarningOverviewRecord } from '../../models/EarningOverviewRecord';
@@ -15,6 +16,7 @@ import { Task } from '../../models/Task';
 import { RecordLine } from '../../models/RecordLine'; 
 import { Project } from '../../models/Project';
 import { Expenditure } from '../../models/Expenditure';
+import { ReductionWage } from '../../models/ReductionWage';
 
 
 
@@ -26,6 +28,7 @@ let projectService = new ProjectService();
 let expenditureService = new ExpenditureService();
 let wageService = new WageService();
 let payedService = new PayedService();
+let reductionWagesService =  new ReductionWagesService();
 
 let typeOfPeriod = 0;
 let startDay = new Date();
@@ -117,7 +120,7 @@ export class EarningOverviewService{
         });
         // get all expenditures (every expenditure on its own)
         expenditureService.getExpenditures(userId, projectIds, attendanceIds).forEach((element)=>{
-            let record = earningOverviewRecords.get(element.idProject);
+            let record = earningOverviewRecords.get(element.projectID);
             if(record == null){
                 record = new EarningOverviewRecord();
                 record.line = new Array();
@@ -129,7 +132,18 @@ export class EarningOverviewService{
             recordLine.value = element.sum;
             periodSum = periodSum + Number(recordLine.value);
             record.line.push(recordLine);
-            earningOverviewRecords.set(element.idProject, record);
+            earningOverviewRecords.set(element.projectID, record);
+        });
+        // get all wage reductions (every on its own)
+        let  redWageRec = new EarningOverviewRecord();
+        redWageRec.line = new Array(); 
+        reductionWagesService.getReductionsBetween(userId, startDay, endDay).forEach((element)=>{
+            let recordLine = new RecordLine();
+            recordLine.id = element._id;
+            recordLine.name = element.reason;
+            recordLine.value = element.sum;
+            periodSum = periodSum - Number(recordLine.value);
+            redWageRec.line.push(recordLine);
         });
         /**
          * @type {EarningOverviewRecord[]}
@@ -160,6 +174,9 @@ export class EarningOverviewService{
         let userId = userService.getLoggedId();
         return payedService.getSum(userId);
     }
+    getPayedForEmployee(employeeId){
+        return payedService.getSum(employeeId);
+    }
     /**
      * returns how many need to payed
      * @returns {number}
@@ -168,13 +185,20 @@ export class EarningOverviewService{
         let number = this.getEarned() - this.getPayed();
         return number < 0 ? 0 : number;
     }
+    getToPayForEmployee(employeeId){
+        let number = this.getEarnedForEmployee(employeeId) - this.getPayedForEmployee(employeeId);
+        return number < 0 ? 0 : number;
+    }
     /**
      * return how many have beed earned
      * @returns {number}
      */
     getEarned(){
         let userId = userService.getLoggedId();
-        return wageService.getSum(userId);
+        return wageService.getSum(userId) - reductionWagesService.getSum(userId);
+    }
+    getEarnedForEmployee(employeeId){
+        return wageService.getSum(employeeId) - reductionWagesService.getSum(employeeId);
     }
     previousePeriod(){
         let firstDay = startDay.getDate();
