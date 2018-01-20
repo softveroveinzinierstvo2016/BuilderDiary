@@ -22,7 +22,7 @@ export default class AddProjectView extends Component {
     constructor(props) {
         super(props);
         this.handleGoHome=this.handleGoHome.bind(this);
-        this.state = {showDropDown: false, choosedDropDown: '--vyber majstra--',name:'', sponsor:'', adress:'', time:'', majster: null, budget:''};
+        this.state = {showDropDown: false, choosedDropDown: '--výber majstra--',name:'', sponsor:'', adress:'', time:'', majster: null, budget:''};
 
         this.nameChange = this.nameChange.bind(this);
         this.sponsorChange = this.sponsorChange.bind(this);

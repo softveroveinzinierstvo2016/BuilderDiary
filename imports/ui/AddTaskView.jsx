@@ -22,8 +22,8 @@ export default class AddProjectView extends Component {
         this.typeN = this.defaultType;
         this.typeM = 1;
         this.type = [
-            "odborna",
-            "pomocna"
+            "odborná",
+            "pomocná"
         ]
         this.state = {name:'', duration:'', payment:'', unit:'', sumBoss:'',type: this.type[this.typeN]};
 
