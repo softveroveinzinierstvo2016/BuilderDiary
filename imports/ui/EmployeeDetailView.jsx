@@ -5,7 +5,7 @@ import { render } from 'react-dom';
 // Nav
 import App from './App';
 import EmployeesView from './EmployeesView';
-
+import AddReductionWageView from  './AddReductionWageView';
 import { EmployeeService } from '../services/employeeService';
 
 import { Employee } from '../../models/Employee';
@@ -18,6 +18,7 @@ export default class EmployeeDetailView extends Component {
         super(props);
         this.employee = employeeService.getChosenEmployee();
         this.handleGoHome = this.handleGoHome.bind(this);
+        this.handleAddWageDeduction=this.handleAddWageDeduction.bind(this);
     }
 
     handleGoHome() {
@@ -25,6 +26,7 @@ export default class EmployeeDetailView extends Component {
     }
     handleAddWageDeduction(){
         // tu prepni na pridavanie zrazok
+        render(<AddReductionWageView/>,document.getElementById('app'));
     }
     bossView(){
         return(

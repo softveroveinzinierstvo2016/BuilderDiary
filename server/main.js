@@ -10,7 +10,7 @@ import '../imports/api/workTimeReductions';
 import '../imports/api/works';
 import '../imports/api/expenditures';
 import '../imports/api/payed';
-
+import '../imports/api/reductionWages';
 /*
   set specific database:
     open cmd in root project folder
