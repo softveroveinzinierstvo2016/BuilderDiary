@@ -14,8 +14,10 @@ export class ReductionWagesService {
       */
     getReductions(employeeId){
         return ReductionWages.find({idEmployee: employeeId}).map((element)=>{
-            element.id = element._id;
-            return element;
+            let rec = new ReductionWage();
+            rec = element;
+            rec.id = element._id;
+            return rec;
         });
     }
     /**
@@ -29,9 +31,17 @@ export class ReductionWagesService {
     }
     getSum(employeeId){
         let sum = 0;
-        return ReductionWage.find({idEmployee: employeeId}).forEach((wage)=>{
+        ReductionWages.find({idEmployee: employeeId}).forEach((wage)=>{
             sum = sum + wage.sum;
         });
         return sum;
     }
+     setWagesDeduction(idEmployee, reason, sum){
+         let newWage= new ReductionWage();
+         newWage.idEmployee=idEmployee;
+         newWage.reason=reason;
+         newWage.sum=sum;
+         Meteor.call('reductionWages.insert',newWage);
+     }
+
 }

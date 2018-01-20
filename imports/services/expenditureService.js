@@ -78,17 +78,18 @@ export class ExpenditureService {
       }
      getExpenditureRecords(employeeId){
         /**
-         * @type {Map<string,Attendance>}
+         * @type {string}
          */
-        let attendanceMap = new Map();
+        let attendanceIds = new Array();
         /**
          * @type {RecordLine[]}
          */
         let recordLines = new Array();
         attendanceService.getAttendanceByUser(employeeId).forEach((element)=>{
-            attendanceMap.set(element._id, element);
+            attendanceId.add(element._id);
         });
-        Expenditures.find({employeeID: employeeId}).forEach((element)=>{
+
+        Expenditures.find({employeeID: employeeId, attendaceID:{$in: attendanceIds}}).forEach((element)=>{
             let recordLine = new RecordLine();
             recordLine.id = element._id;
             recordLine.name = element.reason;

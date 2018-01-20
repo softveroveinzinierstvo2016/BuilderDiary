@@ -133,9 +133,10 @@ export class AttendanceService {
         return Attendances.find({idProject: projectId ,day:{$gte: startDay, $lte: endDay}});
     }
     /**
+     * approved attendances
      * @param {string} employeeId 
      */
     getAttendanceByUser(employeeId){
-        return Attendances.find({idEmployee: employeeId});
+        return Attendances.find({idEmployee: employeeId, approved: true});
     }
 }

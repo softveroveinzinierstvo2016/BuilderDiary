@@ -5,7 +5,7 @@ import { render } from 'react-dom';
 // Nav
 import App from './App';
 import EmployeesView from './EmployeesView';
-
+import AddReductionWageView from  './AddReductionWageView';
 import { EmployeeService } from '../services/employeeService';
 import { ExpenditureService } from '../services/expenditureService';
 import { EarningOverviewService } from '../services/earningOverviewService';
@@ -32,6 +32,7 @@ export default class EmployeeDetailView extends Component {
     }
     handleAddWageDeduction(){
         // tu prepni na pridavanie zrazok
+        render(<AddReductionWageView/>,document.getElementById('app'));
     }
     handlePromotion(){
         employeeService.promoteChoosenEmployee();
@@ -43,11 +44,20 @@ export default class EmployeeDetailView extends Component {
             </div>
         ));
     }
+    /**
+     * 
+     * @param {Date} date 
+     */
+    dateString(date){
+        if(!date)
+            return "";
+        return date.getDay() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear();
+    }
     renderWageDeduction(){
-        return reductionWagesService.getReductions().map((record)=>(
+        return reductionWagesService.getReductions(this.employee.id).map((record)=>(
             <div key={record.id}>
-                <label className="left">{record.date}</label><label className="right">{record.sum}</label> <br/>
-                <label>{record.reason}</label>
+                <label className="left">{this.dateString(record.date)}</label><label className="right">-{record.sum}</label> <br/>
+                <label className="minusReason">{record.reason}</label>
             </div>
         ));
     }
