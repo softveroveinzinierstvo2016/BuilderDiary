@@ -7,9 +7,11 @@ import Home from './Home';
 import EmployeeDetailView from './EmployeeDetailView';
 import EmployerPayView from './EmployerPayView';
 import AddEmployeeView from './AddEmployeeView';
+import AttendanceEmployeeView from './AttendanceEmployeeView';
 
 import { EmployeeService } from '../services/employeeService';
 import { PayedService } from '../services/payedService';
+import { Attendance } from '../../models/Attendance';
 
 let employeeService = new EmployeeService();
 let payedService = new PayedService();
@@ -29,7 +31,8 @@ export default class EmployeesView extends Component {
         render(<EmployeeDetailView/>, document.getElementById('app'));
     }
     handleAttendance(employee){
-
+         employeeService.chooseEmployee(employee);
+         render(<AttendanceEmployeeView/>, document.getElementById('app'));
     }
     handleFinance(employee){
         payedService.setEmployee(employee);

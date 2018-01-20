@@ -140,5 +140,12 @@ export class ProjectService {
       result='0';
     return result;
    }
+   getProjectNameById(id){
+    let result = 'Nemam meno';
+    let project = Projects.findOne({_id: id});
+    if(project != null)
+        result = project.nameOfProject;
+    return result;
+   }
   
 }
