@@ -35,8 +35,8 @@ export default class EndedProjectsView extends Component {
            <label className="">{project.nameOfProject}</label><br/>
            <table className="table">
                <tr>
-                 <th>Zakaznik</th>
-                 <th>Minute</th> 
+                 <th>Zákazník</th>
+                 <th>Minuté</th> 
                  <th>Zisk</th>
                 </tr>
                 <tr>

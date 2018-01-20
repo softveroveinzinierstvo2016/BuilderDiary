@@ -50,7 +50,7 @@ export default class AddReductionWageView extends Component {
         return(
         <div>
             <button onClick={this.handleGoBack}></button> <br/>
-            <h1>Zrazka zo mzdy</h1>
+            <h1>Zrážka zo mzdy</h1>
         <div className="leftRight">
             
             <label className="left">Zamestanec:</label><label className="right">{employeeService.getEmployeeName(this.employee.id)}</label><br/>

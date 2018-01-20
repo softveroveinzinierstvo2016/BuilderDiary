@@ -87,6 +87,7 @@ export class ProjectService {
          newProject.idMaster=majster;
          newProject.expenditure=0;
          newProject.sponsor=sponzor;
+         newProject.worked=0;
          sellectedProject=newProject;
          Meteor.call('project.insert',sellectedProject,function(error,result){
              sellectedProject.id=result;

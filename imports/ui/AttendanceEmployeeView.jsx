@@ -57,7 +57,7 @@ export default class AttendanceEmployeeView extends Component {
         if(workHistoryService.isBetween(attendance.day)){
             return(
                 <div className="attendanceRecord">
-                 <label className="dayAttendance">{attendanceService.getDayString(attendance)}</label><br/>   
+                 <label className="attendanceRecordDayAttendance">{attendanceService.getDayString(attendance)}</label><br/>   
                 <label className="attendanceRecordProjectName">{projectService.getProjectNameById(attendance.idProject)}</label><br/>
                 <label className="attendanceRecordTime">{attendance.arrivalTime}-{attendance.departureTime}</label><br/>
                  </div>

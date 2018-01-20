@@ -36,17 +36,19 @@ export default class ListTaskView extends Component {
  
     renderTaskList() {
         return taskService.getTaskOfProjectById(this.project.id).map((task) => (
-        <div key={task.id}>
-            <label>{task.nameOfTask}</label><br/>
-            <div>Stav: {task.worked}/{task.duration} {task.unit}</div>
-            Vyplatiť:{task.sum}e<br/>
-            Minuté:{task.expediture}<br/>
-            Zákazník:{task.payment_boss}<br/>
-            Zisk:{taskService.getProfitOfTask(task)}e<br/>
-            <button onClick={this.handleEditTask.bind(this,task)}>Upraviť ulohu</button><br/>
+        <div key={task.id} >
+        <div className="taskName">
+         <label className="displayName">{task.nameOfTask}</label><br/>
         </div>
-           
-           
+        <div  className="displayTask">
+           <label className="left">Stav:</label><label className="right"> {task.worked}/{task.duration} {task.unit}</label><br/>
+           <label className="left">Vyplatiť:</label><label className="right">{task.sum}e</label><br/>
+           <label className="left"> Minuté:</label><label className="right">{task.expediture}e</label><br/>
+           <label className="left"> Zákazník:</label><label className="right">{task.payment_boss}e</label><br/>
+           <label className="leftProfit"> Zisk:</label><label className="rightProfit">{taskService.getProfitOfTask(task)}e</label><br/>
+            <button onClick={this.handleEditTask.bind(this,task)}>Upraviť úlohu</button><br/>
+        </div>
+        </div>
         ));
     }
 
@@ -54,7 +56,7 @@ export default class ListTaskView extends Component {
         //TODO: implement other functionalities for boss
         return (
         <div>
-            <h1>Zoznam úloh pre projekt</h1><br/>
+            <h1>Zoznam úloh pre projekt {this.project.nameOfProject}</h1><br/>
            <button onClick={this.addTask}>Pridať úlohu</button><br/>
            {this.renderTaskList()}
         </div>

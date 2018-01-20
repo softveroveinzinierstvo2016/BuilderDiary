@@ -88,7 +88,7 @@ export default class ProjectView extends Component {
                 <button id="displayButton" onClick={this.handleTasks.bind(this)}>Zobraziť úlohy</button><br/>
                 <button id="workReduceButton" onClick={this.handleWorkReduction.bind(this)}>Skrátenie pracovnej doby</button><br/>
                 <button id="editButton" onClick={this.handleEditProject.bind(this)}>Upraviť projekt</button><br/>
-                <button id="endButton" onClick={this.handleEndProject.bind(this)}>Ukoncit projekt</button><br/>
+                <button id="endButton" onClick={this.handleEndProject.bind(this)}>Ukončiť projekt</button><br/>
             </div>
         );
     }
