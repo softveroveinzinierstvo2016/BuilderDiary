@@ -151,7 +151,6 @@ export class TaskService {
          back.unit = unit;
          back.payment_boss = sumBoss;
          back.sum = payment*duration;
-         back.expenditure = 0;
       Meteor.call('task.update',back);
   }
     /**
@@ -168,5 +167,22 @@ export class TaskService {
      */
     getTask(id){
         return Tasks.findOne({_id: id});
+    }
+    getStateOfTask(task){
+        let result='';
+        if(task.expenditure!=null && task.payment!=null)
+          result=parseInt(task.expenditure)*parseInt(task.payment);
+        else
+          result='0';
+        return result;
+
+    }
+    getProfitOfTask(task){
+        let result='';
+        if(task.payment_boss!=null && task.payment!=null)
+          result=(parseInt(task.payment_boss)*parseInt(task.duration))-(parseInt(task.payment)*parseInt(task.duration));
+        else
+          result='0';
+        return result;
     }
 }

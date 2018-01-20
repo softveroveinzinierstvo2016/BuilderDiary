@@ -23,7 +23,7 @@ export default class EditTaskView extends Component {
             duration:this.task.duration, 
             payment:this.task.payment, 
             unit:this.task.unit, 
-            sumBoss:this.task.sumBoss};
+            sumBoss:this.task.payment_boss};
         
         this.nameChange = this.nameChange.bind(this);
         this.durationChange = this.durationChange.bind(this);

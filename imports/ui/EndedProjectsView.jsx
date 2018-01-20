@@ -24,7 +24,7 @@ export default class EndedProjectsView extends Component {
     renderProjects() {
         return projectService.getEndedProjects().map((project) => (
          <div>
-           <label className="">{project.nameOfProject}</label><br/>
+           <label className="nameProject">{project.nameOfProject}</label><br/>
            <table className="table">
                <tr>
                  <th>Zakaznik</th>
@@ -32,9 +32,9 @@ export default class EndedProjectsView extends Component {
                  <th>Zisk</th>
                 </tr>
                 <tr>
-                 <td>{project.budget}</td>
-                 <td>{project.expenditure}</td>
-                 <td>0</td>
+                 <td>{project.budget}e</td>
+                 <td>{project.expenditure}e</td>
+                 <td>{projectService.getProjectProfit(project)}e</td>
                 </tr>
             </table>
          </div>

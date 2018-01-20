@@ -38,8 +38,7 @@ if(Meteor.isServer) {
          payment:task.payment,
          unit:task.unit,
          payment_boss:task.payment_boss,
-         sum:task.sum,
-         expenditure:task.expenditure
+         sum:task.sum
        }});
       }
      })
