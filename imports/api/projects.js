@@ -29,8 +29,7 @@ if(Meteor.isServer) {
       adress: project.adress,
       endTime: project.endTime,
       idMaster:project.idMaster,
-      budget: project.budget,
-      expenditure: project.expenditure
+      budget: project.budget
       }});
     return id;
     },

@@ -68,7 +68,11 @@ export default class ProjectView extends Component {
 
     handleEndProject(){
         projectService.setEndOfProject(this.project.id);
-        render(<EndedProjectsView/>, document.getElementById('app'));
+        document.getElementById('displayButton').disabled=true;
+        document.getElementById('workReduceButton').disabled=true;
+        document.getElementById('editButton').disabled=true;
+        document.getElementById('endButton').disabled=true;
+        //render(<EndedProjectsView/>, document.getElementById('app'));
     }
     BossView() {
         return (
@@ -81,10 +85,10 @@ export default class ProjectView extends Component {
                 <label className="left"> Dátum ukončenia:</label><label className="right"> {this.project.endTime}</label><br/>
                 <label className="left"> Celkový rozpočet:</label><label className="right"> {this.project.budget}</label><br/>
                 <label className="left"> Minuté:</label><label className="right"> {this.project.expenditure}</label><br/>
-                <button onClick={this.handleTasks.bind(this)}>Zobraziť úlohy</button><br/>
-                <button onClick={this.handleWorkReduction.bind(this)}>Skrátenie pracovnej doby</button><br/>
-                <button onClick={this.handleEditProject.bind(this)}>Upraviť projekt</button><br/>
-                <button onClick={this.handleEndProject.bind(this)}>Ukoncit projekt</button><br/>
+                <button id="displayButton" onClick={this.handleTasks.bind(this)}>Zobraziť úlohy</button><br/>
+                <button id="workReduceButton" onClick={this.handleWorkReduction.bind(this)}>Skrátenie pracovnej doby</button><br/>
+                <button id="editButton" onClick={this.handleEditProject.bind(this)}>Upraviť projekt</button><br/>
+                <button id="endButton" onClick={this.handleEndProject.bind(this)}>Ukoncit projekt</button><br/>
             </div>
         );
     }

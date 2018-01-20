@@ -100,7 +100,6 @@ export class ProjectService {
         newProject.budget=badget;
         newProject.endTime=time;
         newProject.idMaster=majster;
-        newProject.expenditure=0;
         newProject.sponsor=sponzor;
         sellectedProject=newProject;
         Meteor.call('project.update',sellectedProject,function(error,result){
@@ -133,11 +132,13 @@ export class ProjectService {
             return false;
         return sellectedProject.idMaster == id;
    } 
-
    getProjectProfit(project){
-       let result= '';
-       result=parseInt(project.budget)-parseInt(project.expenditure);
-       return result;
+    let result='';
+    if(project.budget!=null && project.expenditure!=null)
+      result=parseInt(project.budget)-parseInt(project.expenditure);
+    else
+      result='0';
+    return result;
    }
   
 }
