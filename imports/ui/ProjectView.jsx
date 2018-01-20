@@ -72,7 +72,7 @@ export default class ProjectView extends Component {
         document.getElementById('workReduceButton').disabled=true;
         document.getElementById('editButton').disabled=true;
         document.getElementById('endButton').disabled=true;
-        //render(<EndedProjectsView/>, document.getElementById('app'));
+        render(<Home/>, document.getElementById('app'));
     }
     BossView() {
         return (
