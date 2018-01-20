@@ -196,4 +196,13 @@ export class WorkHistoryService{
         });
         return dayRecords;
     }
+    isBetween(dayAttendance){
+        var compareDay= new Date(dayAttendance);
+        var beginDay=new Date(startDay);
+        var lastDay=new Date(endDay);
+        if(compareDay>=beginDay && compareDay<=lastDay)
+           return true;
+        return false;
+
+    }
 }

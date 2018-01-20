@@ -236,3 +236,25 @@ th{
     background-color: aqua;
     border-bottom: 1px solid #ddd;
 }
+.dayAttendance{
+    width: 50%;
+    left: 0px;
+    position: absolute;
+    text-align: left;
+
+}
+.attendanceRecord label{
+    padding-top: 2px;
+    position:  absolute;
+    left: 0px;
+    width: 100%;
+    border: 1px;
+}
+.attendanceRecord .attendanceRecordProjectName{
+    background-color: darkblue;
+    color:white;
+}
+.attendanceRecord .attendanceRecordTime{
+    background-color: blue;
+    color:white;
+}

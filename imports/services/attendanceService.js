@@ -132,4 +132,11 @@ export class AttendanceService {
         endDay.setHours(0,0,0,0);
         return Attendances.find({idProject: projectId ,day:{$gte: startDay, $lte: endDay}});
     }
+    getEmployeeAttendance(id){
+        return Attendances.find({idEmployee:id});
+    }
+    getDayString(attendance){
+        var attendanceDay=new Date(attendance.day);
+        return attendanceDay.getDate()+"."+(attendanceDay.getMonth()+1)+"."+attendanceDay.getFullYear();
+    }
 }
