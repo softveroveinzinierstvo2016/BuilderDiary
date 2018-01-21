@@ -9,14 +9,6 @@ export class TodaysRecords{
      */
     time;
     /**
-     * @type {string}
-     */
-    taskname;
-    /**
-     * @type {string}
-     */
-    description;
-    /**
      * @type {Attendance}
      */
     attendance;
@@ -29,8 +21,7 @@ export class TodaysRecords{
      */
     expenditures;
     /**
-     * @type {number}
+     * @type {TaskRec[]}
      */
-    wage;
-
+    taskRec;
 }

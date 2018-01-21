@@ -68,6 +68,9 @@ input{
 .schvalene input{
     width: auto;
 }
+.expend{
+    background-color: lightcoral;
+}
 .leftRight .rightBl{
     width: 50%;
     position: absolute;

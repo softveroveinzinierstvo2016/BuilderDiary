@@ -20,6 +20,7 @@ import  { WorkRecord } from '../../models/WorkRecord.js';
 import { TimeReductionRecord } from '../../models/TimeReductionRecord';
 import { TodayRecord } from '../../models/TodayRecord';
 import { TodaysRecords } from '../../models/TodayRecords';
+import { Expenditure } from '../../models/Expenditure';
 
 let userService = new UserService();
 let projectService = new ProjectService();
@@ -74,13 +75,43 @@ export default class TodaysRecordsView extends Component {
         prevTime = record.time;
         return true;
     }
-
+    /**
+     * 
+     * @param {Expenditure[]} expenditures
+     */
+    renderExpenditures(expenditures){
+        if(!expenditures)
+            return "";
+        return expenditures.map((record)=>(
+            <div>
+                <label className="expend"> {record.reason}  {record.sum}e</label> <br/>
+            </div>
+        ));
+    }
+    /**
+     * 
+     * @param {TaskRec[]} tasks 
+     */
+    renderTasks(tasks){
+        if(!tasks)
+            return "";
+        return tasks.map((record)=>(
+        <div>
+            <label className="workRecordTaskName">{record.taskname}</label> <br/>
+            <label className="workRecordDescription">{record.description}</label> <br/>
+        </div>
+        ));
+    }
+    /**
+     * 
+     * @param {TodaysRecords[]} records 
+     */
     renderRecords(records){
         return records.map((record)=>(
          <div key = {record.id} className="workRecord">
              {this.renderNameAndTime(record)}
-             <label className="workRecordTaskName">{record.taskname}</label> <br/>
-             <label className="workRecordDescription">{record.description}</label> <br/>
+             {this.renderExpenditures(record.expenditures)}
+             {this.renderTasks(record.taskRec)}
              {this.renderButton(record)}
          </div>
         ));

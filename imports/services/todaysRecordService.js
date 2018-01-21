@@ -21,6 +21,7 @@ import { TodayRecord } from '../../models/TodayRecord';
 import { TodaysRecords } from '../../models/TodayRecords';
 import { Project } from '../../models/Project';
 import { Expenditure } from '../../models/Expenditure';
+import { TaskRec } from '../../models/TaskRec';
 
 
 let attendanceService = new AttendanceService();
@@ -68,7 +69,10 @@ export class TodaysRecordsService {
          * @type {Map<string,Task>}
          */
         let taskMap = new Map();
-        
+        /**
+         * @type {Map<string,TodayRecords[]}
+         */
+        let wrMap = new Map();
         projectService.getProjects().forEach((element)=>{
             project.push(element.id); 
             projectMap.set(element.id,element);          
@@ -111,21 +115,27 @@ export class TodaysRecordsService {
                 dr.timeReduction = tr;
                 todayRecords.push(dr);
             }
-            let wr = new TodaysRecords();
-            wr.id = element.id;
-            wr.fullname = employeeService.getEmployeeName(at.idEmployee);
-            let expenditures = 0;
-            /*expenditureService.getExpenditures(at.idEmployee,element.idProject,element.idAttendance).forEach((element4)=>{
-                expenditures+=element4.sum;
-            });*/
-            wr.expenditures = expenditures;
-            wr.time = at.arrivalTime + ' - ' + at.departureTime;
-            wr.taskname = taskMap.get(element.idTask).nameOfTask;
-            wr.description = 'Odrobené ' + element.worked +' '  + taskMap.get(element.idTask).unit + ' za ' + element.payment + ' e';   
-            wr.wage = element.payment;
-            wr.attendance = at;
-            wr.projectName = projectMap.get(at.idProject).nameOfProject;
-            workRecords.push(wr);
+            let wrKey = at.idProject + at._id;
+            let wr = wrMap.get(wrKey);
+            if(!wr){
+                wr = new TodaysRecords();
+                wr.id = element.id;
+                wr.fullname = employeeService.getEmployeeName(at.idEmployee);
+                wr.time = at.arrivalTime + ' - ' + at.departureTime;
+                wr.attendance = at;
+                wr.projectName = projectMap.get(at.idProject).nameOfProject;
+                workRecords.push(wr);
+            }
+            let expend = expenditureService.getExpenditures(at.idEmployee, [at.idProject], [at._id]);            
+            wr.expenditures = expend;
+            if(!wr.taskRec)
+                wr.taskRec = new Array();
+            let taskRec = new TaskRec();
+            taskRec.taskname = taskMap.get(element.idTask).nameOfTask;
+            taskRec.description = 'Odrobené ' + element.worked +' '  + taskMap.get(element.idTask).unit + ' za ' + element.payment + ' e';   
+            taskRec.wage = element.payment;
+            wr.taskRec.push(taskRec);
+            wrMap.set(wrKey, wr);
             workDayRecords.set(stringKey, workRecords);
         });
 
@@ -160,7 +170,10 @@ export class TodaysRecordsService {
          * @type {Map<string,Task>}
          */
         let taskMap = new Map();
-        
+        /**
+         * @type {Map<string,TodayRecords[]}
+         */
+        let wrMap = new Map();
         projectService.getProjects().forEach((element)=>{
             project.push(element.id); 
             projectMap.set(element.id,element);          
@@ -203,15 +216,27 @@ export class TodaysRecordsService {
                 dr.timeReduction = tr;
                 todayRecords.push(dr);
             }
-            let wr = new TodaysRecords();
-            wr.id = element.id;
-            wr.fullname = employeeService.getEmployeeName(at.idEmployee);
-            wr.time = at.arrivalTime + ' - ' + at.departureTime;
-            wr.taskname = taskMap.get(element.idTask).nameOfTask;
-            wr.description = 'Odrobené ' + element.worked +' '  + taskMap.get(element.idTask).unit + ' za ' + element.payment + ' e';   
-            wr.attendance = at;
-            wr.projectName = projectMap.get(at.idProject).nameOfProject;
-            workRecords.push(wr);
+            let wrKey = at.idProject + at._id;
+            let wr = wrMap.get(wrKey);
+            if(!wr){
+                wr = new TodaysRecords();
+                wr.id = element.id;
+                wr.fullname = employeeService.getEmployeeName(at.idEmployee);
+                wr.time = at.arrivalTime + ' - ' + at.departureTime;
+                wr.attendance = at;
+                wr.projectName = projectMap.get(at.idProject).nameOfProject;
+                workRecords.push(wr);
+            }
+            let expend = expenditureService.getExpenditures(at.idEmployee, [at.idProject], [at._id]);            
+            wr.expenditures = expend;
+            if(!wr.taskRec)
+                wr.taskRec = new Array();
+            let taskRec = new TaskRec();
+            taskRec.taskname = taskMap.get(element.idTask).nameOfTask;
+            taskRec.description = 'Odrobené ' + element.worked +' '  + taskMap.get(element.idTask).unit + ' za ' + element.payment + ' e';   
+            taskRec.wage = element.payment;
+            wr.taskRec.push(taskRec);
+            wrMap.set(wrKey, wr);
             workDayRecords.set(stringKey, workRecords);
         });
 

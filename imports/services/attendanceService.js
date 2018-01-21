@@ -110,7 +110,9 @@ export class AttendanceService {
      * @return {Attendance[]}
      */
     getTodayApprovedOnProject(projectId){
-        let answer = Attendances.find({idProject: projectId, approved: true});
+        let today = new Date();
+        today.setHours(0,0,0,0);
+        let answer = Attendances.find({idProject: projectId, approved: true, day: today});
         return answer;
     }
     /**
