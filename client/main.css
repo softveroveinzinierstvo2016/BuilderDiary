@@ -65,6 +65,9 @@ input{
 .blue{
     color: blue;
 }
+.schvalene input{
+    width: auto;
+}
 .leftRight .rightBl{
     width: 50%;
     position: absolute;

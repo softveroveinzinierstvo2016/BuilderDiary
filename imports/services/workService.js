@@ -180,4 +180,14 @@ export class WorkService {
         workToEdit.worked = worked;
         Meteor.call('works.insert-update', workToEdit);
     }
+    /**
+     * @param {string} attendaceId
+     * @return {Work} 
+     */
+    getWork(attendaceId){
+        return Works.findOne({idAttendance: attendaceId});
+    }
+    approve(id){
+        Meteor.call('works.approve', id);
+    }
 }

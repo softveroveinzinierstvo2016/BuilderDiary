@@ -13,13 +13,13 @@ if(Meteor.isServer) {
 
     Meteor.methods({
         'reductionWages.insert'(wage){
-            let date = new Date();
-            date.setHours(0,0,0,0);
+            let dateN = new Date();
+            dateN.setHours(0,0,0,0);
             ReductionWages.insert({
                 idEmployee:wage.idEmployee,
                 reason:wage.reason,
                 sum:wage.sum,
-                date: date
+                date: dateN
         });
     }
     })

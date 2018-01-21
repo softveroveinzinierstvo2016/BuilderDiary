@@ -27,12 +27,14 @@ export class ReductionWagesService {
      * @return {ReductionWage[]}
      */
     getReductionsBetween(employeeId, startDay, endDay){
-        return ReductionWages.find({idEmployee: employeeId, date:{$gte: startDay, $lte: endDay}})
+        startDay.setHours(0,0,0,0);
+        endDay.setHours(0,0,0,0);
+        return ReductionWages.find({idEmployee: employeeId, date:{$gte: startDay, $lte: endDay}});
     }
     getSum(employeeId){
         let sum = 0;
         ReductionWages.find({idEmployee: employeeId}).forEach((wage)=>{
-            sum = sum + wage.sum;
+            sum = sum + Number(wage.sum);
         });
         return sum;
     }

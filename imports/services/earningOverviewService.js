@@ -141,8 +141,8 @@ export class EarningOverviewService{
             let recordLine = new RecordLine();
             recordLine.id = element._id;
             recordLine.name = element.reason;
-            recordLine.value = element.sum;
-            periodSum = periodSum - Number(recordLine.value);
+            recordLine.value = -element.sum;
+            periodSum = periodSum + Number(recordLine.value);
             redWageRec.line.push(recordLine);
         });
         /**
@@ -157,6 +157,7 @@ export class EarningOverviewService{
                 });
             answer.push(element);
         });
+        answer.push(redWageRec);
         return answer;
     }
     /**
@@ -172,7 +173,7 @@ export class EarningOverviewService{
      */
     getPayed(){
         let userId = userService.getLoggedId();
-        return payedService.getSum(userId);
+        return this.getPayedForEmployee(userId);
     }
     getPayedForEmployee(employeeId){
         return payedService.getSum(employeeId);
@@ -182,8 +183,8 @@ export class EarningOverviewService{
      * @returns {number}
      */
     getToPay(){
-        let number = this.getEarned() - this.getPayed();
-        return number < 0 ? 0 : number;
+        let userId = userService.getLoggedId();
+        return this.getToPayForEmployee(userId);
     }
     getToPayForEmployee(employeeId){
         let number = this.getEarnedForEmployee(employeeId) - this.getPayedForEmployee(employeeId);
@@ -195,10 +196,11 @@ export class EarningOverviewService{
      */
     getEarned(){
         let userId = userService.getLoggedId();
-        return wageService.getSum(userId) - reductionWagesService.getSum(userId);
+        return this.getEarnedForEmployee(userId);
     }
     getEarnedForEmployee(employeeId){
-        return wageService.getSum(employeeId) - reductionWagesService.getSum(employeeId);
+        let number = wageService.getSum(employeeId) - reductionWagesService.getSum(employeeId);
+        return number;
     }
     previousePeriod(){
         let firstDay = startDay.getDate();

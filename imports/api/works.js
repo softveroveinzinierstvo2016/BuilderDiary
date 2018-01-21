@@ -52,7 +52,8 @@ if(Meteor.isServer) {
                     idProject: work.idProject,
                     idTask: work.idTask,
                     worked: work.worked,
-                    payment: pay
+                    payment: pay,
+                    approved: false
                 });
                 return;
             }
@@ -62,6 +63,13 @@ if(Meteor.isServer) {
                     payment: pay
                 }
             });
+    },
+    'works.approve'(id){
+        Works.update(id,{
+            $set: {
+                approved: true
+            }
+        });
     }
     });
 };

@@ -14,4 +14,7 @@ export class WageService{
         });
         return sum;
     }
+    add(employeeId, sum, day){
+        Meteor.call('wages.add',employeeId, sum, day);
+    }
 }

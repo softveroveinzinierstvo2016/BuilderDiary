@@ -50,7 +50,7 @@ export default class WorkHistory extends Component {
      * @param {Work} work 
      */
     renderIfNotApproved(work){
-        if(work.approved)
+        if(work.approved == true)
             return;
         return <button key={work._id} onClick={this.handleEditTask.bind(this, work)}>Nebola schválená (Upraviť)</button>;
     }

@@ -51,7 +51,7 @@ export default class EmployeeDetailView extends Component {
     dateString(date){
         if(!date)
             return "";
-        return date.getDay() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear();
+        return date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear();
     }
     renderWageDeduction(){
         return reductionWagesService.getReductions(this.employee.id).map((record)=>(

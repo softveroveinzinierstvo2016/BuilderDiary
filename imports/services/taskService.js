@@ -45,7 +45,6 @@ export class TaskService {
      getProjectId(){
          return idProjektu;
      }
-
       stateOfTask(expenditure,payment){
           if((expenditure!=null)&&(payment!=null)){
               var stav=expenditure*payment;
@@ -187,5 +186,8 @@ export class TaskService {
         else
           result='0';
         return result;
+    }
+    addWorked(taskId, worked){
+        Meteor.call('tasks.addWorked',taskId, worked);
     }
 }

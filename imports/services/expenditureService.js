@@ -86,10 +86,10 @@ export class ExpenditureService {
          */
         let recordLines = new Array();
         attendanceService.getAttendanceByUser(employeeId).forEach((element)=>{
-            attendanceId.add(element._id);
+            attendanceIds.push(element._id);
         });
 
-        Expenditures.find({employeeID: employeeId, attendaceID:{$in: attendanceIds}}).forEach((element)=>{
+        Expenditures.find({employeeID: employeeId, attendanceID:{$in: attendanceIds}}).forEach((element)=>{
             let recordLine = new RecordLine();
             recordLine.id = element._id;
             recordLine.name = element.reason;

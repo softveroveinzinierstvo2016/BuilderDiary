@@ -41,6 +41,28 @@ if(Meteor.isServer) {
             departureTime: attendance.departureTime
             }
         });
-       }
+       },
+       /**
+        * update attendace approval  
+        * @param {Attendance} attendance
+         */
+        'attendance.update-approval'(attendance){
+            if(attendance == null)
+                return;
+            /**
+             * @type {Attendance}
+             */
+            let found = Attendances.findOne({
+                day: attendance.day, 
+                idEmployee: attendance.idEmployee, 
+                idProject: attendance.idProject
+            });
+            Attendances.update(found._id, {    
+                    $set: { 
+                        approved: true    
+                    }   
+                }
+            );
+        }
     });
 }

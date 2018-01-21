@@ -40,6 +40,18 @@ if(Meteor.isServer) {
          payment_boss:task.payment_boss,
          sum:task.sum
        }});
+      },
+      'tasks.addWorked'(taskId, worked){
+        /**
+         * @type {Task}
+         */
+         let task = Tasks.findOne({_id: taskId});
+         if(!task)
+            return;
+          let newWorked = task.worked + worked;
+         Tasks.update({taskId},{$set:{
+              worked: newWorked
+         }})  
       }
      })
 }

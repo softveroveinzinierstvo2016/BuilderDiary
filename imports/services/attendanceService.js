@@ -30,6 +30,13 @@ export class AttendanceService {
         return result;
     };
     /**
+    * updates attendance  
+    * @param {Attendance} attendance
+    */   
+    approveAttendance(attendance){
+        Meteor.call('attendance.update-approval', attendance);
+    }
+    /**
      * get attendance record
      * @param {string} attendanceId
      * @return {Attendance}
@@ -95,6 +102,23 @@ export class AttendanceService {
         let today = new Date();
         today.setHours(0,0,0,0);
         let answer = Attendances.find({idProject: projectId, day: today});
+        return answer;
+    }
+    /**
+     * get approved attaendance from today 
+     * @param {string} projectId
+     * @return {Attendance[]}
+     */
+    getTodayApprovedOnProject(projectId){
+        let answer = Attendances.find({idProject: projectId, approved: true});
+        return answer;
+    }
+    /**
+     * @param {string} projectId
+     * @return {Attendance[]}
+     */
+    getOnProjectNonApproved(projectId){
+        let answer = Attendances.find({idProject: projectId, approved: false});
         return answer;
     }
      /**
