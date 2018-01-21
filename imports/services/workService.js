@@ -79,7 +79,7 @@ export class WorkService {
                          .map((element)=>{
                              return element.worked;
                          }).forEach((worked)=>{
-                            result = result + worked;
+                            result = result + Number(worked);
                          });
         return result;    
     }
