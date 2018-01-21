@@ -144,7 +144,7 @@ export class TaskService {
             back.sum = payment*duration;
             back.worked=0;
             back.help = help;
-            back.expenditure = 0;
+            back.expenditure =0;
          Meteor.call('task.insert',back);
      }
      rememberThisTaskEdit(id,name,duration,payment, unit, sumBoss){

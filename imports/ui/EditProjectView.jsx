@@ -31,9 +31,9 @@ export default class EditProjectView extends Component {
             name:this.project.nameOfProject, 
             sponsor:this.project.sponsor, 
             adress:this.project.adress, 
-            time:this.project.time,
+            time:this.project.endTime,
             majster: this.project.idMaster,
-            budget:this. project.budget
+            badget:this.project.budget
         };
 
         this.nameChange = this.nameChange.bind(this);

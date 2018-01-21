@@ -43,7 +43,7 @@ export default class ListTaskView extends Component {
         <div  className="displayTask">
            <label className="left">Stav:</label><label className="right"> {task.worked}/{task.duration} {task.unit}</label><br/>
            <label className="left">Vyplatiť:</label><label className="right">{task.sum}e</label><br/>
-           <label className="left"> Minuté:</label><label className="right">{task.expediture}e</label><br/>
+           <label className="left"> Minuté:</label><label className="right">{task.expenditure}e</label><br/>
            <label className="left"> Zákazník:</label><label className="right">{task.payment_boss}e</label><br/>
            <label className="leftProfit"> Zisk:</label><label className="rightProfit">{taskService.getProfitOfTask(task)}e</label><br/>
             <button onClick={this.handleEditTask.bind(this,task)}>Upraviť úlohu</button><br/>

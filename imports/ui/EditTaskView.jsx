@@ -76,9 +76,9 @@ export default class EditTaskView extends Component {
            <div className="leftRight">
                 <label className="left">Názov úlohy:</label><input className="right" type="text" value={this.state.name} onChange={this.nameChange}/><br/>
                 <label className="left">Trvanie úlohy:</label><input className="right" type="text" value={this.state.duration} onChange={this.durationChange}/><br/>
-                <label className="left">Plat:</label><input className="right" type="text" value={this.state.payment} onChange={this.paymentChange}/><br/>
                 <label className="left">Jednotka:</label><input className="right" type="text" value={this.state.unit} onChange={this.unitChange}/><br/>
-                <label className="left">Plat pre šéfa:</label><input className="right" type="text"value={this.state.sumBoss} onChange={this.sumBossChange}/><br/>
+                <label className="left">Plat:</label><input className="right" type="text" value={this.state.payment} onChange={this.paymentChange}/><br/>
+                 <label className="left">Plat pre šéfa:</label><input className="right" type="text"value={this.state.sumBoss} onChange={this.sumBossChange}/><br/>
            </div>
            <button onClick={this.edit} >Editovať</button>
           </div>
