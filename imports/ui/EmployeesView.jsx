@@ -44,7 +44,7 @@ export default class EmployeesView extends Component {
     renderEmployees() {
         return employeeService.getEmployees().map((employee) => (
             <div>
-                <button className="list" key={employee.id} onClick={this.handleEmployee.bind(this,employee)}>{employee.login} ({employee.name} {employee.surname})</button>
+                <button className="list" key={employee.id} onClick={this.handleEmployee.bind(this,employee)}>{employee.name + ' ' + employee.surname}</button>
                 <br/>
                 <div className="leftRight">
                     <button className="left"  onClick={this.handleAttendance.bind(this, employee)}>Dochádzka</button>
@@ -58,7 +58,7 @@ export default class EmployeesView extends Component {
     render() {
         return(
             <div className="container">
-                <button onClick={this.handleGoHome} >Domov</button> <br/>
+                <button className="nav1" onClick={this.handleGoHome} >Domov</button> <br/>
                 <button onClick={this.handleAddEmpl}>Pridať zamestnanca</button> <br/>
                 {this.renderEmployees()}
             </div>

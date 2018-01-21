@@ -13,6 +13,7 @@ var idProjektu;
 var projektName;
 let projectService = new ProjectService();
 let userService = new UserService();
+
 export class TaskService {
     
     constructor() { 
@@ -79,10 +80,12 @@ export class TaskService {
       * @param {string} projectId
       */
       getTaskOfProjectByIdBasedOnStatus(projectId) {
+            let sumAss = userService.getLoggedSumAssistant();
             if(userService.isLoggedAssistant())
                 return Tasks.find({'idProject': projectId, help: true}).map((task) => {
                     let back = new Task();
                     back = task;
+                    back.payment = sumAss;
                     back.id = task._id;
                     return back;
                 });

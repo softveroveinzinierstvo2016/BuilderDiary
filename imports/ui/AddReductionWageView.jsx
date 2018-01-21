@@ -19,7 +19,7 @@ export default class AddReductionWageView extends Component {
     constructor(props) {
         super(props);
         this.employee = employeeService.getChosenEmployee();
-        this.handleGoHome = this.handleGoHome.bind(this);
+        this.handleGoBack = this.handleGoBack.bind(this);
         this.state={
             reason:'',
             sum:''
@@ -38,7 +38,7 @@ export default class AddReductionWageView extends Component {
          this.setState({reason: event.target.value});
      }
     
-    handleGoHome() {
+    handleGoBack() {
         render(<EmployeeDetailView/>,document.getElementById('app'));
     }
     handleAddWageDeduction(){
@@ -49,15 +49,13 @@ export default class AddReductionWageView extends Component {
     bossView(){
         return(
         <div>
-            <button onClick={this.handleGoBack}></button> <br/>
             <h1>Zrážka zo mzdy</h1>
-        <div className="leftRight">
-            
-            <label className="left">Zamestanec:</label><label className="right">{employeeService.getEmployeeName(this.employee.id)}</label><br/>
-            <label className="left">Dôvod:</label><input className="right" type="text" value={this.state.reason} onChange={this.reasonChange}/><br/>
-            <label className="left">Suma:</label><input className="right" type="text" value={this.state.sum} onChange={this.sumChange}/><br/>       
-            <button onClick={this.handleAddWageDeduction}>Pridať</button><br/>
-        </div>
+            <div className="leftRight">
+                <label className="left">Zamestanec:</label><label className="right">{employeeService.getEmployeeName(this.employee.id)}</label><br/>
+                <label className="left">Dôvod:</label><input className="right" type="text" value={this.state.reason} onChange={this.reasonChange}/><br/>
+                <label className="left">Suma:</label><input className="right" type="text" value={this.state.sum} onChange={this.sumChange}/><br/>       
+                <button onClick={this.handleAddWageDeduction}>Pridať</button><br/>
+            </div>
         </div>
         );
     }
@@ -67,7 +65,7 @@ export default class AddReductionWageView extends Component {
         view = this.bossView();
         return(
             <div className="container">
-                <button onClick={this.handleGoHome} >Späť</button> <br/>
+                <button className="nav1" onClick={this.handleGoBack} >Späť</button> <br/>
                 {view}
             </div>
         );

@@ -58,6 +58,13 @@ export class UserService {
         return loggedUser.name + " " + loggedUser.surname || "<no employee logged>";
     }
     /**
+     * get sum for assistant
+     * @return {number}
+     */
+    getLoggedSumAssistant() {
+        return loggedUser.sumAssistant;
+    }
+    /**
      * get id of logged employee
      * @return {string}
      */

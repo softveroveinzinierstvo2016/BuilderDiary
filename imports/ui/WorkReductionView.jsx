@@ -87,7 +87,7 @@ export default class WorkReductionView extends Component {
             view = this.BossView();
         return (
             <div className="container">
-                <button onClick={this.handleGoHome} >Späť</button> <br/>
+                <button className="nav1" onClick={this.handleGoHome} >Späť</button> <br/>
                 <h1>Skrátenie pracovnej doby</h1>
                 <hr/>
                 {view}

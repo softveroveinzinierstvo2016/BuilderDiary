@@ -55,7 +55,7 @@ export default class EmployeerPayView extends Component {
     render() {
         return(
             <div className="container">
-                <button onClick={this.handleGoBack} >Späť</button> <br/>
+                <button className="nav1" onClick={this.handleGoBack} >Späť</button> <br/>
                 {this.renderContent()}
             </div>
         );

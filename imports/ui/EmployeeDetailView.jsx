@@ -101,7 +101,7 @@ export default class EmployeeDetailView extends Component {
         view = this.bossView();
         return(
             <div className="container">
-                <button onClick={this.handleGoBack} >Späť na zamestnancov</button> <br/>
+                <button className="nav1" onClick={this.handleGoBack} >Späť na zamestnancov</button> <br/>
                 {view}
             </div>
         );

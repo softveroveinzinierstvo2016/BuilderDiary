@@ -80,13 +80,13 @@ export default class AddProjectView extends Component {
     switchType() {
         this.typeN++;
         if(this.typeN > this.typeM)
-            this.typeM = 0;
+            this.typeN = 0;
         this.setState({type: this.type[this.typeN]});
     }
     add(){
         taskService.setProjectId();
         let help  = false;
-        if(this.state.type === "pomocna")
+        if(this.typeN === 1)
             help = true;
         taskService.rememberThisTask(this.state.name,this.state.duration,this.state.payment,this.state.unit,this.state.sumBoss, help);
         this.setState({name: ''});
