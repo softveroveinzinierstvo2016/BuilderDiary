@@ -137,6 +137,7 @@ export class TaskService {
             back.unit = unit;
             back.payment_boss = sumBoss;
             back.sum = payment*duration;
+            back.worked=0;
             back.help = help;
             back.expenditure = 0;
          Meteor.call('task.insert',back);

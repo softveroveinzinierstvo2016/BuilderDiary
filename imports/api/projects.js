@@ -18,7 +18,6 @@ if(Meteor.isServer) {
        idMaster:project.idMaster,
        budget: project.budget,
        expenditure: project.expenditure,
-       worked:project.worked
     });
     return id;
     },

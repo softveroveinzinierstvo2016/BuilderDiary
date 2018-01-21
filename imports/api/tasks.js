@@ -24,6 +24,7 @@ if(Meteor.isServer) {
           payment_boss:task.payment_boss,
           sum:task.sum,
           expenditure:task.expenditure,
+          worked:task.worked,
           help: task.help
         });
        },
