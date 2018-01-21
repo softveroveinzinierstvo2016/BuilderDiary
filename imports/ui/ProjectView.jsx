@@ -183,6 +183,9 @@ export default class ProjectView extends Component {
         return (
             <div className="leftRight">
                 <h1>{this.project.nameOfProject}</h1>
+                <hr/>
+                <label className="blue">Majster: {employeeService.getEmployeeName(this.project.idMaster)}</label>
+                <br/>
                 {masterView}
                 <button onClick={this.handleAddExpenditure}>Výdaje</button> <br/> <br/>
                    <label className="left"> Príchod:</label><input className="right" type="text" value={this.state.arrivalTime} onChange={this.arrivalTimeChange}/> <br/>

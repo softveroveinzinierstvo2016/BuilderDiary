@@ -62,6 +62,9 @@ input{
     position: absolute;
     text-align: left;
 }
+.blue{
+    color: blue;
+}
 .leftRight .rightBl{
     width: 50%;
     position: absolute;

@@ -25,13 +25,16 @@ export default class EditProjectView extends Component {
         super(props);
         this.project = projectService.getChoosedProject();
         this.handleGoHome=this.handleGoHome.bind(this);
-        this.state = {showDropDown: false, choosedDropDown: this.project.majster,
-        name:this.project.nameOfProject, 
-        sponsor:this.project.sponsor, 
-        adress:this.project.adress, 
-        time:this.project.time,
-        majster: this.project.majster,
-        budget:this. project.budget};
+        this.state = {
+            showDropDown: false, 
+            choosedDropDown: employeeService.getEmployeeName(this.project.idMaster),
+            name:this.project.nameOfProject, 
+            sponsor:this.project.sponsor, 
+            adress:this.project.adress, 
+            time:this.project.time,
+            majster: this.project.idMaster,
+            budget:this. project.budget
+        };
 
         this.nameChange = this.nameChange.bind(this);
         this.sponsorChange = this.sponsorChange.bind(this);
