@@ -69,16 +69,26 @@ export default class AddExpenditure extends Component {
                     </div>
                 ));
     }
-    view(){
+    renderAdd(){
         return (
             <div>
-                <h1>{this.projectName} - Výdaje</h1>
                 <div className="leftRight">
                     <label className="left">Suma</label> <input className="right" type="text" value={this.state.sum} onChange={this.sumOnChange}/> <br/>
                     <label className="left">Dovod</label> <input className="right" type="text" value={this.state.reason} onChange={this.reasonOnChange}/><br/>
                 </div>
                 <br/>
                 <button onClick={this.handleAddExpenditure}>Zaznamenať</button> <br/>
+            </div>
+        );
+    }
+    view(){
+        let renderAdd = '';
+        if(!expenditureService.todayIsLocked())
+            renderAdd = this.renderAdd();
+        return (
+            <div>
+                <h1>{this.projectName} - Výdaje</h1>
+                {renderAdd}
                 <div className="error">{this.state.info}</div>
                 <h1>Dnešné výdaje</h1>
                 <div className="leftRight">

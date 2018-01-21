@@ -175,11 +175,25 @@ export default class ProjectView extends Component {
             </div>
         );
     }
+    renderAttendance(){
+        return (
+            <div>
+                   <label className="left"> Príchod:</label><input className="right" type="text" value={this.state.arrivalTime} onChange={this.arrivalTimeChange}/> <br/>
+                   <label className="left"> Odchod: </label><input className="right" type="text" value={this.state.departureTime} onChange={this.departureTimeChange}/><br/>
+                <div className="error"> {this.state.info} </div>
+                <br/>
+                <button onClick={this.SetAttendace}>Zaznamenať</button>
+            </div>
+        );
+    }
     EmplView() {
         let masterView = '';
         if(projectService.isMaster(userService.getLoggedId())){
             masterView = this.renderMaster();
         }
+        let attendanceView = '';
+        if(!attendanceService.isLocked(userService.getLoggedId(),this.project.id))
+            attendanceView = this.renderAttendance();
         return (
             <div className="leftRight">
                 <h1>{this.project.nameOfProject}</h1>
@@ -188,11 +202,7 @@ export default class ProjectView extends Component {
                 <br/>
                 {masterView}
                 <button onClick={this.handleAddExpenditure}>Výdaje</button> <br/> <br/>
-                   <label className="left"> Príchod:</label><input className="right" type="text" value={this.state.arrivalTime} onChange={this.arrivalTimeChange}/> <br/>
-                   <label className="left"> Odchod: </label><input className="right" type="text" value={this.state.departureTime} onChange={this.departureTimeChange}/><br/>
-                <div className="error"> {this.state.info} </div>
-                <br/>
-                <button onClick={this.SetAttendace}>Zaznamenať</button>
+                {attendanceView}
                 <br/>
                     Príchod: {this.state.arrivalTimeConf} Odchod: {this.state.departureTimeConf}
                 <br/>
