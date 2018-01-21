@@ -35,6 +35,7 @@ export class TaskService {
             back.expenditure = task.expenditure;
             back.help = task.help;
             back.id = task._id;
+            back.worked = task.worked;
             return back;
           });
      }
@@ -71,6 +72,7 @@ export class TaskService {
             back.help = task.help;
             back.expenditure = task.expenditure;
             back.id = task._id;
+            back.worked = task.worked;
             return back;
           });
      }
@@ -104,6 +106,7 @@ export class TaskService {
             back.expenditure = task.expenditure;
             back.id = task._id;
             back.help = task.help;
+            back.worked = task.worked;
             return back;
           });
      }

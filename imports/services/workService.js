@@ -182,10 +182,10 @@ export class WorkService {
     }
     /**
      * @param {string} attendaceId
-     * @return {Work} 
+     * @return {Work[]} 
      */
-    getWork(attendaceId){
-        return Works.findOne({idAttendance: attendaceId});
+    getWorks(attendaceId){
+        return Works.find({idAttendance: attendaceId});
     }
     approve(id){
         Meteor.call('works.approve', id);

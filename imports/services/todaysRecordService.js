@@ -253,12 +253,15 @@ export class TodaysRecordsService {
         let id = record.attendance.id;
         if(id == null)
             id = record.attendance._id;
-        let work = workService.getWork(id);
-        if(!work)
+        let works = workService.getWorks(id);
+        if(!works)
             return;
         attendanceService.approveAttendance(record.attendance);
-        wageService.add(record.attendance.idEmployee,record.wage,record.attendance.day);
-        taskService.addWorked(work.idTask, work.worked);
-        workService.approve(work._id);
+        works.forEach((work)=>{
+            wageService.add(record.attendance.idEmployee,work.payment,record.attendance.day);
+            taskService.addWorked(work.idTask, work.worked);
+            workService.approve(work._id);
+        });
+        
     }
 }
