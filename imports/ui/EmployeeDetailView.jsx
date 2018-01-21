@@ -55,7 +55,7 @@ export default class EmployeeDetailView extends Component {
     }
     renderWageDeduction(){
         return reductionWagesService.getReductions(this.employee.id).map((record)=>(
-            <div key={record.id}>
+            <div key={record.id} className="wage">
                 <label className="left">{this.dateString(record.date)}</label><label className="right">-{record.sum}</label> <br/>
                 <label className="minusReason">{record.reason}</label>
             </div>

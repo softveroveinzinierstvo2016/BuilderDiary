@@ -39,13 +39,32 @@ export default class EarningOverview extends Component {
     }
     /**
      * 
+     * @param {RecordLine} line 
+     */
+    renderLine(line){
+        if(line.value < 0)
+            return (
+                <div className="minusReason">
+                    <label className="left">{line.name}</label> 
+                    <label className="right">{line.value}</label>
+                </div>
+            );
+        return (
+               <div>
+                    <label className="left">{line.name}</label> 
+                    <label className="right">{line.value}</label>
+                </div>
+            );
+        
+    }
+    /**
+     * 
      * @param {RecordLine[]} lines
      */
     renderElements(lines){
         return lines.map((line)=>(
             <div key={line.id}>
-                <label className="left">{line.name}</label> 
-                <label className="right">{line.value}</label>
+                 {this.renderLine(line)}
                 <br/>
             </div>
         ));

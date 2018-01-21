@@ -71,6 +71,14 @@ input{
 .expend{
     background-color: lightcoral;
 }
+.minusReason{ 
+    color: red;
+}
+.wage{
+    border-style: inset;
+    border-width: 1px;
+    background-color: lightcoral;
+}
 .leftRight .rightBl{
     width: 50%;
     position: absolute;
