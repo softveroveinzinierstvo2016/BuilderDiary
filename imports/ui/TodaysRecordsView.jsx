@@ -134,8 +134,6 @@ export default class TodaysRecordsView extends Component {
      }
 
      renderNameAndTime(record){
-        if(!this.isNewPerson(record))
-            return '';
         return(
             <div>
                 <label className="workRecordFullName">{record.fullname}</label> <br/>
