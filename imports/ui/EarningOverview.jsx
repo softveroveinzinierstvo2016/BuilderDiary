@@ -75,7 +75,6 @@ export default class EarningOverview extends Component {
                 <hr/>
                 <div className="leftBl">{record.projectName} </div><br/>
                 <hr/>
-                <br/>
                 {this.renderElements(record.line)}
             </div>
         ));
