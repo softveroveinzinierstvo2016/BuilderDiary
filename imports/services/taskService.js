@@ -194,4 +194,14 @@ export class TaskService {
     addWorked(taskId, worked, payed){
         Meteor.call('tasks.addWorked',taskId, worked, payed);
     }
+    getBudgetOnProject(projectId){
+        let tasks = this.getTaskOfProjectById(projectId);
+        if(!tasks)
+           return 0;
+         let sum = 0;
+         tasks.forEach((task)=>{
+             sum = sum + (Number(task.payment_boss)*Number(task.duration));
+         });
+         return sum;
+     }
 }

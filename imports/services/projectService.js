@@ -7,7 +7,7 @@ import { Meteor } from 'meteor/meteor';
  * @type {Project}
  */
 var sellectedProject;
-
+//let taskService = new TaskService();
 export class ProjectService {
     
     constructor() { 
@@ -27,11 +27,10 @@ export class ProjectService {
             back.budget = project.budget;
             back.expenditure = project.expenditure;
             back.id = project._id;
+            back.worked = project.worked;
             return back;
           });
      }
-
-
 
      getEndedProjects() {
         return Projects.find({'ended':1}).map((project) => {
@@ -44,6 +43,7 @@ export class ProjectService {
            back.budget = project.budget;
            back.expenditure = project.expenditure;
            back.id = project._id;
+           back.worked = project.worked;
            return back;
          });
     }
@@ -113,7 +113,6 @@ export class ProjectService {
         sellectedProject=newProject;
         Meteor.call('project.setEnded',sellectedProject,function(error,result){
             sellectedProject.id=result;
-            console.log(result);
         });
     }
     getrememberProject(){
@@ -147,5 +146,7 @@ export class ProjectService {
         result = project.nameOfProject;
     return result;
    }
-  
+    addWorked(projectId, worked, payed){
+        Meteor.call('projects.addWorked',projectId, worked, payed);
+    }
 }

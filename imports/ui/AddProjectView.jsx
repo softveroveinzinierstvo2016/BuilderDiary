@@ -123,7 +123,8 @@ export default class AddProjectView extends Component {
                 <label className="left">Čas ukončenia:</label><input className="right" type="text" value={this.state.time} onChange={this.timeChange}/><br/>
 {/*                <label className="left"> Majster:</label><input className="right" type="text"value={this.state.majster} onChange={this.majsterChange}/><br/>*/}
                 <label className="left">Majster:</label><div className = "right">{this.renderDropDown()}</div><br/>
-                <label className="left">Rozpočet:</label><input className="right" type="text" value={this.state.badget} onChange={this.badgetChange}/><br/>
+                {/*<label className="left">Rozpočet:</label><input className="right" type="text" value={this.state.badget} onChange={this.badgetChange}>*/}
+                <br/>
            </div>
            <br/>
            <button onClick={this.add} >Pridat ulohu</button>

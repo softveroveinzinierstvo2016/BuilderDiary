@@ -247,9 +247,9 @@ export class TodaysRecordsService {
      * @param {TodaysRecords} record
      */
     approve(record){
-        /**
-         * @type {Work}
-         */
+        // prevent double click
+        if(record.attendance.approved)
+            return;
         let id = record.attendance.id;
         if(id == null)
             id = record.attendance._id;
@@ -260,8 +260,8 @@ export class TodaysRecordsService {
         works.forEach((work)=>{
             wageService.add(record.attendance.idEmployee,work.payment,record.attendance.day);
             taskService.addWorked(work.idTask, work.worked, work.payment);
+            projectService.addWorked(work.idProject, work.worked, work.payment);
             workService.approve(work._id);
-        });
-        
+        });        
     }
 }

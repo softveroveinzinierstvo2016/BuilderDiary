@@ -18,6 +18,7 @@ if(Meteor.isServer) {
        idMaster:project.idMaster,
        budget: project.budget,
        expenditure: project.expenditure,
+       worked: 0
     });
     return id;
     },
@@ -40,9 +41,25 @@ if(Meteor.isServer) {
       var id=Projects.update({_id:project.id},{$set:{
       ended:1
       }});
-    console.log(id);
     return id;
     },
-
+    'projects.addWorked'(projId, worked, payed){
+        /**
+         * @type {Project}
+         */
+         let  project = Projects.findOne({_id: projId});
+         if(!project)
+            return;
+          if(!project.worked)
+            project.worked = 0;
+          if(!project.expenditure)
+            project.expenditure = 0;
+          let newWorked = Number(project.worked) + Number(worked);
+          let newExpend = Number(project.expenditure) + Number(payed);
+         Projects.update({_id: projId},{$set:{
+              worked: newWorked,
+              expenditure : newExpend
+         }})  
+      }
     })
 }

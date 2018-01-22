@@ -83,7 +83,7 @@ export default class ProjectView extends Component {
                 <label className="left"> Adresa:</label><label className="right"> {this.project.adress}</label><br/>
                 <label className="left"> Majster:</label><label className="right"> {employeeService.getEmployeeName(this.project.idMaster)}</label><br/>
                 <label className="left"> Dátum ukončenia:</label><label className="right"> {this.project.endTime}</label><br/>
-                <label className="left"> Celkový rozpočet:</label><label className="right"> {this.project.budget}</label><br/>
+                <label className="left"> Celkový rozpočet:</label><label className="right"> {taskService.getBudgetOnProject(this.project.id)}</label><br/>
                 <label className="left"> Minuté:</label><label className="right"> {this.project.expenditure}</label><br/>
                 <button id="displayButton" onClick={this.handleTasks.bind(this)}>Zobraziť úlohy</button><br/>
                 <button id="workReduceButton" onClick={this.handleWorkReduction.bind(this)}>Skrátenie pracovnej doby</button><br/>
