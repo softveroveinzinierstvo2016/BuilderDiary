@@ -73,7 +73,7 @@ export default class EarningOverview extends Component {
         return earningOverviewService.getEarningOverview().map((record) => (
             <div className="leftRight" key={record.projectName}>
                 <hr/>
-                <div className="left"> {record.projectName} </div><br/>
+                <div className="leftBl">{record.projectName} </div><br/>
                 <hr/>
                 <br/>
                 {this.renderElements(record.line)}

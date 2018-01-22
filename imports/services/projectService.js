@@ -18,7 +18,7 @@ export class ProjectService {
       * get all projects
       */
      getProjects() {
-         return Projects.find({'ended':{$ne:1}}).map((project) => {
+         return Projects.find().map((project) => {
             let back = new Project();
             back.nameOfProject = project.nameOfProject;
             back.sponsor = project.sponsor;
@@ -33,7 +33,22 @@ export class ProjectService {
             return back;
           });
      }
-
+     getNotEndedProjects(){
+        return Projects.find({'ended':{$ne:1}}).map((project) => {
+            let back = new Project();
+            back.nameOfProject = project.nameOfProject;
+            back.sponsor = project.sponsor;
+            back.adress = project.adress;
+            back.endTime = project.endTime;
+            back.idMaster = project.idMaster;
+            back.budget = project.budget;
+            back.expenditure = project.expenditure;
+            back.id = project._id;
+            back.worked = project.worked;
+            back.ended = project.ended;
+            return back;
+          });
+     }
      getEndedProjects() {
         return Projects.find({'ended':1}).map((project) => {
            let back = new Project();

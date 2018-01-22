@@ -208,7 +208,7 @@ export default class ProjectView extends Component {
             <div className="leftRight">
                 <h1>{this.project.nameOfProject}</h1>
                 <hr/>
-                <label className="yellow">Adresa: {this.project.adress}</label> <br/>
+                <label className>Adresa: {this.project.adress}</label> <br/>
                 <hr/>
                 <label className="blue">Majster: {employeeService.getEmployeeName(this.project.idMaster)}</label>
                 <br/>

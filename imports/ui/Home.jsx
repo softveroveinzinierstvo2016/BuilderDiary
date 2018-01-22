@@ -33,7 +33,7 @@ export default class Home extends Component {
        render(<ProjectView/>, document.getElementById('app'));
     }
     renderProjects() {
-        return projectService.getProjects().map((project) => (
+        return projectService.getNotEndedProjects().map((project) => (
             <div>
                 <button className="list" key={project.id} onClick={this.handleProject.bind(this,project)}>{project.nameOfProject}</button><br/>
             </div>

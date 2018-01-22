@@ -124,7 +124,7 @@ export class EarningOverviewService{
             if(record == null){
                 record = new EarningOverviewRecord();
                 record.line = new Array();
-                record.projectName = projectMap.get(element.projectID);
+                record.projectName =projectMap.get(element.projectID);
             }
             let recordLine = new RecordLine();
             recordLine.id = element._id;
@@ -136,6 +136,7 @@ export class EarningOverviewService{
         });
         // get all wage reductions (every on its own)
         let  redWageRec = new EarningOverviewRecord();
+        redWageRec.projectName = 'Zrážky zo mzdy';
         redWageRec.line = new Array(); 
         reductionWagesService.getReductionsBetween(userId, startDay, endDay).forEach((element)=>{
             let recordLine = new RecordLine();
