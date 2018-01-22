@@ -55,7 +55,6 @@ export class ProjectService {
       * @param {Project} project project to be set for detail view
       */
      chooseProject(project) {
-         console.log(project.ended);
          sellectedProject = project;
      }
      /**
