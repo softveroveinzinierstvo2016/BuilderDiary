@@ -199,7 +199,7 @@ export class EarningOverviewService{
         return this.getEarnedForEmployee(userId);
     }
     getEarnedForEmployee(employeeId){
-        let number = wageService.getSum(employeeId) - reductionWagesService.getSum(employeeId);
+        let number = wageService.getSum(employeeId) + expenditureService.getSum(employeeId) - reductionWagesService.getSum(employeeId);
         return number;
     }
     previousePeriod(){

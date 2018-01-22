@@ -98,4 +98,23 @@ export class ExpenditureService {
         });
         return recordLines; 
     }
+    /**
+     * get sum from approved expenditures
+     * @param {string} employeeId 
+     */
+    getSum(employeeId){
+        let sum = 0;
+        /**
+         * @type {string}
+         */
+        let attendanceIds = new Array();
+        attendanceService.getAttendanceByUser(employeeId).forEach((element)=>{
+            attendanceIds.push(element._id);
+        });
+        Expenditures.find({employeeID: employeeId, attendanceID:{$in: attendanceIds}}).forEach((expend)=>{
+            sum = sum + Number(expend.sum);
+        });
+        return sum;
+
+    }
 }
