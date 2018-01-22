@@ -33,7 +33,7 @@ if(Meteor.isServer) {
         * @param {Task} task 
         */
        'task.update'(task){
-         Tasks.update({id:task.id},{$set:{
+         Tasks.update({_id: task.id},{$set:{
          nameOfTask:task.nameOfTask,
          duration:task.duration,
          payment:task.payment,
@@ -49,8 +49,8 @@ if(Meteor.isServer) {
          let task = Tasks.findOne({_id: taskId});
          if(!task)
             return;
-          let newWorked = task.worked + worked;
-         Tasks.update({taskId},{$set:{
+          let newWorked = Number(task.worked) + Number(worked);
+         Tasks.update({_id: taskId},{$set:{
               worked: newWorked
          }})  
       }
