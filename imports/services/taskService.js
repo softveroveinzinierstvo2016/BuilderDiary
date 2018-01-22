@@ -185,13 +185,13 @@ export class TaskService {
     }
     getProfitOfTask(task){
         let result='';
-        if(task.payment_boss!=null && task.payment!=null)
-          result=(parseInt(task.payment_boss)*parseInt(task.duration))-(parseInt(task.payment)*parseInt(task.duration));
+        if(task.payment_boss!=null && task.expenditure!=null)
+          result=(parseInt(task.payment_boss)*parseInt(task.duration))-(task.expenditure);
         else
           result='0';
         return result;
     }
-    addWorked(taskId, worked){
-        Meteor.call('tasks.addWorked',taskId, worked);
+    addWorked(taskId, worked, payed){
+        Meteor.call('tasks.addWorked',taskId, worked, payed);
     }
 }

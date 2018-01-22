@@ -42,16 +42,22 @@ if(Meteor.isServer) {
          sum:task.sum
        }});
       },
-      'tasks.addWorked'(taskId, worked){
+      'tasks.addWorked'(taskId, worked, payed){
         /**
          * @type {Task}
          */
          let task = Tasks.findOne({_id: taskId});
          if(!task)
             return;
+          if(!task.worked)
+            task.worked = 0;
+          if(!task.expenditure)
+            task.expenditure = 0;
           let newWorked = Number(task.worked) + Number(worked);
+          let newExpend = Number(task.expenditure) + Number(payed);
          Tasks.update({_id: taskId},{$set:{
-              worked: newWorked
+              worked: newWorked,
+              expenditure : newExpend
          }})  
       }
      })

@@ -259,7 +259,7 @@ export class TodaysRecordsService {
         attendanceService.approveAttendance(record.attendance);
         works.forEach((work)=>{
             wageService.add(record.attendance.idEmployee,work.payment,record.attendance.day);
-            taskService.addWorked(work.idTask, work.worked);
+            taskService.addWorked(work.idTask, work.worked, work.payment);
             workService.approve(work._id);
         });
         
