@@ -65,6 +65,9 @@ input{
 .blue{
     color: blue;
 }
+.yellow{
+    color: darkorange;
+}
 .schvalene input{
     width: auto;
 }
