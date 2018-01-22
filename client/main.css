@@ -74,6 +74,12 @@ input{
 .expend{
     background-color: lightcoral;
 }
+.expendEmplView{
+    background-color: lightgreen;
+    border-width: 1px;
+    border-color: black;
+    border-style: groove;
+}
 .minusReason{ 
     color: red;
 }
@@ -81,6 +87,10 @@ input{
     border-style: inset;
     border-width: 1px;
     background-color: lightcoral;
+    color: red;
+    border-style: groove;
+    border-width: 1px;
+    border-color: black;
 }
 .leftRight .rightBl{
     width: 50%;

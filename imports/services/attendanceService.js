@@ -161,6 +161,7 @@ export class AttendanceService {
     /**
      * approved attendances
      * @param {string} employeeId 
+     * @return {Attendance[]}
      */
     getAttendanceByUser(employeeId){
         return Attendances.find({idEmployee: employeeId, approved: true});

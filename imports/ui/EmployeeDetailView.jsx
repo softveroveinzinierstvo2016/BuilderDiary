@@ -40,7 +40,10 @@ export default class EmployeeDetailView extends Component {
     renderExpenditures(){
         return expenditureService.getExpenditureRecords(this.employee.id).map((record)=>(
             <div key={record.id}>
+            <label className="left">{this.dateString(record.date)}</label><br/>
+            <div className="expendEmplView">
             <label className="left">{record.name}</label><label className="right">{record.value}</label><br/>
+            </div>
             </div>
         ));
     }
@@ -55,9 +58,11 @@ export default class EmployeeDetailView extends Component {
     }
     renderWageDeduction(){
         return reductionWagesService.getReductions(this.employee.id).map((record)=>(
-            <div key={record.id} className="wage">
-                <label className="left">{this.dateString(record.date)}</label><label className="right">-{record.sum}</label> <br/>
-                <label className="minusReason">{record.reason}</label>
+            <div key={record.id}>
+                <label className="left">{this.dateString(record.date)}</label><br/>                
+                <div  className="wage">
+                <label className="left">{record.reason}</label><label className="right">-{record.sum}</label> <br/>
+                </div>
             </div>
         ));
     }

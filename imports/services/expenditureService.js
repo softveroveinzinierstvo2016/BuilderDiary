@@ -82,11 +82,16 @@ export class ExpenditureService {
          */
         let attendanceIds = new Array();
         /**
+         * @type {Map<string,Date>}
+         */
+        let attendanceMap = new Map();
+        /**
          * @type {RecordLine[]}
          */
         let recordLines = new Array();
         attendanceService.getAttendanceByUser(employeeId).forEach((element)=>{
             attendanceIds.push(element._id);
+            attendanceMap.set(element._id, element.day);
         });
 
         Expenditures.find({employeeID: employeeId, attendanceID:{$in: attendanceIds}}).forEach((element)=>{
@@ -94,6 +99,7 @@ export class ExpenditureService {
             recordLine.id = element._id;
             recordLine.name = element.reason;
             recordLine.value = element.sum;
+            recordLine.date = attendanceMap.get(element.attendanceID);
             recordLines.push(recordLine);
         });
         return recordLines; 
