@@ -18,7 +18,8 @@ if(Meteor.isServer) {
        idMaster:project.idMaster,
        budget: project.budget,
        expenditure: project.expenditure,
-       worked: 0
+       worked: 0,
+       ended: 0
     });
     return id;
     },
@@ -36,12 +37,11 @@ if(Meteor.isServer) {
     },
 
     'project.setEnded':function(project){
-        //check(project,Projects);
-       console.log(project);
-      var id=Projects.update({_id:project.id},{$set:{
-      ended:1
+      let id=Projects.update({_id:project.id},{$set:{
+      ended: 1,
+      budget:  project.budget
       }});
-    return id;
+      return id;
     },
     'projects.addWorked'(projId, worked, payed){
         /**

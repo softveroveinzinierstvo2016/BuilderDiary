@@ -4,6 +4,7 @@ import { render } from 'react-dom';
 
 import App from './App';
 import Home from './Home';
+import ProjectView from './ProjectView';
 
 import { UserService } from '../services/userService';
 import { ProjectService } from '../services/projectService';
@@ -28,21 +29,24 @@ export default class EndedProjectsView extends Component {
            result=project.budget;
         this.setState({profit: result});
     }
-
+    showDetail(project){
+        projectService.chooseProject(project);
+        render(<ProjectView/>, document.getElementById('app'));
+    }
     renderProjects() {
         return projectService.getEndedProjects().map((project) => (
          <div key={project.id}>
-           <label className="">{project.nameOfProject}</label><br/>
-           <table className="table">
+           <button className="endedProject" onClick={this.showDetail.bind(this,project)}>{project.nameOfProject}</button><br/>
+           <table className="tableTask">
                <tr>
-                 <th>Zákazník</th>
-                 <th>Minuté</th> 
-                 <th>Zisk</th>
+                 <th className="tableTaskTh">Zákazník</th>
+                 <th className="tableTaskTh">Minuté</th> 
+                 <th className="tableTaskTh">Zisk</th>
                 </tr>
                 <tr>
-                 <td>{project.budget}e</td>
-                 <td>{project.expenditure}e</td>
-                 <td>{projectService.getProjectProfit(project)}e</td>
+                 <td className="tableTaskTd">{project.budget}e</td>
+                 <td className="tableTaskTd">{project.expenditure}e</td>
+                 <td className="tableTaskTd">{projectService.getProjectProfit(project)}e</td>
                 </tr>
             </table>
          </div>

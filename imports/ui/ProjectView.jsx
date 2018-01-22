@@ -74,7 +74,19 @@ export default class ProjectView extends Component {
         document.getElementById('endButton').disabled=true;
         render(<Home/>, document.getElementById('app'));
     }
+    renderNotEnded(){
+           return (<div>
+            <button id="workReduceButton" onClick={this.handleWorkReduction.bind(this)}>Skrátenie pracovnej doby</button><br/>
+            <button id="editButton" onClick={this.handleEditProject.bind(this)}>Upraviť projekt</button><br/>
+            <button id="endButton" onClick={this.handleEndProject.bind(this)}>Ukončiť projekt</button><br/>
+            </div>
+            );
+    }
     BossView() {
+        let endLock = '';
+        if(this.project.ended != 1){
+            endLock = this.renderNotEnded();
+        }
         return (
             <div className="leftRight"> 
                 <h1> {this.project.nameOfProject}</h1>
@@ -86,9 +98,7 @@ export default class ProjectView extends Component {
                 <label className="left"> Celkový rozpočet:</label><label className="right"> {taskService.getBudgetOnProject(this.project.id)}</label><br/>
                 <label className="left"> Minuté:</label><label className="right"> {this.project.expenditure}</label><br/>
                 <button id="displayButton" onClick={this.handleTasks.bind(this)}>Zobraziť úlohy</button><br/>
-                <button id="workReduceButton" onClick={this.handleWorkReduction.bind(this)}>Skrátenie pracovnej doby</button><br/>
-                <button id="editButton" onClick={this.handleEditProject.bind(this)}>Upraviť projekt</button><br/>
-                <button id="endButton" onClick={this.handleEndProject.bind(this)}>Ukončiť projekt</button><br/>
+                {endLock}
             </div>
         );
     }

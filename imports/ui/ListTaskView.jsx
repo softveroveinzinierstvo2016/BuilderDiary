@@ -33,7 +33,15 @@ export default class ListTaskView extends Component {
         taskService.chooseTask(task);
         render(<EditTaskView/>,document.getElementById('app'));
     }
- 
+    renderButton(task) {
+        if(!projectService.getChoosedProject().ended || projectService.getChoosedProject().ended != 1)
+            return (<div>
+                    <button onClick={this.handleEditTask.bind(this,task)}>Upraviť úlohu</button><br/>
+                    </div>
+            );
+        
+        return '';
+    }
     renderTaskList() {
         return taskService.getTaskOfProjectById(this.project.id).map((task) => (
         <div key={task.id} >
@@ -45,18 +53,26 @@ export default class ListTaskView extends Component {
            <label className="left">Na platy:</label><label className="right">{task.expenditure}/{task.sum}e</label><br/>
            <label className="left"> Zákazník:</label><label className="right">{task.payment_boss * task.duration}e</label><br/>
            <label className="leftProfit"> Zisk:</label><label className="rightProfit">{taskService.getProfitOfTask(task)}e</label><br/>
-            <button onClick={this.handleEditTask.bind(this,task)}>Upraviť úlohu</button><br/>
+            {this.renderButton(task)}
         </div>
         </div>
         ));
     }
-
+    renderAddButton() {
+        if(!projectService.getChoosedProject().ended || projectService.getChoosedProject().ended != 1)
+            return (<div>
+                    <button onClick={this.addTask}>Pridať úlohu</button><br/>
+                    </div>
+            );
+        
+        return '';
+    }
     NavBoss() {
         //TODO: implement other functionalities for boss
         return (
         <div>
             <h1>Zoznam úloh pre projekt {this.project.nameOfProject}</h1><br/>
-           <button onClick={this.addTask}>Pridať úlohu</button><br/>
+           {this.renderAddButton()}
            {this.renderTaskList()}
         </div>
         );

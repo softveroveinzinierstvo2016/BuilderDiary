@@ -2,6 +2,7 @@ import { Project } from '../../models/Project';
 import { Projects } from '../api/projects';
 
 import { Meteor } from 'meteor/meteor';
+import { TaskService } from './taskService';
 
 /**
  * @type {Project}
@@ -28,6 +29,7 @@ export class ProjectService {
             back.expenditure = project.expenditure;
             back.id = project._id;
             back.worked = project.worked;
+            back.ended = project.ended;
             return back;
           });
      }
@@ -44,6 +46,7 @@ export class ProjectService {
            back.expenditure = project.expenditure;
            back.id = project._id;
            back.worked = project.worked;
+           back.ended = project.ended;
            return back;
          });
     }
@@ -52,7 +55,8 @@ export class ProjectService {
       * @param {Project} project project to be set for detail view
       */
      chooseProject(project) {
-         sellectedProject = project
+         console.log(project.ended);
+         sellectedProject = project;
      }
      /**
       * get choosed project
@@ -108,6 +112,8 @@ export class ProjectService {
     }
     setEndOfProject(id){
         let newProject=new Project();
+        let taskService = new TaskService();
+        newProject.budget = taskService.getBudgetOnProject(id);
         newProject.id=id;
         newProject.ended=1;
         sellectedProject=newProject;
